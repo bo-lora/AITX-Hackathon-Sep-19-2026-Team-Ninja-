@@ -1,6 +1,7 @@
 # Team status and recorder design
 
-Shareable. Branch: `cursor/packages-layout-a532`
+Shareable. PR: https://github.com/bo-lora/AITX-Hackathon-Sep-19-2026-Team-Ninja-/pull/7  
+Branch: `cursor/packages-layout-a532`
 
 Do not duplicate `docs/deliverables.md`, `docs/hackathon-pipeline.md`, or `research/ingestion-to-workflow-for-agents.md`. This is status + the recorder contract.
 

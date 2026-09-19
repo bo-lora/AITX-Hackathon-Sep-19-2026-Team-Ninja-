@@ -1,0 +1,5 @@
+{
+  "error": "busy: record is still running",
+  "busy": "record",
+  "retry": "poll GET /health until busy is null"
+}

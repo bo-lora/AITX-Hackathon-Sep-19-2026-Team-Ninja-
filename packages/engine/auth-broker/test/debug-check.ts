@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const [sf, url] = process.argv.slice(2);
+const b = await chromium.launch({ headless: true });
+const ctx = await b.newContext(sf ? { storageState: sf } : {});
+const p = await ctx.newPage();
+p.on('response', r => { if (r.request().isNavigationRequest()) console.log('NAV', r.status(), new URL(r.url()).pathname); });
+const r = await p.goto(url, { waitUntil: 'load' });
+await p.waitForTimeout(1500);
+console.log('final', new URL(p.url()).pathname, 'status', r?.status(), 'pw', await p.locator('input[type=password]').count(), 'title', await p.title());
+console.log((await p.content()).slice(0, 300).replace(/\s+/g,' '));
+await b.close();

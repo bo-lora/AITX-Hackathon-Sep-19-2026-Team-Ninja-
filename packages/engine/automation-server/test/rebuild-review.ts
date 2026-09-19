@@ -1,0 +1,3 @@
+// rebuild review.html from intake.json (no site access). Usage: tsx test/rebuild-review.ts <intakeDir>...
+import * as fs from 'fs'; import * as path from 'path'; import { buildReview } from '../review.ts';
+for (const d of process.argv.slice(2)) { const j = JSON.parse(fs.readFileSync(path.join(d, 'intake.json'), 'utf8')); fs.writeFileSync(path.join(d, 'review.html'), buildReview(j)); console.log('rebuilt', d); }

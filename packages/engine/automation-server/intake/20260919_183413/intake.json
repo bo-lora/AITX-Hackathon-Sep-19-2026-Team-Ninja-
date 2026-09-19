@@ -1,0 +1,342 @@
+{
+  "intake_id": "20260919_183413",
+  "site": "a",
+  "site_url": "https://demo.openemr.io/a/openemr",
+  "backend": "openemr-cli (session only; no password in any command)",
+  "headed": true,
+  "wall_seconds": 207,
+  "summary": "2/2 confirmed · 0 need Mary",
+  "review_url": "/intake/20260919_183413/review.html",
+  "referrals": [
+    {
+      "file": "referral-04.pdf",
+      "pdf_url": "/intake/20260919_183413/pdfs/referral-04.pdf",
+      "extracted": {
+        "file": "referral-04.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-07",
+        "first_name": "Daniel",
+        "last_name": "HACKDEMO-Okonkwo",
+        "dob": "1964-01-09",
+        "sex": "Male",
+        "phone": "512-555-0114",
+        "address_street": "77 Riverstone Ct",
+        "address_city": "Round Rock",
+        "address_state": "TX",
+        "address_zip": "78664",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX5701193",
+        "group_number": "GRP-17266",
+        "reason": "Screening colonoscopy; patient has family history of colon polyps.",
+        "specialty": "Gastroenterology",
+        "urgency": "Routine",
+        "display_dob": "01/09/1964",
+        "display_referral_date": "September 7, 2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0114"
+      },
+      "flags": [],
+      "triage_decision": "READY",
+      "seconds": 96.7,
+      "command": "openemr intake referrals/referral-04.pdf --site a --json --shots automation-server/intake/20260919_183413/shots/referral-04",
+      "cli": {
+        "command": "intake <repo>/referrals/referral-04.pdf",
+        "site": "https://demo.openemr.io/a/openemr",
+        "ok": true,
+        "exit_code": 0,
+        "steps": [
+          {
+            "step": "patient create",
+            "status": "VERIFIED",
+            "detail": "pid 8; fresh load of demographics_full.php matches",
+            "readback": {
+              "first": "Daniel",
+              "last": "HACKDEMO-Okonkwo",
+              "dob": "1964-01-09",
+              "sex": "Male|Male",
+              "phone": "512-555-0114",
+              "street": "77 RIVERSTONE CT",
+              "city": "ROUND ROCK",
+              "state": "Texas|TX",
+              "zip": "78664"
+            }
+          },
+          {
+            "step": "insurance add",
+            "status": "VERIFIED",
+            "detail": "fresh load of insurance_edit.php matches",
+            "readback": {
+              "carrier": "Aekna (4345 Donkey Road, , FL, 44433)",
+              "member_id": "AXX5701193",
+              "group": "GRP-17266",
+              "end_date": "",
+              "subscriber_last": "HACKDEMO-Okonkwo"
+            }
+          },
+          {
+            "step": "doc attach",
+            "status": "VERIFIED",
+            "detail": "fresh load of Documents list for pid 8 contains referral-04.pdf",
+            "readback": {
+              "document": "referral-04.pdf",
+              "category_id": "3"
+            }
+          },
+          {
+            "step": "appt create",
+            "status": "VERIFIED",
+            "detail": "fresh dashboard load shows \"New Patient Mon, 2026-09-21 10:00 Billy Smith (eid 27)\"",
+            "readback": {
+              "date": "2026-09-21",
+              "time": "10:00",
+              "category": "New Patient",
+              "provider": "Billy Smith",
+              "eid": "27"
+            }
+          }
+        ],
+        "extractor": "<repo>/extract/extract",
+        "patient": {
+          "first": "Daniel",
+          "last": "HACKDEMO-Okonkwo",
+          "dob": "1964-01-09"
+        },
+        "appointment": {
+          "date": "2026-09-21",
+          "time": "10:00",
+          "category": "New Patient"
+        },
+        "pid": "8",
+        "dialogs": [
+          "New Due Clinical Reminders\n\nMeasurement: Weight\nAssessment: Colon Cancer Screening\nAssessment: Prostate Cancer Screening\nTreatment: Influenza Vaccine\nAssessment: Tobacco\n\nSee the Clinical Reminders widget for more details",
+          "Provider not available, use it anyway?"
+        ],
+        "seconds": 96
+      },
+      "final_shot": "/intake/20260919_183413/shots/referral-04/final-1789842954719.png",
+      "links": [
+        {
+          "key": "chart",
+          "label": "Patient chart",
+          "url": "https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=8",
+          "verified": "HACKDEMO-Okonkwo (pid 8)",
+          "shot": "/intake/20260919_183413/linkshots/referral-04-chart.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "insurance",
+          "label": "Insurance (shown on the patient chart)",
+          "url": "https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=8",
+          "verified": "HACKDEMO-Okonkwo (pid 8)",
+          "shot": "/intake/20260919_183413/linkshots/referral-04-insurance.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "documents",
+          "label": "Documents: open the Medical Record folder",
+          "url": "https://demo.openemr.io/a/openemr/controller.php?document&list&patient_id=8",
+          "verified": "HACKDEMO-Okonkwo (pid 8)",
+          "shot": "/intake/20260919_183413/linkshots/referral-04-documents.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "appointment",
+          "label": "Appointment",
+          "url": "https://demo.openemr.io/a/openemr/interface/main/calendar/add_edit_event.php?eid=27",
+          "verified": "HACKDEMO-Okonkwo (pid 8)",
+          "shot": "/intake/20260919_183413/linkshots/referral-04-appointment.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        }
+      ],
+      "status": "Confirmed ✓"
+    },
+    {
+      "file": "referral-05.pdf",
+      "pdf_url": "/intake/20260919_183413/pdfs/referral-05.pdf",
+      "extracted": {
+        "file": "referral-05.pdf",
+        "template": "form",
+        "faxed_look": false,
+        "clinic_name": "Barton Ridge Primary Care",
+        "clinic_address": "1807 Imaginary Creek Rd, Austin, TX 78704",
+        "clinic_phone": "512-555-0150",
+        "clinic_fax": "512-555-0151",
+        "referring_provider": "Dr. Owen Whitcombe, DO",
+        "referring_npi": "9234567801",
+        "referral_date": "2026-09-09",
+        "first_name": "Hannah",
+        "last_name": "HACKDEMO-Duvall",
+        "dob": "2001-08-18",
+        "sex": "Female",
+        "phone": "512-555-0115",
+        "address_street": "4402 Live Oak St",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78751",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX2049818",
+        "group_number": "GRP-66101",
+        "reason": "Persistent rash on both forearms for six weeks, no response to OTC cream.",
+        "specialty": "Dermatology",
+        "urgency": "Routine",
+        "display_dob": "08/18/2001",
+        "display_referral_date": "09/09/2026",
+        "display_sex": "F",
+        "display_phone": "(512) 555-0115"
+      },
+      "flags": [],
+      "triage_decision": "READY",
+      "seconds": 104.5,
+      "command": "openemr intake referrals/referral-05.pdf --site a --json --shots automation-server/intake/20260919_183413/shots/referral-05",
+      "cli": {
+        "command": "intake <repo>/referrals/referral-05.pdf",
+        "site": "https://demo.openemr.io/a/openemr",
+        "ok": true,
+        "exit_code": 0,
+        "steps": [
+          {
+            "step": "patient create",
+            "status": "VERIFIED",
+            "detail": "pid 9; fresh load of demographics_full.php matches",
+            "readback": {
+              "first": "Hannah",
+              "last": "HACKDEMO-Duvall",
+              "dob": "2001-08-18",
+              "sex": "Female|Female",
+              "phone": "512-555-0115",
+              "street": "4402 LIVE OAK ST",
+              "city": "AUSTIN",
+              "state": "Texas|TX",
+              "zip": "78751"
+            }
+          },
+          {
+            "step": "insurance add",
+            "status": "VERIFIED",
+            "detail": "fresh load of insurance_edit.php matches",
+            "readback": {
+              "carrier": "Aekna (4345 Donkey Road, , FL, 44433)",
+              "member_id": "AXX2049818",
+              "group": "GRP-66101",
+              "end_date": "",
+              "subscriber_last": "HACKDEMO-Duvall"
+            }
+          },
+          {
+            "step": "doc attach",
+            "status": "VERIFIED",
+            "detail": "fresh load of Documents list for pid 9 contains referral-05.pdf",
+            "readback": {
+              "document": "referral-05.pdf",
+              "category_id": "3"
+            }
+          },
+          {
+            "step": "appt create",
+            "status": "VERIFIED",
+            "detail": "fresh dashboard load shows \"New Patient Mon, 2026-09-21 10:00 Billy Smith (eid 28)\"",
+            "readback": {
+              "date": "2026-09-21",
+              "time": "10:00",
+              "category": "New Patient",
+              "provider": "Billy Smith",
+              "eid": "28"
+            }
+          }
+        ],
+        "extractor": "<repo>/extract/extract",
+        "patient": {
+          "first": "Hannah",
+          "last": "HACKDEMO-Duvall",
+          "dob": "2001-08-18"
+        },
+        "appointment": {
+          "date": "2026-09-21",
+          "time": "10:00",
+          "category": "New Patient"
+        },
+        "pid": "9",
+        "dialogs": [
+          "New Due Clinical Reminders\n\nMeasurement: Weight\nExamination: Pap Smear\nAssessment: Tobacco\n\nSee the Clinical Reminders widget for more details",
+          "Provider not available, use it anyway?"
+        ],
+        "seconds": 103.7
+      },
+      "final_shot": "/intake/20260919_183413/shots/referral-05/final-1789843059227.png",
+      "links": [
+        {
+          "key": "chart",
+          "label": "Patient chart",
+          "url": "https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=9",
+          "verified": "HACKDEMO-Duvall (pid 9)",
+          "shot": "/intake/20260919_183413/linkshots/referral-05-chart.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "insurance",
+          "label": "Insurance (shown on the patient chart)",
+          "url": "https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=9",
+          "verified": "HACKDEMO-Duvall (pid 9)",
+          "shot": "/intake/20260919_183413/linkshots/referral-05-insurance.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "documents",
+          "label": "Documents: open the Medical Record folder",
+          "url": "https://demo.openemr.io/a/openemr/controller.php?document&list&patient_id=9",
+          "verified": "HACKDEMO-Duvall (pid 9)",
+          "shot": "/intake/20260919_183413/linkshots/referral-05-documents.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        },
+        {
+          "key": "appointment",
+          "label": "Appointment",
+          "url": "https://demo.openemr.io/a/openemr/interface/main/calendar/add_edit_event.php?eid=28",
+          "verified": "HACKDEMO-Duvall (pid 9)",
+          "shot": "/intake/20260919_183413/linkshots/referral-05-appointment.png",
+          "check": {
+            "http": 200,
+            "name_on_page": true,
+            "detail_on_page": true
+          }
+        }
+      ],
+      "status": "Confirmed ✓"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ export default async function SkillsHomePage() {
         <section className="border-b border-line py-12">
           <h1 className="text-5xl sm:text-6xl">Trained skills</h1>
           <p className="mt-3 max-w-[46ch] text-lg text-muted">
-            Edit a workflow, save it, then Add to Grok or download. Done in Chrome lands here.
+            Edit a workflow, save it, download the skill folder, or run it here. The referral skill is the demo — no Chrome install.
           </p>
           <div className="mt-6">
             <WatchDemoButton />
@@ -25,7 +25,7 @@ export default async function SkillsHomePage() {
         <section id="skills" className="py-12">
           {skills.length === 0 ? (
             <p className="text-muted">
-              None yet. Load the extension, hit Done, or watch the demo.
+              None yet. Open the referral skill, or teach a new flow in Chrome if you have one.
             </p>
           ) : (
             <ul className="grid gap-4 sm:grid-cols-2">

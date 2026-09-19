@@ -1,0 +1,6 @@
+PASS clean []
+PASS dob not a date ['MALFORMED_FIELD:dob']
+PASS member id wrong pattern ['MALFORMED_FIELD:member_id']
+PASS missing phone ['MISSING_FIELD:phone']
+PASS bad phone ['MALFORMED_FIELD:phone']
+PASS missing member id ['MISSING_FIELD:member_id']

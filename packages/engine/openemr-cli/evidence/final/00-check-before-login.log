@@ -1,0 +1,2 @@
+[0.5s] LOGGED_OUT
+{"command":"check","site":"https://demo.openemr.io/openemr","ok":false,"exit_code":2,"steps":[],"session":"LOGGED_OUT","session_file":"<repo>/openemr-cli/test-sessions/broker.json","dialogs":[],"seconds":0.5}

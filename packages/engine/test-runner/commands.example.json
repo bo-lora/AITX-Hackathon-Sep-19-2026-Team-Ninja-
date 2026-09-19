@@ -1,0 +1,17 @@
+{
+  "workflow": "Register a new patient and book a new-patient appointment",
+  "target_url": "https://demo.openemr.io/openemr",
+  "manual_seconds": 240,
+  "manual_seconds_placeholder": true,
+  "setup": [
+    {"id": "login", "bullet": "Log in to OpenEMR", "command": "npx tsx oe.ts login --user admin --pass pass", "verify": "npx tsx oe.ts verify-login"}
+  ],
+  "steps": [
+    {"id": "s1", "bullet": "Create patient Maria HACKDEMO-TR-{{HHMMSS}}, DOB 1980-05-01",
+     "command": "npx tsx oe.ts create-patient --lname HACKDEMO-TR-{{HHMMSS}} --fname Maria --dob 1980-05-01 --sex Female",
+     "verify": "npx tsx oe.ts verify-patient --lname HACKDEMO-TR-{{HHMMSS}} --fname Maria --dob 1980-05-01"},
+    {"id": "s2", "bullet": "Book a New Patient appointment next weekday 10:00", "depends_on": ["s1"],
+     "command": "npx tsx oe.ts book-appt --lname HACKDEMO-TR-{{HHMMSS}} --date next-weekday --time 10:00 --category 'New Patient'",
+     "verify": "npx tsx oe.ts verify-appt --lname HACKDEMO-TR-{{HHMMSS}} --date next-weekday --time 10:00"}
+  ]
+}

@@ -1,0 +1,72 @@
+
+=== link check 9/19/2026, 12:48:58 PM CDT · intake 20260919_174243 · site https://demo.openemr.io/openemr ===
+PASS referral-06.pdf chart       HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74
+FAIL referral-06.pdf insurance   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=false member AXX2559605 on page=false · https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=74
+FAIL referral-06.pdf documents   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true pdf referral-06.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=74
+PASS referral-06.pdf appointment HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=85
+PASS referral-07.pdf chart       HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75
+FAIL referral-07.pdf insurance   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=false member AXX1377048 on page=false · https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=75
+FAIL referral-07.pdf documents   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true pdf referral-07.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=75
+PASS referral-07.pdf appointment HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=87
+PASS referral-08.pdf chart       HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76
+FAIL referral-08.pdf insurance   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=false member AXX1393956 on page=false · https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=76
+FAIL referral-08.pdf documents   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true pdf referral-08.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=76
+PASS referral-08.pdf appointment HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=89
+links: 6/12 opened the right HACKDEMO record · review page screenshot: <repo>/automation-server/intake/20260919_174243/review-page.png (from http://localhost:4711/intake/20260919_174243/review.html)
+--- rerun after link fixes (insurance → chart page; documents → click Medical Record) ---
+
+=== link check 9/19/2026, 12:49:52 PM CDT · intake 20260919_174243 · site https://demo.openemr.io/openemr ===
+PASS referral-06.pdf chart       HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74
+PASS referral-06.pdf insurance   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true member AXX2559605 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74
+  (documents: clicked the 'Medical Record' folder once, as Mary would)
+FAIL referral-06.pdf documents   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true pdf referral-06.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=74
+PASS referral-06.pdf appointment HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=85
+PASS referral-07.pdf chart       HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75
+PASS referral-07.pdf insurance   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true member AXX1377048 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75
+  (documents: clicked the 'Medical Record' folder once, as Mary would)
+FAIL referral-07.pdf documents   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true pdf referral-07.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=75
+PASS referral-07.pdf appointment HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=87
+PASS referral-08.pdf chart       HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76
+PASS referral-08.pdf insurance   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true member AXX1393956 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76
+  (documents: clicked the 'Medical Record' folder once, as Mary would)
+FAIL referral-08.pdf documents   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true pdf referral-08.pdf on page=false · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=76
+PASS referral-08.pdf appointment HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=89
+links: 9/12 opened the right HACKDEMO record · review page screenshot: <repo>/automation-server/intake/20260919_174243/review-page.png (from http://localhost:4711/intake/20260919_174243/review.html)
+--- rerun 2: documents check = file name in the tree of THIS patient's Documents page (visible text or the tree's data) ---
+
+=== link check 9/19/2026, 12:51:00 PM CDT · intake 20260919_174243 · site https://demo.openemr.io/openemr ===
+PASS referral-06.pdf chart       HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74
+PASS referral-06.pdf insurance   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true member AXX2559605 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74
+  (documents: clicked the + next to the 'Medical Record' folder once, as Mary would)
+  (documents: file name visible on screen after expanding=false; in this patient's document tree data=true)
+PASS referral-06.pdf documents   HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true pdf referral-06.pdf on page=true · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=74
+PASS referral-06.pdf appointment HTTP 200 name HACKDEMO-Escobedo-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=85
+PASS referral-07.pdf chart       HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75
+PASS referral-07.pdf insurance   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true member AXX1377048 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75
+  (documents: clicked the + next to the 'Medical Record' folder once, as Mary would)
+  (documents: file name visible on screen after expanding=false; in this patient's document tree data=true)
+PASS referral-07.pdf documents   HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true pdf referral-07.pdf on page=true · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=75
+PASS referral-07.pdf appointment HTTP 200 name HACKDEMO-Fairbanks-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=87
+PASS referral-08.pdf chart       HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true  on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76
+PASS referral-08.pdf insurance   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true member AXX1393956 on page=true · https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76
+  (documents: clicked the + next to the 'Medical Record' folder once, as Mary would)
+  (documents: file name visible on screen after expanding=false; in this patient's document tree data=true)
+PASS referral-08.pdf documents   HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true pdf referral-08.pdf on page=true · https://demo.openemr.io/openemr/controller.php?document&list&patient_id=76
+PASS referral-08.pdf appointment HTTP 200 name HACKDEMO-Harrowgate-RV124243 on page=true "New Patient" on page=true · https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=89
+links: 12/12 opened the right HACKDEMO record · review page screenshot: <repo>/automation-server/intake/20260919_174243/review-page.png (from http://localhost:4711/intake/20260919_174243/review.html)
+--- /a DRESS REHEARSAL (product server 4710, intake 20260919_183413) ---
+
+=== link check 9/19/2026, 1:37:58 PM CDT · intake 20260919_183413 · site https://demo.openemr.io/a/openemr ===
+PASS referral-04.pdf chart       HTTP 200 name HACKDEMO-Okonkwo on page=true  on page=true · https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=8
+PASS referral-04.pdf insurance   HTTP 200 name HACKDEMO-Okonkwo on page=true member AXX5701193 on page=true · https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=8
+  (documents: clicked the + next to the 'Medical Record' folder once, as Mary would)
+  (documents: file name visible on screen after expanding=false; in this patient's document tree data=true)
+PASS referral-04.pdf documents   HTTP 200 name HACKDEMO-Okonkwo on page=true pdf referral-04.pdf on page=true · https://demo.openemr.io/a/openemr/controller.php?document&list&patient_id=8
+PASS referral-04.pdf appointment HTTP 200 name HACKDEMO-Okonkwo on page=true "New Patient" on page=true · https://demo.openemr.io/a/openemr/interface/main/calendar/add_edit_event.php?eid=27
+PASS referral-05.pdf chart       HTTP 200 name HACKDEMO-Duvall on page=true  on page=true · https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=9
+PASS referral-05.pdf insurance   HTTP 200 name HACKDEMO-Duvall on page=true member AXX2049818 on page=true · https://demo.openemr.io/a/openemr/interface/patient_file/summary/demographics.php?set_pid=9
+  (documents: clicked the + next to the 'Medical Record' folder once, as Mary would)
+  (documents: file name visible on screen after expanding=false; in this patient's document tree data=true)
+PASS referral-05.pdf documents   HTTP 200 name HACKDEMO-Duvall on page=true pdf referral-05.pdf on page=true · https://demo.openemr.io/a/openemr/controller.php?document&list&patient_id=9
+PASS referral-05.pdf appointment HTTP 200 name HACKDEMO-Duvall on page=true "New Patient" on page=true · https://demo.openemr.io/a/openemr/interface/main/calendar/add_edit_event.php?eid=28
+links: 8/8 opened the right HACKDEMO record · review page screenshot: <repo>/automation-server/intake/20260919_183413/review-page.png (from http://localhost:4710/intake/20260919_183413/review.html)

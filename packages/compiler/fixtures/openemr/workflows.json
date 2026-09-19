@@ -1,0 +1,247 @@
+{
+  "video": "/Users/pranavnarahari/Documents/cursor-hackathon/team-ninja/assets/openemr.mp4",
+  "model": "gemini-3.1-pro-preview",
+  "source": "gemini",
+  "workflows": [
+    {
+      "workflow_name": "Schedule and Check-in Patient",
+      "goal": "Schedule an appointment for an existing patient and mark them as arrived to generate an encounter.",
+      "inputs_observed": [
+        "patient_name",
+        "appointment_date",
+        "appointment_time",
+        "appointment_status"
+      ],
+      "steps": [
+        {
+          "action": "search_patient",
+          "input": "patient_name",
+          "object": "patient",
+          "filter": null,
+          "rule": null,
+          "result": "patient",
+          "side_effect": false,
+          "notes": "01:01 Patient Search"
+        },
+        {
+          "action": "create_appointment",
+          "input": "appointment_date",
+          "object": "appointment",
+          "filter": null,
+          "rule": null,
+          "result": "appointment",
+          "side_effect": false,
+          "notes": "01:16 Save appointment"
+        },
+        {
+          "action": "update_appointment_status",
+          "input": "appointment_status",
+          "object": "appointment",
+          "filter": null,
+          "rule": null,
+          "result": "encounter",
+          "side_effect": false,
+          "notes": "01:49 Set status to Arrived, which auto-creates an encounter"
+        }
+      ],
+      "decision_points": [
+        "Which patient to select from search results",
+        "Which provider to assign"
+      ],
+      "final_state": "Appointment is scheduled and patient is marked as arrived, automatically creating an encounter.",
+      "entities": [
+        "patient",
+        "appointment",
+        "encounter"
+      ]
+    },
+    {
+      "workflow_name": "Register Patient and Create Encounter",
+      "goal": "Register a new patient with demographics and create a new encounter for their visit.",
+      "inputs_observed": [
+        "first_name",
+        "last_name",
+        "dob",
+        "sex",
+        "marital_status",
+        "visit_category",
+        "reason_for_visit"
+      ],
+      "steps": [
+        {
+          "action": "create_patient",
+          "input": "first_name",
+          "object": "patient",
+          "filter": null,
+          "rule": null,
+          "result": "patient",
+          "side_effect": false,
+          "notes": "02:23 Search or Add Patient form"
+        },
+        {
+          "action": "create_encounter",
+          "input": "visit_category",
+          "object": "encounter",
+          "filter": null,
+          "rule": null,
+          "result": "encounter",
+          "side_effect": false,
+          "notes": "03:30 New Encounter Form"
+        }
+      ],
+      "decision_points": [
+        "Which visit category to select"
+      ],
+      "final_state": "New patient is registered and an encounter is created.",
+      "entities": [
+        "patient",
+        "encounter"
+      ]
+    },
+    {
+      "workflow_name": "Complete Clinical Documentation",
+      "goal": "Document the patient visit by adding SOAP notes, vitals, and a prescription.",
+      "inputs_observed": [
+        "subjective_notes",
+        "assessment_notes",
+        "plan_notes",
+        "weight",
+        "height",
+        "bp_systolic",
+        "bp_diastolic",
+        "pulse",
+        "respiration",
+        "drug_name",
+        "quantity",
+        "medicine_units",
+        "directions",
+        "refills"
+      ],
+      "steps": [
+        {
+          "action": "create_soap_note",
+          "input": "subjective_notes",
+          "object": "encounter_form",
+          "filter": null,
+          "rule": null,
+          "result": "encounter_form",
+          "side_effect": false,
+          "notes": "03:53 SOAP form"
+        },
+        {
+          "action": "record_vitals",
+          "input": "weight",
+          "object": "encounter_form",
+          "filter": null,
+          "rule": null,
+          "result": "encounter_form",
+          "side_effect": false,
+          "notes": "04:20 Vitals form"
+        },
+        {
+          "action": "add_prescription",
+          "input": "drug_name",
+          "object": "prescription",
+          "filter": null,
+          "rule": null,
+          "result": "prescription",
+          "side_effect": true,
+          "notes": "05:15 Add prescription form"
+        }
+      ],
+      "decision_points": [
+        "Which drug to prescribe",
+        "Which medicine units to use",
+        "Directions for use"
+      ],
+      "final_state": "Encounter is documented with SOAP notes, vitals, and a prescription.",
+      "entities": [
+        "encounter",
+        "form",
+        "prescription",
+        "drug"
+      ]
+    },
+    {
+      "workflow_name": "Process Billing and Checkout",
+      "goal": "Add billing codes to the fee sheet, record patient payment, and generate a receipt.",
+      "inputs_observed": [
+        "cpt_code",
+        "payment_method",
+        "payment_amount"
+      ],
+      "steps": [
+        {
+          "action": "add_fee_sheet_code",
+          "input": "cpt_code",
+          "object": "fee_sheet",
+          "filter": null,
+          "rule": null,
+          "result": "fee_sheet",
+          "side_effect": false,
+          "notes": "06:36 Fee Sheet form"
+        },
+        {
+          "action": "record_payment",
+          "input": "payment_amount",
+          "object": "payment",
+          "filter": null,
+          "rule": null,
+          "result": "payment",
+          "side_effect": true,
+          "notes": "07:09 Record Payment form"
+        },
+        {
+          "action": "generate_receipt",
+          "input": null,
+          "object": "receipt",
+          "filter": null,
+          "rule": null,
+          "result": "receipt",
+          "side_effect": false,
+          "notes": "07:30 Receipt for Payment"
+        }
+      ],
+      "decision_points": [
+        "Which CPT codes to add",
+        "Payment method (Cash, Check, etc.)"
+      ],
+      "final_state": "Fee sheet is updated, payment is recorded, and receipt is generated.",
+      "entities": [
+        "fee_sheet",
+        "payment",
+        "receipt",
+        "invoice"
+      ]
+    },
+    {
+      "workflow_name": "Schedule Future Appointment",
+      "goal": "Schedule a follow-up appointment for the patient directly from their dashboard.",
+      "inputs_observed": [
+        "visit_category",
+        "appointment_date",
+        "appointment_time"
+      ],
+      "steps": [
+        {
+          "action": "create_appointment",
+          "input": "appointment_date",
+          "object": "appointment",
+          "filter": null,
+          "rule": null,
+          "result": "appointment",
+          "side_effect": false,
+          "notes": "08:05 Appointments widget on dashboard"
+        }
+      ],
+      "decision_points": [
+        "Which visit category to select for future appointment"
+      ],
+      "final_state": "A future appointment is scheduled for the patient.",
+      "entities": [
+        "patient",
+        "appointment"
+      ]
+    }
+  ]
+}

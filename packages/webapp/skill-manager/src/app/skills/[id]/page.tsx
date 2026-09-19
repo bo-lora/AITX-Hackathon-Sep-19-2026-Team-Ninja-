@@ -34,6 +34,31 @@ export default async function SkillPage({
 
         <SkillActions skill={skill} />
 
+        {skill.inputs?.length ? (
+          <section className="space-y-3">
+            <h2 className="text-4xl text-navy">Inputs this skill will ask for</h2>
+            <p className="max-w-2xl text-sm text-muted">
+              Teach used example values. The next run is parameterized. If someone says
+              “reschedule Brian Jones” and a required field is missing, the skill asks — it
+              does not guess from the fax example.
+            </p>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {skill.inputs.map((input) => (
+                <li key={input.name} className="paper-sheet p-4">
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <p className="font-semibold">{input.label}</p>
+                    <Badge tone={input.required ? "ink" : "paper"}>
+                      {input.required ? "Required" : "Optional"}
+                    </Badge>
+                  </div>
+                  <p className="font-mono text-[11px] text-muted">{input.name}</p>
+                  <p className="mt-2 text-sm text-muted">{input.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <ol className="space-y-3">
             {skill.workflow.map((step, index) => (

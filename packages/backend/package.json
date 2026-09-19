@@ -7,7 +7,8 @@
     ".": "./src/index.ts",
     "./store": "./src/store.ts",
     "./http": "./src/http.ts",
-    "./sample": "./src/sample-session.ts"
+    "./sample": "./src/sample-session.ts",
+    "./engine": "./src/engine.ts"
   },
   "types": "./src/index.ts"
 }

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Basic User ACLs In OpenEMR And How To Customize Them - OpenEMR Project Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"4dc787515111cbc704c9f291","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them","wgTitle":"Basic User ACLs In OpenEMR And How To Customize Them","wgCurRevisionId":36066,"wgRevisionId":36066,"wgArticleId":5739,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them","wgRelevantArticleId":5739,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.openemr":"ready","ext.embedVideo.styles":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.openemr.js","ext.embedVideo.overlay"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=ext.embedVideo.styles%7Cskins.openemr&amp;only=styles&amp;skin=openemr">
+<script async="" src="/wiki/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=openemr"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=openemr">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0">
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/rest.php/v1/search" title="OpenEMR Project Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://www.open-emr.org/wiki/api.php?action=rsd">
+<link rel="license" href="https://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="OpenEMR Project Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them rootpage-Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them skin-openemr action-view skin--responsive"><a href="https://www.open-emr.org/cdn-cgi/content?id=B.zhG6yIO0P5z6vqua.wiLsLj75MrOK47gj1FujjP2U-1789835092.4101632-1.2.1.1-dqX4m0FOUUkCzO2p.ahpr0zGDgg_85JUiqgwdhv08I5zIcDtH9twl1yQiUYVu050" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a><div id="mw-wrapper">
+    <div class="mb-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/"><img height="45" src="/wiki/skins/Openemr/images/openemr-logo-wiki.svg"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Features">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/demo">Demo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Downloads">Download</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/modules">Modules</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/blog">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki">Docs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://community.open-emr.org/">Forum</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/chat">Chat</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Support
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/wiki/index.php/Professional_Support">Professional Support Vendors</a>
+                  <a class="dropdown-item" href="/support">Costs and Support Options</a>
+                  <a class="dropdown-item" href="https://community.open-emr.org/">Community Support</a>
+                  <a class="dropdown-item" href="/chat">Free Basic Live Chat Support</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+	<div class="mw-body" id="content" role="main">
+		<div id="siteNotice"></div>
+		
+		<div class="mw-indicators mw-body-content">
+		</div>
+		<h1 class="firstHeading" ><span class="mw-page-title-main">Basic User ACLs In OpenEMR And How To Customize Them</span></h1>
+		<div id="siteSub">From OpenEMR Project Wiki</div>
+		<div class="mw-body-content">
+			<div id="contentSub">
+				<div id="mw-content-subtitle"></div>
+				
+			</div>
+			<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#WARNINGS/_Notes"><span class="tocnumber">1.1</span> <span class="toctext">WARNINGS/ Notes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Basic_OpenEMR_ACLs"><span class="tocnumber">2</span> <span class="toctext">Basic OpenEMR ACLs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#The_‘Access_Control_List’"><span class="tocnumber">2.1</span> <span class="toctext">The ‘Access Control List’</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#ACL_Groups"><span class="tocnumber">2.2</span> <span class="toctext">ACL Groups</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Add_ACLs_to_a_Group"><span class="tocnumber">2.3</span> <span class="toctext">Add ACLs to a Group</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Create_a_Hybrid_ACL_Group"><span class="tocnumber">3</span> <span class="toctext">Create a Hybrid ACL Group</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Conclusion"><span class="tocnumber">4</span> <span class="toctext">Conclusion</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Introduction">Introduction</span></h1>
+<p>An OpenEMR user is able to do what they do in the EMR because the ACL (Access Control List) assigned to their user role gives them permission to do it. And as a bonus, OpenEMR provides a tool to create a custom ACL group containing a specific capability that can be added to any user's standard ACL.
+</p><p><br />
+</p>
+<h2><span id="WARNINGS.2F_Notes"></span><span class="mw-headline" id="WARNINGS/_Notes">WARNINGS/ Notes</span></h2>
+<ul><li>This is OpenEMR rocket science which if improperly used can be bad for your EMR data. I am simply showing you the tool; it is up to you to use it wisely.</li>
+<li>This tutorial is for those who know generally what ACLs are but not necessarily how OpenEMR uses them.</li>
+<li>One obstacle you will encounter doing this procedure is that the specific ACLs are poorly documented and it can take a lot of trial/ error to determine which ones grant precisely what access-- for example, our sample ACL modification shown below of editing Demographics also affects editing Insurance data. HOWEVER- once you know which ACL you’re working with, this doc will tell you how to use it.</li></ul>
+<ul><li>Custom ACLs can only be created by an OpenEMR Administrator.</li>
+<li>This document was made w/ the OpenEMR v7.0.1 public dev demo but the ACL Admin interface has not changed significantly since... v3? <br /></li></ul>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL000.png" class="mw-file-description"><img src="/wiki/images/0/0d/CustomACL000.png" decoding="async" width="226" height="500" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+</p><p><br />
+</p><p>The main menu that a user sees when they log into OpenEMR depends on their ACL group, which is assigned in their User Profile (oval above).
+</p><p><br />
+All ACL groups appear in that list and any one or more can be assigned to a user, giving them access to the capabilities of all the selected groups.
+</p><p>Conversely, if a user does not have a particular ACL group assigned they will not see the menu items that it gives access to.
+</p><p><br />
+For example, when a user assigned to the ‘Front Office’ ACL group logs in they will have a much shorter 'Admin' main menu item compared to the Administrator's (next img)
+</p>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL00.png" class="mw-file-description"><img src="/wiki/images/9/92/CustomACL00.png" decoding="async" width="459" height="188" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Basic_OpenEMR_ACLs">Basic OpenEMR ACLs</span></h1>
+<p>First let us look at the basics of OpenEMR ACLs then we'll create and use a custom ACL group.
+</p><p><br />
+</p>
+<h2><span id="The_.E2.80.98Access_Control_List.E2.80.99"></span><span class="mw-headline" id="The_‘Access_Control_List’">The ‘Access Control List’</span></h2>
+<p>1. Open the 'Access Control List Administration' from the main menu: 'Admin/ ACL' (oval below)
+</p>
+<ul><li>Initially only the ‘User Memberships’ panel is displayed open.<br /></li></ul>
+<p><br />
+</p>
+<dl><dd><dl><dd><i><b>** the images in this doc are from the public demo and the usernames do not resemble real ones. I added user 'acltest' (arrow below) for this documentation **</b></i></dd></dl></dd></dl>
+<p><br />
+<span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL01.png" class="mw-file-description"><img src="/wiki/images/0/0c/CustomACL01.png" decoding="async" width="500" height="261" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p>Let us look at user acltest.
+</p><p>2. Click the pencil next to the user name to open their ACL list.
+</p>
+<ul><li>The ACL group(s) that a user is assigned to are in their Active list in the left column. The ones that they are not are Inactive on the right.</li></ul>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL02.png" class="mw-file-description"><img src="/wiki/images/8/8d/CustomACL02.png" decoding="async" width="335" height="563" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>3. The user’s ACL that was assigned in their profile as shown previously, will appear in the active column in this display.
+</p>
+<h2><span class="mw-headline" id="ACL_Groups">ACL Groups</span></h2>
+<p>Below the ‘User Memberships’ panel:
+</p><p>1. Click in the checkbox next to 'Groups and Access Controls' to open it.
+</p>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL022.png" class="mw-file-description"><img src="/wiki/images/c/ce/CustomACL022.png" decoding="async" width="299" height="433" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+</p><p>All the default ACL groups are listed here.
+</p><p>Each one has a modifier which determines the extent of the group’s access to the EMR content:
+</p>
+<dl><dd><ul><li>[group]-view - read only</li>
+<li>[group]-addonly - may only add to but not modify existing content</li>
+<li>[group]-wsome - may modify limited parts of the content; the particular parts are variable depending on the content</li>
+<li>[group]-write - full editing access</li></ul></dd></dl>
+<p>2. Click on the pencil of the desired group. 
+</p><p>All available ACLs are grouped beneath bold headings of the sort of access they relate to, for example: 'Administration', 'Encounters','Groups'.
+</p><p>In this image, the Inactive column contains the ones not used by the Clinicians group; the ones they do use are moved over to the Active column.
+</p><p><span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL03.png" class="mw-file-description"><img src="/wiki/images/3/31/CustomACL03.png" decoding="async" width="600" height="329" class="mw-file-element" /></a></span>
+</p><p><br />
+The specfic ACLs are described to a limited extent in the wiki page:  <a href="/wiki/index.php/Access_Controls_Listing" title="Access Controls Listing">Access_Controls_Listing</a>
+</p>
+<h2><span class="mw-headline" id="Add_ACLs_to_a_Group">Add ACLs to a Group</span></h2>
+<p>Looking in the Clinicians’ Active column (above) we see that normally Clinicians do not have the power to fix encounter dates. If you want to allow them that:
+</p><p>1. Click on the inactive ACL to highlight it, then 
+</p><p>2. Click on the ‘&lt;&lt;’ button and it moves to the Active window.
+</p>
+<dl><dd><ul><li>Removing ACLs of course goes the opposite way: highlight the Active item and click ‘&gt;&gt;’</li></ul></dd></dl>
+<p><br />
+With this procedure you may modify the capabilities of any group.
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="Create_a_Hybrid_ACL_Group">Create a Hybrid ACL Group</span></h1>
+<p>The thing to remember about adding an ACL to a group, as described above, is that everybody in that group will have that new capability. 
+</p><p>Looking at another example, some ACL groups normally do not have the ability to edit demographics. That is indicated here by no pencil in the demographics widget as viewed by a Clinician user.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL04.png" class="mw-file-description"><img src="/wiki/images/5/53/CustomACL04.png" decoding="async" width="400" height="199" class="mw-file-element" /></a></span> 
+</p><p><br />
+</p><p><br />
+</p><p>If you want only one of your Clinicians, but not the rest of them, to be able to edit demographics you can make what I'm calling a 'hybrid ACL' and assign it to the user you want to be able to do that thing.
+</p><p>Let us go back to the Groups and Access Controls.
+</p><p><br />
+1. Click 'Add New Group' button
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL023.png" class="mw-file-description"><img src="/wiki/images/0/05/CustomACL023.png" decoding="async" width="299" height="119" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p>
+<ul><li>the 'New Group Information' panel appears.</li></ul>
+<p>2. Fill in the details:
+</p>
+<dl><dd><ul><li>Title - the name that appears in the 'Groups and Access Controls' list. May be multi-word but keep it brief</li>
+<li>Identifier - single word name for the new group</li>
+<li>Return Value - just go ahead and make it 'write' unless you know you want it different</li>
+<li>Description - free-text note about the group<br /></li></ul></dd></dl>
+<p><br />
+</p>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL05.png" class="mw-file-description"><img src="/wiki/images/2/2a/CustomACL05.png" decoding="async" width="362" height="422" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>3. Click 'Add Group' (oval above)
+</p><p><br />
+</p>
+<dl><dd><dl><dd><b><i>QUICK NOTE: Once it is created you can't edit a new group's details.</i></b></dd></dl></dd></dl>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL023.png" class="mw-file-description"><img src="/wiki/images/0/05/CustomACL023.png" decoding="async" width="299" height="119" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>So if you made a mistake just delete it and re-do it right. 
+</p>
+<dl><dd><dl><dd><dl><dd>a. Click the 'Remove Group’ (found up by the ‘Add Group’ button)</dd></dl></dd></dl></dd></dl>
+<dl><dd><dl><dd><dl><dd>b. Select the group in the dropdown</dd></dl></dd></dl></dd></dl>
+<dl><dd><dl><dd><dl><dd>c. Click 'Delete Group'</dd></dl></dd></dl></dd></dl>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL06.png" class="mw-file-description"><img src="/wiki/images/8/85/CustomACL06.png" decoding="async" width="368" height="316" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+<i><b>Back to what we were doing:</b></i>
+</p><p>3. Clicking ‘Add Group’ puts the new group in the Groups list.
+</p><p>4. Open the new group (oval below)
+</p><p>5. Select the inactive ACL you want (highlighted at right)
+</p><p>6. Click '&lt;&lt;' ...
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL07.png" class="mw-file-description"><img src="/wiki/images/e/eb/CustomACL07.png" decoding="async" width="500" height="282" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+... to add it to the new group as active.
+</p><p><br />
+</p>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL08.png" class="mw-file-description"><img src="/wiki/images/6/64/CustomACL08.png" decoding="async" width="333" height="195" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+Last step: in the User Memberships panel locate the user you want to be able to do this.
+</p><p>7. Open the user
+</p><p>8. Select the custom group in their inactive window
+</p><p>9. Click '&lt;&lt;' to move it to active
+</p><p><br />
+<span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL09.png" class="mw-file-description"><img src="/wiki/images/7/71/CustomACL09.png" decoding="async" width="305" height="292" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+10. Close the ACL tab and you’re finished.
+</p><p><br />
+</p><p>The next time staffperson acltest logs in they should be able to edit demographics:
+</p><p><span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="/wiki/index.php/File:CustomACL010.png" class="mw-file-description"><img src="/wiki/images/0/03/CustomACL010.png" decoding="async" width="576" height="305" class="mw-file-element" /></a></span>
+</p>
+<h1><span class="mw-headline" id="Conclusion">Conclusion</span></h1>
+<p>Be sure to use caution when editing any ACLs, including making these hybrid ACLs. On the whole, they're safe and predictable. However, not every one of the specific accesses they provide have been extensively documented and many of them will afford capabilities that are not obvious from the name. 
+</p><p><br />
+One good way to gain more understanding of ACLs is to create a test user on your system.  Modify their ACLs then log in in as them and see how their capabilities change as a result of different settings. But do it carefully-- be sure to keep notes of the changes you make so you can undo them if needed!
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260919162452
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.042 seconds
+Real time usage: 0.052 seconds
+Preprocessor visited node count: 39/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key mediawiki:pcache:5739:|#|:idhash:canonical and timestamp 20260919162452 and revision id 36066. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://www.open-emr.org/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;oldid=36066">https://www.open-emr.org/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;oldid=36066</a>"</div></div>
+			<!-- todo: replace with .mixin-clearfix -->
+			<div class="visualClear"></div>
+			<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+		</div>
+		
+	</div>
+	<div id="mw-navigation">
+		<h2>Navigation menu</h2>
+		<div id="p-logo" class="mw-portlet" role="banner">
+			<a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">
+				
+				
+				<h1>OpenEMR Project Wiki</h1>
+			</a>
+		</div>
+		<form action="/wiki/index.php" role="search" class="mw-portlet" id="p-search">
+			<input type="hidden" name="title" value="Special:Search">
+			<h3>
+				<label for="searchInput">Search</label>
+			</h3>
+			<input type="search" name="search" placeholder="Search OpenEMR Project Wiki" aria-label="Search OpenEMR Project Wiki" autocapitalize="sentences" spellcheck="false" title="Search OpenEMR Project Wiki [f]" accesskey="f" id="searchInput">
+			<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" class="searchButton" id="searchButton">
+		</form>
+		<div id="user-tools">
+			<div role="navigation" id="p-personal" class="mw-portlet mw-portlet-personal" title=" title=&quot;User menu&quot;"
+    aria-labelledby="p-personal-label">
+    <h3 id="p-personal-label" >Personal tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="pt-login" class="mw-list-item"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=Basic+User+ACLs+In+OpenEMR+And+How+To+Customize+Them" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="page-tools">
+			<div role="navigation" id="p-namespaces" class="mw-portlet mw-portlet-namespaces" title=""
+    aria-labelledby="p-namespaces-label">
+    <h3 id="p-namespaces-label" >Namespaces</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/index.php/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them" title="View the content page [c]" accesskey="c">Page</a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/index.php?title=Talk:Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t">Discussion</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet" title=""
+    aria-labelledby="p-variants-label">
+    <h3 id="p-variants-label" >Variants</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-views" class="mw-portlet mw-portlet-views" title=""
+    aria-labelledby="p-views-label">
+    <h3 id="p-views-label" >Views</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-view" class="selected mw-list-item"><a href="/wiki/index.php/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them">Read</a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet" title=" title=&quot;More options&quot;"
+    aria-labelledby="p-cactions-label">
+    <h3 id="p-cactions-label" >More</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="site-navigation">
+			<div role="navigation" id="p-wiki_navigation" class="mw-portlet mw-portlet-wiki_navigation" title=""
+    aria-labelledby="p-wiki_navigation-label">
+    <h3 id="p-wiki_navigation-label" >wiki navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-Main-wiki-page" class="mw-list-item"><a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">Main wiki page</a></li><li id="n-Categories" class="mw-list-item"><a href="/wiki/index.php/Special:Categories">Categories</a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li><li id="n-help" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" target="_blank" title="The place to find out">Help</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-tb" class="mw-portlet mw-portlet-tb" title=""
+    aria-labelledby="p-tb-label">
+    <h3 id="p-tb-label" >Tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/index.php/Special:WhatLinksHere/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChangesLinked/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;oldid=36066" title="Permanent link to this revision of this page">Permanent link</a></li><li id="t-info" class="mw-list-item"><a href="/wiki/index.php?title=Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them&amp;action=info" title="More information about this page">Page information</a></li>
+        </ul>
+        
+    </div>
+</div>
+<div role="navigation" id="p-navigation" class="mw-portlet mw-portlet-navigation" title=""
+    aria-labelledby="p-navigation-label">
+    <h3 id="p-navigation-label" >Navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-specialpages" class="mw-list-item"><a href="/wiki/index.php/Special:SpecialPages">Special pages</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			
+		</div>
+	</div>
+	<div id="footer" class="mw-footer" role="contentinfo" >
+		<ul id="footer-icons">
+<li id="footer-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><img src="/wiki/resources/assets/licenses/gnu-fdl.png" alt="GNU Free Documentation License 1.3" width="88" height="31" loading="lazy"></a></li>
+<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><picture><source media="(min-width: 500px)" srcset="/wiki/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/wiki/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+		<div id="footer-list">
+		<ul id="footer-info">
+<li id="footer-info-lastmod"> This page was last edited on 4 November 2024, at 22:02.</li>
+<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3</a> unless otherwise noted.</li>
+</ul>
+
+		<ul id="footer-places">
+<li id="footer-places-privacy"><a href="/wiki/index.php/OpenEMR_Project_Wiki:Privacy_policy">Privacy policy</a></li>
+<li id="footer-places-about"><a href="/wiki/index.php/OpenEMR_Project_Wiki:About">About OpenEMR Project Wiki</a></li>
+<li id="footer-places-disclaimers"><a href="/wiki/index.php/OpenEMR_Project_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+		</div>
+		<!-- todo: replace with .mixin-clearfix -->
+		<div class="visualClear"></div>
+	</div>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":203,"wgPageParseReport":{"limitreport":{"cputime":"0.042","walltime":"0.052","ppvisitednodes":{"value":39,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20260919162452","ttl":86400,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3d9f16f881b240a',t:'MTc4OTgzNTA5Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

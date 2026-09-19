@@ -1,0 +1,64 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Test report — Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment</title><style>
+body{font:14px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:0;background:#f6f7f9;color:#1d2330}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+.clock{display:flex;gap:16px;margin:12px 0 20px}.clock div{flex:1;background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px #0001}
+.clock .n{font-size:34px;font-weight:700}.clock .ai .n{color:#11804a}.clock small{color:#667}
+.item{background:#fff;border-radius:10px;margin:12px 0;box-shadow:0 1px 3px #0001}.item>summary{padding:12px 16px;cursor:pointer;font-weight:600}
+.step{border-top:1px solid #eee;padding:10px 16px}.head{display:flex;gap:10px;align-items:center}.secs{margin-left:auto;color:#667}
+.badge{font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px}.ok .badge{background:#dff5e7;color:#11804a}.hyp .badge{background:#fff1d6;color:#8a5a00}
+.reason{color:#667;font-size:12px;margin:2px 0 6px}.shots{display:flex;gap:10px}figure{margin:0}figure img{width:240px;border:1px solid #ddd;border-radius:4px}figcaption{font-size:11px;color:#667}
+pre{white-space:pre-wrap;font-size:12px;background:#f3f4f6;padding:8px;border-radius:6px;max-height:260px;overflow:auto}pre.err{background:#fdecec;color:#8b1c1c}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;margin-left:8px}.pill.ok{background:#dff5e7;color:#11804a}.pill.hyp{background:#fff1d6;color:#8a5a00}
+</style></head><body><div class="wrap">
+<h1>Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment</h1><div style="color:#667">https://demo.openemr.io/openemr · started 2026-09-19T16:44:00.395Z</div>
+<div class="clock"><div><small>Mary, by hand (PLACEHOLDER length)</small><div class="n">4m 00s</div><small>1 × 4m 00s</small></div>
+<div class="ai"><small>AI, wall clock</small><div class="n">1m 50s</div><small>sum of steps 109.4s</small></div>
+<div><small>Checked by read-back</small><div class="n">1/5</div><small>steps Confirmed ✓ · 0/1 items fully confirmed</small></div></div>
+<details class="item" open><summary>Setup</summary><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Log in to OpenEMR (admin — receptionist cannot open patient Documents)</b><span class="secs">15.5s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/setup-login-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/setup-login-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/setup-login-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts login --user admin --pass pass
+$ npx tsx oe.ts verify-login
+
+[11.8s] login submitted as admin at https://demo.openemr.io/openemr ; landed on https://demo.openemr.io/openemr/interface/main/tabs/main.php?<redacted>
+
+[15.8s] VERIFIED on fresh load: patient finder page renders for the logged-in session; reads: Patient Finder Add New Patient Patient List Recent Patients Show 10 25 50 100 entries Search: Full N
+</pre></details></div></details>
+<details class="item" open><summary>referral-01.pdf: Rosa HACKDEMO-Alvarez-TR114400 (Aekna) <span class="pill hyp">0/4 ✓</span> <span style="color:#667;font-weight:400">93.9s</span></summary><div class="step hyp"><div class="head"><span class="badge">? Hypothesis</span><b>Create patient Rosa HACKDEMO-Alvarez-TR{{HHMMSS}}, DOB 03/14/1985, Female, phone 512-555-0111, 2210 Willowbend Dr, Austin TX 78745</b><span class="secs">19.1s</span></div>
+<div class="reason">verify failed (exit 1)</div>
+<div class="shots"><figure><a href="shots/r01-patient-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-patient-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-patient-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+<pre class="err">ERROR in verify-patient: dashboard for pid 35 (fresh load) is missing: phone 512-555-0111, street 2210 Willowbend Dr, city Austin, zip 78745; seen: HACKDEMO-Alvarez-TR114400 / first name Rosa / DOB 1985-03-14</pre>
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts create-patient --lname 'HACKDEMO-Alvarez-TR114400' --fname 'Rosa' --dob 1985-03-14 --sex Female --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'
+$ npx tsx oe.ts verify-patient --lname 'HACKDEMO-Alvarez-TR114400' --fname 'Rosa' --dob 1985-03-14 --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --zip '78745'
+
+[17.9s] contact fields entered on form: phone=512-555-0111, street=2210 Willowbend Dr, city=Austin, zip=78745, st=TX
+[24.3s] FALLBACK: calling srcConfirmSave() (known flaky spot from smoke test)
+[26.9s] create submitted for HACKDEMO-Alvarez-TR114400 ; dashboard opened for pid 35 (save only — NOT a verification)
+</pre></details></div><div class="step hyp"><div class="head"><span class="badge">? Hypothesis</span><b>Add primary insurance Aekna, member AXX2650168, group GRP-56000</b><span class="secs">33.7s</span></div>
+<div class="reason">command failed (exit 1)</div>
+<div class="shots"><figure><a href="shots/r01-insurance-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-insurance-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure></div>
+<pre class="err">ERROR in add-insurance: locator.click: Timeout 30000ms exceeded.</pre>
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts add-insurance --lname 'HACKDEMO-Alvarez-TR114400' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000' --fname 'Rosa' --dob 1985-03-14 --sex Female --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'
+$ npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Alvarez-TR114400' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000'
+
+</pre></details></div><div class="step hyp"><div class="head"><span class="badge">? Hypothesis</span><b>Attach referral-01.pdf to the patient's Documents</b><span class="secs">10s</span></div>
+<div class="reason">verify failed (exit 1)</div>
+<div class="shots"><figure><a href="shots/r01-document-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-document-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-document-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+<pre class="err">ERROR in verify-doc: fresh load of the Documents list for pid 35 does not contain &quot;referral-01&quot;; list reads: &quot;Documents Documents List Categories (Collapse all) Advance Directive CCD CCDA CCR Eye Module FHIR Export Document Invoices Lab Report Medical Record Onsite Portal Patient Information Document Uploader&quot;</pre>
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts upload-doc --lname 'HACKDEMO-Alvarez-TR114400' --file <repo>/referrals/referral-01.pdf
+$ npx tsx oe.ts verify-doc --lname 'HACKDEMO-Alvarez-TR114400' --file <repo>/referrals/referral-01.pdf
+
+[75.8s] upload submitted as admin: file referral-01.pdf to pid 35 category 3 (save only — NOT a verification)
+
+[76.7s] JS DIALOG accepted: 
+</pre></details></div><div class="step hyp"><div class="head"><span class="badge">? Hypothesis</span><b>Book a New Patient appointment next weekday 09:00</b><span class="secs">31.1s</span></div>
+<div class="reason">command failed (exit 1)</div>
+<div class="shots"><figure><a href="shots/r01-appointment-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-appointment-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure></div>
+<pre class="err">ERROR in book-appt: frame.click: Timeout 30000ms exceeded.</pre>
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts book-appt --lname 'HACKDEMO-Alvarez-TR114400' --date next-weekday --time 09:00 --category 'New Patient'
+$ npx tsx oe.ts verify-appt --lname 'HACKDEMO-Alvarez-TR114400' --date next-weekday --time 09:00
+
+</pre></details></div></details>
+<p style="color:#667;font-size:12px">Confirmed ✓ = the step's command exited 0 AND its verify command exited 0 after re-reading the record on a fresh page load (never a save message). Hypothesis ? = anything else; the reason is shown on the step.</p>
+</div></body></html>

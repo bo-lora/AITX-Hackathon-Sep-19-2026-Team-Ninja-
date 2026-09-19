@@ -2,6 +2,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   buildGrokSkill,
+  deriveInputs,
   deriveSteps,
   type SessionPayload,
   type SkillRecord,
@@ -67,6 +68,7 @@ export async function saveSkillFromSession(session: SessionPayload): Promise<Ski
   await ensureDirs();
   const existing = await findSkillBySession(session.id);
   const now = new Date().toISOString();
+  const inputs = deriveInputs(session);
   const skill: SkillRecord = {
     id: existing?.id ?? `skill-${session.id.replace(/^session-/, "")}`,
     sessionId: session.id,
@@ -77,6 +79,8 @@ export async function saveSkillFromSession(session: SessionPayload): Promise<Ski
     published: existing?.published ?? false,
     workflow: session.steps,
     events: session.events,
+    inputs,
+    startUrl: session.startUrl,
     grokSkill: "",
   };
   skill.grokSkill = buildGrokSkill({
@@ -84,15 +88,28 @@ export async function saveSkillFromSession(session: SessionPayload): Promise<Ski
     description: skill.description,
     workflow: skill.workflow,
     startUrl: session.startUrl,
+    inputs,
   });
   await writeFile(skillPath(skill.id), JSON.stringify(skill, null, 2));
   return skill;
 }
 
+function hydrateSkill(skill: SkillRecord): SkillRecord {
+  if (skill.inputs?.length) return skill;
+  return {
+    ...skill,
+    inputs: deriveInputs({
+      title: skill.title,
+      startUrl: skill.startUrl || skill.workflow[0]?.url,
+      steps: skill.workflow,
+    }),
+  };
+}
+
 export async function getSkill(id: string): Promise<SkillRecord | null> {
   try {
     const raw = await readFile(skillPath(id), "utf8");
-    return JSON.parse(raw) as SkillRecord;
+    return hydrateSkill(JSON.parse(raw) as SkillRecord);
   } catch {
     return null;
   }
@@ -106,7 +123,7 @@ export async function listSkills(): Promise<SkillRecord[]> {
       .filter((file) => file.endsWith(".json"))
       .map(async (file) => {
         const raw = await readFile(path.join(SKILLS_DIR, file), "utf8");
-        return JSON.parse(raw) as SkillRecord;
+        return hydrateSkill(JSON.parse(raw) as SkillRecord);
       }),
   );
   return skills.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));

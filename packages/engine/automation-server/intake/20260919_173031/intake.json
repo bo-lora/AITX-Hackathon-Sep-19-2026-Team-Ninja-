@@ -1,0 +1,137 @@
+{
+  "intake_id": "20260919_173031",
+  "run_id": "2026-09-19_123032",
+  "exit_code": 0,
+  "report_url": "/runs/2026-09-19_123032/report.html",
+  "wall_seconds": 210,
+  "totals": {
+    "items": 3,
+    "items_confirmed": 3,
+    "steps": 13,
+    "steps_confirmed": 13,
+    "steps_hypothesis": 0,
+    "ai_seconds": 206.4,
+    "ai_wall_clock_seconds": 208.6,
+    "manual_seconds_per_item": 240,
+    "manual_seconds": 720,
+    "manual_seconds_placeholder": true,
+    "saving_seconds": 511.4,
+    "headline": "Mary: 12m 00s · AI: 3m 29s"
+  },
+  "referrals": [
+    {
+      "id": "r01",
+      "label": "referral-01.pdf: Rosa HACKDEMO-Alvarez-TR123032 (Aekna)",
+      "status": "Confirmed ✓",
+      "confirmed": 4,
+      "total": 4,
+      "seconds": 64.7,
+      "steps": [
+        {
+          "id": "patient",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "insurance",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "document",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "appointment",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        }
+      ]
+    },
+    {
+      "id": "r02",
+      "label": "referral-02.pdf: Marcus HACKDEMO-Bellweather-TR123032 (Aekna)",
+      "status": "Confirmed ✓",
+      "confirmed": 4,
+      "total": 4,
+      "seconds": 70.4,
+      "steps": [
+        {
+          "id": "patient",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "insurance",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "document",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "appointment",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        }
+      ]
+    },
+    {
+      "id": "r03",
+      "label": "referral-03.pdf: Linh HACKDEMO-Cartwright-TR123032 (Aekna)",
+      "status": "Confirmed ✓",
+      "confirmed": 4,
+      "total": 4,
+      "seconds": 54.6,
+      "steps": [
+        {
+          "id": "patient",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "insurance",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "document",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        },
+        {
+          "id": "appointment",
+          "status": "Confirmed ✓",
+          "reason": "command exit 0 and verify exit 0 after a fresh page load"
+        }
+      ]
+    }
+  ],
+  "extraction": [
+    {
+      "file": "referral-01.pdf",
+      "ok": true,
+      "seconds": 0.12,
+      "patient": "Rosa HACKDEMO-Alvarez",
+      "carrier": "Aekna"
+    },
+    {
+      "file": "referral-02.pdf",
+      "ok": true,
+      "seconds": 0.085,
+      "patient": "Marcus HACKDEMO-Bellweather",
+      "carrier": "Aekna"
+    },
+    {
+      "file": "referral-03.pdf",
+      "ok": true,
+      "seconds": 0.103,
+      "patient": "Linh HACKDEMO-Cartwright",
+      "carrier": "Aekna"
+    }
+  ],
+  "commands_file": "<repo>/automation-server/intake/20260919_173031/commands.json"
+}

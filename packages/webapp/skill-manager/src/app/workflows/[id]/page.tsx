@@ -21,8 +21,8 @@ export default async function WorkflowPage({
           <div className="mx-auto max-w-6xl space-y-1">
             <h1 className="text-5xl sm:text-6xl">Edit the taught workflow</h1>
             <p className="text-muted">
-              This landed from Done in Chrome. Change the steps, keep them tied to recorded events, then Save to
-              open the skill page.
+              Taught path: inbox → login → four EHR screens. Change a step if you need to, then Save to open the
+              skill. From there: download the folder, or Run in OpenEMR.
             </p>
           </div>
         </div>

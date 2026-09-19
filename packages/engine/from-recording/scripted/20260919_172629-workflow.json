@@ -1,0 +1,140 @@
+{
+  "bullets": [
+    "Log in to the app as admin (password hidden).",
+    "Create the new patient Rec HACKDEMO-REC-122640 (born 1970-01-01, Female) and confirm the duplicate check.",
+    "Screens visited, in order: Login > Main menu > Search or Add Patient > Duplicate check popup."
+  ],
+  "steps": [
+    {
+      "screen": "Login",
+      "field_label": "",
+      "value": "https://demo.openemr.io/openemr/interface/login/login.php?<redacted>",
+      "action": "open"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Username",
+      "value": "admin",
+      "action": "type"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Password",
+      "value": "[hidden]",
+      "action": "type"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Login",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Main menu",
+      "field_label": "Patient",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Main menu",
+      "field_label": "New/Search",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "First Name",
+      "value": "Rec",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Last Name",
+      "value": "HACKDEMO-REC-122640",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "DOB",
+      "value": "1970-01-01",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Birth Sex",
+      "value": "Female",
+      "action": "select"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Create New Patient",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Duplicate check popup",
+      "field_label": "Confirm Create New Patient",
+      "value": "",
+      "action": "click"
+    }
+  ],
+  "_debug": {
+    "source": "<repo>/automation-server/recordings/20260919_172629/events.json",
+    "input_format": "recorder.ts events.json",
+    "bullets_by": "deterministic (no ANTHROPIC_API_KEY)",
+    "events_in": 21,
+    "steps_out": 12,
+    "step_event_ids": [
+      3,
+      5,
+      7,
+      8,
+      10,
+      11,
+      13,
+      15,
+      17,
+      19,
+      20,
+      21
+    ],
+    "dropped_as_noise": [
+      {
+        "event_i": 1,
+        "reason": "redirected (kept the page it landed on)"
+      },
+      {
+        "event_i": 2,
+        "reason": "redirected (kept the page it landed on)"
+      },
+      {
+        "event_i": 4,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 6,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 9,
+        "reason": "page load caused by the preceding action"
+      },
+      {
+        "event_i": 12,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 14,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 16,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 18,
+        "reason": "focus click before fill"
+      }
+    ]
+  }
+}

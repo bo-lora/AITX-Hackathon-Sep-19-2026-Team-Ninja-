@@ -1,0 +1,446 @@
+{
+  "workflow": "Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment",
+  "target_url": "https://demo.openemr.io/openemr",
+  "manual_seconds": 240,
+  "manual_seconds_placeholder": true,
+  "setup": [
+    {
+      "id": "login",
+      "bullet": "Log in to OpenEMR (admin — receptionist cannot open patient Documents)",
+      "command": "npx tsx oe.ts login --user admin --pass pass",
+      "verify": "npx tsx oe.ts verify-login"
+    }
+  ],
+  "items": [
+    {
+      "id": "r01",
+      "label": "referral-01.pdf: Rosa HACKDEMO-Alvarez-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Alvarez-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-01.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Rosa HACKDEMO-Alvarez-TR{{HHMMSS}}, DOB 03/14/1985, Female, phone 512-555-0111, 2210 Willowbend Dr, Austin TX 78745",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --fname 'Rosa' --dob 1985-03-14 --sex Female --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --fname 'Rosa' --dob 1985-03-14 --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --zip '78745'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX2650168, group GRP-56000",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000' --fname 'Rosa' --dob 1985-03-14 --sex Female --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-01.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 09:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --date next-weekday --time 09:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --date next-weekday --time 09:00"
+        }
+      ]
+    },
+    {
+      "id": "r02",
+      "label": "referral-02.pdf: Marcus HACKDEMO-Bellweather-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Bellweather-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-02.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Marcus HACKDEMO-Bellweather-TR{{HHMMSS}}, DOB 11/02/1972, Male, phone 512-555-0112, 508 Sagebrush Trl, Austin TX 78704",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --fname 'Marcus' --dob 1972-11-02 --sex Male --phone '512-555-0112' --street '508 Sagebrush Trl' --city 'Austin' --st 'TX' --zip '78704'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --fname 'Marcus' --dob 1972-11-02 --phone '512-555-0112' --street '508 Sagebrush Trl' --city 'Austin' --zip '78704'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX3338965, group GRP-95834",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX3338965' --group 'GRP-95834' --fname 'Marcus' --dob 1972-11-02 --sex Male --street '508 Sagebrush Trl' --city 'Austin' --st 'TX' --zip '78704'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX3338965' --group 'GRP-95834'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-02.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 09:30",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --date next-weekday --time 09:30 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Bellweather-TR{{HHMMSS}}' --date next-weekday --time 09:30"
+        }
+      ]
+    },
+    {
+      "id": "r03",
+      "label": "referral-03.pdf: Linh HACKDEMO-Cartwright-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Cartwright-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-03.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Linh HACKDEMO-Cartwright-TR{{HHMMSS}}, DOB 06-27-1990, Female, phone 512-555-0113, 1319 Mockingbird Ln, Pflugerville TX 78660",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --fname 'Linh' --dob 1990-06-27 --sex Female --phone '512-555-0113' --street '1319 Mockingbird Ln' --city 'Pflugerville' --st 'TX' --zip '78660'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --fname 'Linh' --dob 1990-06-27 --phone '512-555-0113' --street '1319 Mockingbird Ln' --city 'Pflugerville' --zip '78660'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX6680201, group GRP-62720",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX6680201' --group 'GRP-62720' --fname 'Linh' --dob 1990-06-27 --sex Female --street '1319 Mockingbird Ln' --city 'Pflugerville' --st 'TX' --zip '78660'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX6680201' --group 'GRP-62720'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-03.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 10:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --date next-weekday --time 10:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Cartwright-TR{{HHMMSS}}' --date next-weekday --time 10:00"
+        }
+      ]
+    },
+    {
+      "id": "r04",
+      "label": "referral-04.pdf: Daniel HACKDEMO-Okonkwo-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Okonkwo-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-04.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Daniel HACKDEMO-Okonkwo-TR{{HHMMSS}}, DOB 01/09/1964, Male, phone 512-555-0114, 77 Riverstone Ct, Round Rock TX 78664",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --fname 'Daniel' --dob 1964-01-09 --sex Male --phone '512-555-0114' --street '77 Riverstone Ct' --city 'Round Rock' --st 'TX' --zip '78664'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --fname 'Daniel' --dob 1964-01-09 --phone '512-555-0114' --street '77 Riverstone Ct' --city 'Round Rock' --zip '78664'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX5701193, group GRP-17266",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX5701193' --group 'GRP-17266' --fname 'Daniel' --dob 1964-01-09 --sex Male --street '77 Riverstone Ct' --city 'Round Rock' --st 'TX' --zip '78664'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX5701193' --group 'GRP-17266'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-04.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 10:30",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --date next-weekday --time 10:30 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Okonkwo-TR{{HHMMSS}}' --date next-weekday --time 10:30"
+        }
+      ]
+    },
+    {
+      "id": "r05",
+      "label": "referral-05.pdf: Hannah HACKDEMO-Duvall-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Duvall-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-05.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Hannah HACKDEMO-Duvall-TR{{HHMMSS}}, DOB 08/18/2001, Female, phone 512-555-0115, 4402 Live Oak St, Austin TX 78751",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --fname 'Hannah' --dob 2001-08-18 --sex Female --phone '512-555-0115' --street '4402 Live Oak St' --city 'Austin' --st 'TX' --zip '78751'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --fname 'Hannah' --dob 2001-08-18 --phone '512-555-0115' --street '4402 Live Oak St' --city 'Austin' --zip '78751'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX2049818, group GRP-66101",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2049818' --group 'GRP-66101' --fname 'Hannah' --dob 2001-08-18 --sex Female --street '4402 Live Oak St' --city 'Austin' --st 'TX' --zip '78751'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2049818' --group 'GRP-66101'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-05.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 11:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --date next-weekday --time 11:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Duvall-TR{{HHMMSS}}' --date next-weekday --time 11:00"
+        }
+      ]
+    },
+    {
+      "id": "r06",
+      "label": "referral-06.pdf: Tomas HACKDEMO-Escobedo-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Escobedo-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-06.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Tomas HACKDEMO-Escobedo-TR{{HHMMSS}}, DOB 04-30-1958, Male, phone 512-555-0116, 9021 Prairie Wind Dr, Cedar Park TX 78613",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --fname 'Tomas' --dob 1958-04-30 --sex Male --phone '512-555-0116' --street '9021 Prairie Wind Dr' --city 'Cedar Park' --st 'TX' --zip '78613'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --fname 'Tomas' --dob 1958-04-30 --phone '512-555-0116' --street '9021 Prairie Wind Dr' --city 'Cedar Park' --zip '78613'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX2559605, group GRP-80508",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2559605' --group 'GRP-80508' --fname 'Tomas' --dob 1958-04-30 --sex Male --street '9021 Prairie Wind Dr' --city 'Cedar Park' --st 'TX' --zip '78613'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2559605' --group 'GRP-80508'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-06.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 11:30",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --date next-weekday --time 11:30 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Escobedo-TR{{HHMMSS}}' --date next-weekday --time 11:30"
+        }
+      ]
+    },
+    {
+      "id": "r07",
+      "label": "referral-07.pdf: Grace HACKDEMO-Fairbanks-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Fairbanks-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-07.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Grace HACKDEMO-Fairbanks-TR{{HHMMSS}}, DOB 12/05/1979, Female, phone 512-555-0117, 615 Bluestem Ave, Austin TX 78723",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --fname 'Grace' --dob 1979-12-05 --sex Female --phone '512-555-0117' --street '615 Bluestem Ave' --city 'Austin' --st 'TX' --zip '78723'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --fname 'Grace' --dob 1979-12-05 --phone '512-555-0117' --street '615 Bluestem Ave' --city 'Austin' --zip '78723'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX1377048, group GRP-51684",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1377048' --group 'GRP-51684' --fname 'Grace' --dob 1979-12-05 --sex Female --street '615 Bluestem Ave' --city 'Austin' --st 'TX' --zip '78723'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1377048' --group 'GRP-51684'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-07.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 12:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --date next-weekday --time 12:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Fairbanks-TR{{HHMMSS}}' --date next-weekday --time 12:00"
+        }
+      ]
+    },
+    {
+      "id": "r08",
+      "label": "referral-08.pdf: Kenji HACKDEMO-Harrowgate-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Harrowgate-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-08.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Kenji HACKDEMO-Harrowgate-TR{{HHMMSS}}, DOB 02/21/1995, Male, phone 512-555-0118, 3308 Canyon View Rd, Georgetown TX 78626",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --fname 'Kenji' --dob 1995-02-21 --sex Male --phone '512-555-0118' --street '3308 Canyon View Rd' --city 'Georgetown' --st 'TX' --zip '78626'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --fname 'Kenji' --dob 1995-02-21 --phone '512-555-0118' --street '3308 Canyon View Rd' --city 'Georgetown' --zip '78626'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX1393956, group GRP-60247",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1393956' --group 'GRP-60247' --fname 'Kenji' --dob 1995-02-21 --sex Male --street '3308 Canyon View Rd' --city 'Georgetown' --st 'TX' --zip '78626'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1393956' --group 'GRP-60247'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-08.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 12:30",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --date next-weekday --time 12:30 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Harrowgate-TR{{HHMMSS}}' --date next-weekday --time 12:30"
+        }
+      ]
+    },
+    {
+      "id": "r09",
+      "label": "referral-09.pdf: Amara HACKDEMO-Ingleside-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Ingleside-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-09.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Amara HACKDEMO-Ingleside-TR{{HHMMSS}}, DOB 09-11-1988, Female, phone 512-555-0119, 1127 Pecan Hollow Dr, Austin TX 78748",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --fname 'Amara' --dob 1988-09-11 --sex Female --phone '512-555-0119' --street '1127 Pecan Hollow Dr' --city 'Austin' --st 'TX' --zip '78748'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --fname 'Amara' --dob 1988-09-11 --phone '512-555-0119' --street '1127 Pecan Hollow Dr' --city 'Austin' --zip '78748'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX1063662, group GRP-14758",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1063662' --group 'GRP-14758' --fname 'Amara' --dob 1988-09-11 --sex Female --street '1127 Pecan Hollow Dr' --city 'Austin' --st 'TX' --zip '78748'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX1063662' --group 'GRP-14758'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-09.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 13:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --date next-weekday --time 13:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Ingleside-TR{{HHMMSS}}' --date next-weekday --time 13:00"
+        }
+      ]
+    },
+    {
+      "id": "r10",
+      "label": "referral-10.pdf: Wesley HACKDEMO-Jaramillo-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Jaramillo-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-10.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Wesley HACKDEMO-Jaramillo-TR{{HHMMSS}}, DOB 07/03/1969, Male, phone 512-555-0120, 240 Starlight Loop, Kyle TX 78640",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --fname 'Wesley' --dob 1969-07-03 --sex Male --phone '512-555-0120' --street '240 Starlight Loop' --city 'Kyle' --st 'TX' --zip '78640'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --fname 'Wesley' --dob 1969-07-03 --phone '512-555-0120' --street '240 Starlight Loop' --city 'Kyle' --zip '78640'"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX9387409, group GRP-90897",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX9387409' --group 'GRP-90897' --fname 'Wesley' --dob 1969-07-03 --sex Male --street '240 Starlight Loop' --city 'Kyle' --st 'TX' --zip '78640'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX9387409' --group 'GRP-90897'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-10.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment next weekday 13:30",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --date next-weekday --time 13:30 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Jaramillo-TR{{HHMMSS}}' --date next-weekday --time 13:30"
+        }
+      ]
+    }
+  ]
+}

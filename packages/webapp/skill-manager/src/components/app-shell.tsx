@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DownloadChromeButton } from "@/components/download-chrome-button";
+import { WatchDemoButton } from "@/components/watch-demo-button";
 
 const LANDING = "http://127.0.0.1:43123";
 
 const links: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Skills" },
+  { href: `${LANDING}/#demo`, label: "Demo", external: true },
+  { href: `${LANDING}/team`, label: "Team", external: true },
   { href: `${LANDING}/#how`, label: "How it works", external: true },
+  { href: `${LANDING}/#later`, label: "Later", external: true },
 ];
 
 export function AppShell({
@@ -50,7 +53,7 @@ export function AppShell({
                 Live session
               </p>
             ) : null}
-            <DownloadChromeButton compact />
+            <WatchDemoButton compact />
           </div>
           <nav className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-navy md:hidden">
             {links.map((link) =>

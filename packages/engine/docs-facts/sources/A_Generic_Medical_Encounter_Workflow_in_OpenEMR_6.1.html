@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>A Generic Medical Encounter Workflow in OpenEMR 6.1 - OpenEMR Project Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"7c3e3cb6d12f5487fe4f9fc2","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1","wgTitle":"A Generic Medical Encounter Workflow in OpenEMR 6.1","wgCurRevisionId":35614,"wgRevisionId":35614,"wgArticleId":4974,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1","wgRelevantArticleId":4974,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.openemr":"ready","ext.embedVideo.styles":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.openemr.js","ext.embedVideo.overlay"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=ext.embedVideo.styles%7Cskins.openemr&amp;only=styles&amp;skin=openemr">
+<script async="" src="/wiki/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=openemr"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=openemr">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0">
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/rest.php/v1/search" title="OpenEMR Project Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://www.open-emr.org/wiki/api.php?action=rsd">
+<link rel="license" href="https://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="OpenEMR Project Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6_1 rootpage-A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6_1 skin-openemr action-view skin--responsive"><a href="https://www.open-emr.org/cdn-cgi/content?id=qz7dGUUB0y5Jz0hXxuMCtMntlkXHgfZrAOhy2vygmxs-1789835056.9248643-1.2.1.1-vGDAlgh3mJiV5Yao0NN5w7zOorn33zCBPDhRe6A3cCvsdW5xt3gmPWf1si3PY.jj" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a><div id="mw-wrapper">
+    <div class="mb-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/"><img height="45" src="/wiki/skins/Openemr/images/openemr-logo-wiki.svg"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Features">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/demo">Demo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Downloads">Download</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/modules">Modules</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/blog">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki">Docs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://community.open-emr.org/">Forum</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/chat">Chat</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Support
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/wiki/index.php/Professional_Support">Professional Support Vendors</a>
+                  <a class="dropdown-item" href="/support">Costs and Support Options</a>
+                  <a class="dropdown-item" href="https://community.open-emr.org/">Community Support</a>
+                  <a class="dropdown-item" href="/chat">Free Basic Live Chat Support</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+	<div class="mw-body" id="content" role="main">
+		<div id="siteNotice"></div>
+		
+		<div class="mw-indicators mw-body-content">
+		</div>
+		<h1 class="firstHeading" ><span class="mw-page-title-main">A Generic Medical Encounter Workflow in OpenEMR 6.1</span></h1>
+		<div id="siteSub">From OpenEMR Project Wiki</div>
+		<div class="mw-body-content">
+			<div id="contentSub">
+				<div id="mw-content-subtitle"></div>
+				
+			</div>
+			<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#EMR_Preparation"><span class="tocnumber">2</span> <span class="toctext">EMR Preparation</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#1._Appointment_Creation_-_Receptionist"><span class="tocnumber">3</span> <span class="toctext">1. Appointment Creation - Receptionist</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#2._Patient_Check-in_-_Receptionist"><span class="tocnumber">4</span> <span class="toctext">2. Patient Check-in - Receptionist</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#3._Interview_and_History_-_Clinician"><span class="tocnumber">5</span> <span class="toctext">3. Interview and History - Clinician</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#4._Exam_and_Treatment_-_Provider"><span class="tocnumber">6</span> <span class="toctext">4. Exam and Treatment - Provider</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#5._Checkout_and_Payment_-_Accountant"><span class="tocnumber">7</span> <span class="toctext">5. Checkout and Payment - Accountant</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Conclusion"><span class="tocnumber">8</span> <span class="toctext">Conclusion</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Links"><span class="tocnumber">8.1</span> <span class="toctext">Links</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Portal_appointment"><span class="tocnumber">8.1.1</span> <span class="toctext">Portal appointment</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Statuses"><span class="tocnumber">8.1.2</span> <span class="toctext">Statuses</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Globals"><span class="tocnumber">8.1.3</span> <span class="toctext">Globals</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Room_number"><span class="tocnumber">8.1.4</span> <span class="toctext">Room number</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Encounter_forms"><span class="tocnumber">8.1.5</span> <span class="toctext">Encounter forms</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Fee_Sheet"><span class="tocnumber">8.1.6</span> <span class="toctext">Fee Sheet</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#Editing_lists"><span class="tocnumber">8.2</span> <span class="toctext">Editing lists</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Introduction">Introduction</span></h1>
+<p>OpenEMR's purpose is to collect and manipulate the healthcare data that is generated in the process of delivering patient care. To make it as generally useful as possible, OpenEMR is organized to be used in a generic clinical 'encounter'. An 'encounter' is simply the sequence of events which occur when a patient presents at a health facility for an appointment to receive any sort of care. It consists of different clinic staff in turn doing with the patient whatever it is they do, until the encounter is completed. Specific tasks and the data collected may be different between healthcare specialties but the overall workflow of an encounter is generally consistent.
+</p><p><br />
+OpenEMR 6.1 has retained nearly all the clinical functionalities of earlier versions of the EMR. If the display and control objects are analyzed, it's clear that they function in almost the same manner as they always have. However, enough capability upgrades and interface changes have accumulated that it now seems useful to make a fresh survey of the current state of the EMR.
+</p><p><br />
+This document is a walk- though of a generic medical encounter, which contains these fundamental stages:
+</p>
+<ol><li>Appointment Creation - Receptionist</li>
+<li>Patient Check-in - Receptionist</li>
+<li>Interview and History - Clinician</li>
+<li>Exam and Treatment - Provider</li>
+<li>Checkout and Payment - Accountant</li></ol>
+<p><br />
+</p><p>Note:
+</p>
+<ul><li>This encounter only shows the clinical activities of a basic medical patient-care visit. It includes no activities such as inter-staff communications, billing, referrals or report generation, labs or medications.</li>
+<li>The user roles that are shown performing the tasks are simply the roles that are allowed to do the work by OpenEMR's default ACL settings. Individual practices may elect to assign those ACLs to other user roles to suit their routines.</li>
+<li>This is the same encounter shown in the companion video, <a href="/wiki/index.php/OpenEMR_6.0_User_Guide#A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1" title="OpenEMR 6.0 User Guide">A Generic Medical Encounter Workflow in OpenEMR 6.1</a>. But here we have the additional OpenEMR wiki resources mentioned in the video, provided in the Conclusion at the end of this document.  For example, '[See links- portal appointment]' in this page means to see the 'portal appointment' wiki content linked to in the Conclusion.</li></ul>
+<h1><span class="mw-headline" id="EMR_Preparation">EMR Preparation</span></h1>
+<p>In order to properly conduct this basic encounter, several aspects of the OpenEMR instance need to be configured from their default installation state. You'll need to locate in the OpenEMR wiki the instructions for that, which will mostly be found in documentation of the various setup workflows.
+</p>
+<ul><li>Various Globals settings</li>
+<li>External codesets imported</li>
+<li>User profiles created</li>
+<li>Facilities configured</li>
+<li>Patient records created</li>
+<li>The practice calendar and the provider's schedule configured</li></ul>
+<h1><span class="mw-headline" id="1._Appointment_Creation_-_Receptionist">1. Appointment Creation - Receptionist</span></h1>
+<p>An appointment may be initiated in any of 3 ways:
+</p>
+<ol><li>Requested by the patient through the Patient Portal (if operational)</li></ol>
+<ul><li>If made through the portal the responsible staff will approve it, which places it on the provider's calendar. [See links- portal appointment]</li></ul>
+<ol><li>Called in to the clinic</li>
+<li>Face to face while at the clinic</li></ol>
+<p>If made in person the responsible staff places it directly into the calendar, thusly:
+</p><p><i><b> Steps are numbered in the pictures</b></i>
+</p>
+<dl><dd>1. The clinic's receptionist (here, Barbara Wallace) clicks on the Main Menu 'Calendar' item (oval top left)</dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me00.png" class="mw-file-description"><img src="/wiki/images/5/54/Me00.png" decoding="async" width="600" height="330" class="mw-file-element" /></a></span>
+</p><p><br />
+</p>
+<dl><dd>2. Click on the provider's name in the list at the left (arrow)</dd></dl>
+<dl><dd>3. Click on the time in the date column to open the appointment scheduler dialog</dd>
+<dd><i><b>* Time may be selected by being clicked in calendar (rectangle above)</b></i>
+<dl><dd><i><b>or by 'finding available' time-- see below</b></i></dd></dl></dd></dl>
+<p><i><b>Appointments are made on the 'Patient' tab</b></i>
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me01.png" class="mw-file-description"><img src="/wiki/images/c/c3/Me01.png" decoding="async" width="700" height="442" class="mw-file-element" /></a></span>
+</p><p><br />
+4. Select the visit category
+</p><p>5. Search on patient name (oval below) and select (arrow)
+</p>
+<figure class="mw-default-size mw-halign-center" typeof="mw:File"><a href="/wiki/index.php/File:Me02.png" class="mw-file-description"><img src="/wiki/images/a/a4/Me02.png" decoding="async" width="400" height="211" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p>6. Confirm the provider's name (second picture below)
+</p><p>6a. If using this, click 'Find Available' button (same pic at bottom (oval)
+</p>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/wiki/index.php/File:Me6bAvails.png" class="mw-file-description"><img src="/wiki/images/6/6d/Me6bAvails.png" decoding="async" width="563" height="488" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>6b. In listing (image at right) click on best available time<br />
+<i><b>Times/ dates do not match; image added to doc much later</b></i>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p>7. The time shown here (image below) should be what you clicked on the calendar or selected in 'Find Available' display
+</p><p>8. The default appointment duration is configurable in the globals [See links- globals]
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me06a.png" class="mw-file-description"><img src="/wiki/images/0/03/Me06a.png" decoding="async" width="704" height="446" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p>9. Set the appointment status
+</p>
+<ul><li>The status of an encounter will change throughout its duration. At this point, when creating the appointment, its status may not need to be set. So I will leave this as NONE, until they arrive.</li>
+<li>These statuses are customizable with a few restrictions</li>
+<li>If the patient requested the appointment through the portal you could use any of the rectangle- enclosed statuses to indicate confirmation of the appointment request</li></ul>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me04.png" class="mw-file-description"><img src="/wiki/images/e/eb/Me04.png" decoding="async" width="374" height="603" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p>10. (previous image above) Put in 'Comment' the reason for the appointment
+</p><p>11. Click 'Save'
+</p><p><br />
+... and now receptionist Barbara goes on about her other work with the new appointment on the calendar.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me06.png" class="mw-file-description"><img src="/wiki/images/a/a2/Me06.png" decoding="async" width="400" height="311" class="mw-file-element" /></a></span>
+</p>
+<h1><span class="mw-headline" id="2._Patient_Check-in_-_Receptionist">2. Patient Check-in - Receptionist</span></h1>
+<p>When the patient arrives at the front desk
+</p>
+<dl><dd>1. Front desk staff locates the patient's appointment on the Doctor's calendar (Donna lee)</dd></dl>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/wiki/index.php/File:Me06-time.png" class="mw-file-description"><img src="/wiki/images/0/09/Me06-time.png" decoding="async" width="400" height="311" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<dl><dd>2. Clicks on the time to open the appointment dialog</dd></dl>
+<dl><dd>3. Clicks 'Room Number' dropdown (below) and assigns the patient to a (customizable) room number [See links- room number]</dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me07.png" class="mw-file-description"><img src="/wiki/images/8/85/Me07.png" decoding="async" width="600" height="660" class="mw-file-element" /></a></span>
+</p>
+<dl><dd>4. Sets status at '@Arrived'</dd></dl>
+<dl><dd>5. Click 'save'</dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me08.png" class="mw-file-description"><img src="/wiki/images/d/d3/Me08.png" decoding="async" width="400" height="174" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p>
+<dl><dd><dl><dd><i><b>This clinic has the global option set to automatically create an encounter when the patient is marked as having 'arrived' for the appointment</b></i></dd></dl></dd></dl>
+<p><br />
+...and now the next staff takes up the encounter.
+</p>
+<h1><span class="mw-headline" id="3._Interview_and_History_-_Clinician">3. Interview and History - Clinician</span></h1>
+<p>Our Clinician Fred Stone, has the flow board open (oval at top in Main Menu)
+<span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me10.png" class="mw-file-description"><img src="/wiki/images/2/27/Me10.png" decoding="async" width="600" height="333" class="mw-file-element" /></a></span>
+</p>
+<ul><li>the dropdowns in the top shaded area determine which encounters are being shown</li>
+<li>the bottom left dropdown shows which Providers' patients are displayed
+<ul><li>generally, one would want to select 'All Providers'</li></ul></li>
+<li>Column 'Appt Status' shows a patient has been placed in Room 1</li>
+<li>Other information about the encounter is displayed in the column headings.</li></ul>
+<p><br />
+</p><p><br />
+</p>
+<dl><dd>1. Fred clicks on the patient name (square in pic above) to open the patient's current encounter form.</dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me12.png" class="mw-file-description"><img src="/wiki/images/4/49/Me12.png" decoding="async" width="600" height="401" class="mw-file-element" /></a></span>
+</p>
+<dl><dd><dl><dd><i><b>Note the 'Visit Summary' information along left edge: 'Reason for Visit' is the 'Comment' from the appointment dialog</b></i></dd></dl></dd></dl>
+<p><br />
+</p>
+<dl><dd>2. Fred clicks the 'Clinical' menu dropdown to show the list of clinical data entry forms</dd></dl>
+<ul><li>the default forms are shown.<br /><i><b>The list may be modified.</b></i> [See links- encounter forms]</li></ul>
+<p><br />
+</p>
+<dl><dd>3. Let's say Fred does a SOAP note on how the patient presents</dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me12soap.png" class="mw-file-description"><img src="/wiki/images/a/ad/Me12soap.png" decoding="async" width="600" height="536" class="mw-file-element" /></a></span>
+</p><p><br />
+</p>
+<ul><li>which is added to the forms in the encounter summary (oval below)</li></ul>
+<p><br />
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me13.png" class="mw-file-description"><img src="/wiki/images/d/d9/Me13.png" decoding="async" width="600" height="496" class="mw-file-element" /></a></span>
+</p><p><br />
+</p>
+<dl><dd>4. Then Fred reopens the flowboard, clicks 'Appt Status' and changes to 'Chart Pulled'</dd></dl>
+<dl><dd><dl><dd><i><b>Remember, the status that is selected is derived purely from house policy for what happens during an encounter</b></i></dd></dl></dd></dl>
+<p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me14.png" class="mw-file-description"><img src="/wiki/images/4/4e/Me14.png" decoding="async" width="400" height="285" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p>... and Fred can change the room number from here also.
+</p>
+<dl><dd>5. Click 'Save'</dd></dl>
+<p><br />
+</p><p><br />
+Notice the color of the line for that patient's encounter has changed with its new status.
+</p><p>Those colors and much more about the statuses can be customized.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me15.png" class="mw-file-description"><img src="/wiki/images/0/01/Me15.png" decoding="async" width="600" height="219" class="mw-file-element" /></a></span>
+</p>
+<h1><span class="mw-headline" id="4._Exam_and_Treatment_-_Provider">4. Exam and Treatment - Provider</span></h1>
+<p>The provider can open the encounter form from either their flowboard (as shown above) or the calendar.
+</p><p><br />
+1. In this case, in the calendar click on the patient name to open the record
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me16.png" class="mw-file-description"><img src="/wiki/images/1/1a/Me16.png" decoding="async" width="443" height="259" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p><p>2. In the dashboard select today's encounter from the 'Select Encounter' dropdown list (cursor pointer)
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me17.png" class="mw-file-description"><img src="/wiki/images/8/83/Me17.png" decoding="async" width="390" height="143" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+3. From here the provider opens and fills out whatever clinical forms will be required for the procedures to be done in the encounter, same as Clinician's Step 2 above.
+</p>
+<ul><li>when all exams/ procedures are completed click the Administrative menu and open the fee sheet.</li></ul>
+<p><br />
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me18.png" class="mw-file-description"><img src="/wiki/images/b/b0/Me18.png" decoding="async" width="450" height="291" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p>
+<dl><dd><i><b>The fee sheet can be used just as it comes in a new OpenEMR installation but since it hasn't been tailored to a particular practice it will require a lot of manual entry.</b></i></dd></dl>
+<dl><dd><i><b>With some fairly simple configuration and customization it becomes much more simple to use.</b></i> [See links- Fee Sheet]</dd></dl>
+<p><br />
+This is a view of the entire fee sheet.  Portions of it will be shown below.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me19.png" class="mw-file-description"><img src="/wiki/images/0/03/Me19.png" decoding="async" width="600" height="379" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+<i><b>In the Fee Sheet do the following:</b></i>
+</p><p>4. If the clinic has different price levels for services, select the right one 
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me20.png" class="mw-file-description"><img src="/wiki/images/6/67/Me20.png" decoding="async" width="600" height="129" class="mw-file-element" /></a></span>
+</p><p><br />
+5. Select from the available CPT-4 codes
+</p><p>here the 'Established Patient', 'Comprehensive' appointment type is selected.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me21.png" class="mw-file-description"><img src="/wiki/images/8/8a/Me21.png" decoding="async" width="600" height="125" class="mw-file-element" /></a></span>
+</p>
+<dl><dd><dl><dd><i><b>These appointment type CPT-4 codes are pre-coded in the default fee sheet.</b></i></dd></dl></dd></dl>
+<p><br />
+6. Click ICD radio button (oval in pic below)
+</p><p>7. Enter partial code, e.g., 'z'
+</p><p>8. Click 'Search'
+</p><p>9. Select from the yellow search results dropdown the justifying ICD code for each treatment code to be entered in next step. Repeat for as many diagnosis codes as are needed.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me22.png" class="mw-file-description"><img src="/wiki/images/8/8e/Me22.png" decoding="async" width="1015" height="236" class="mw-file-element" /></a></span>
+</p><p><br />
+</p>
+<dl><dd><dl><dd><i><b>Notice that as codes are selected they are added to the 'Selected Fee Sheet Codes' section (see next picture)</b></i></dd></dl></dd></dl>
+<p><br />
+10. To each CPT-4 code that was added...
+</p><p>11. ...add any modifier, price, quantity, 
+</p><p>12. ...and its justifying diagnosis
+</p><p>13. Make sure the providers are correct
+</p><p>14. Click 'Save' (rectangle)
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me23.png" class="mw-file-description"><img src="/wiki/images/3/3a/Me23.png" decoding="async" width="600" height="253" class="mw-file-element" /></a></span>
+</p><p>To complete their tasks the Provider may open the flow board or click on the calendar time 
+</p><p>15. Change status - Flow board shown here; let's use 'coding done'
+</p><p>16. Maybe change room, which could be customized to 'Front Desk'?
+</p><p>17. Click 'Save'
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me24.png" class="mw-file-description"><img src="/wiki/images/c/c0/Me24.png" decoding="async" width="369" height="276" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="5._Checkout_and_Payment_-_Accountant">5. Checkout and Payment - Accountant</span></h1>
+<p>From the Provider's session the patient may be directed to the front desk to check out.
+</p>
+<ul><li>Any user role besides the accountant which has ACLs permitting access to the 'Fees' Man Menu item may check patients out.</li></ul>
+<p>1. Front Desk staff locates the patient checking out on the flowboard or the calendar
+</p>
+<ul><li>Click the patient name to open their patient record (not pictured)</li></ul>
+<p>2. On the main menu click: 'Fees' (picture below)
+</p>
+<ul><li>At this point in the workflow two menu items can be used
+<ul><li>'<b>Payment'</b> is intended for payment on account</li>
+<li>'<b>Checkout'</b> is to pay in full the fee for this appointment</li></ul></li>
+<li>For this demo we'll simply have him check out</li></ul>
+<p>3. Click checkout
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me25.png" class="mw-file-description"><img src="/wiki/images/5/53/Me25.png" decoding="async" width="314" height="168" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p>4. Enter any discounts
+</p><p>5. Select the payment method
+</p><p>! if by check a check reference number will be required!
+</p><p>6. Enter the amount paid
+</p><p>7. Click save
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me26.png" class="mw-file-description"><img src="/wiki/images/4/42/Me26.png" decoding="async" width="600" height="437" class="mw-file-element" /></a></span>
+</p><p><br />
+See the receipt...
+</p>
+<ul><li>yes, the receipt and invoices are customizable by a php coder familiar with OpenEMR</li></ul>
+<p><br />
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me27.png" class="mw-file-description"><img src="/wiki/images/5/50/Me27.png" decoding="async" width="533" height="464" class="mw-file-element" /></a></span>
+</p><p><br />
+...and print it, to pdf or direct to printer.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me28.png" class="mw-file-description"><img src="/wiki/images/9/9f/Me28.png" decoding="async" width="600" height="235" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p><br />
+Finally, Front Desk Staff can open the Flow board or click Calendar time
+</p><p>Select 'Checked out' and clear the room.
+</p><p>Click 'save'
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:Me29.png" class="mw-file-description"><img src="/wiki/images/2/24/Me29.png" decoding="async" width="371" height="248" class="mw-file-element" /></a></span>
+</p>
+<h1><span class="mw-headline" id="Conclusion">Conclusion</span></h1>
+<p>Helpful OpenEMR wiki content was suggested in the text of this tutorial and also in the companion video. As mentioned, a lot of these documents were written for earlier versions but with a little bit of study the instructions can be transliterated to OpenEMR 6.1.
+</p>
+<h2><span class="mw-headline" id="Links">Links</span></h2>
+<h3><span class="mw-headline" id="Portal_appointment">Portal appointment</span></h3>
+<ul><li>Patients may request appointments through the Patient Portal, if it has been activated and populated.</li></ul>
+<dl><dd><a href="/wiki/index.php/Patient_Use_of_the_Patient_Portal_in_OpenEMR_v6%2B#Appointments" title="Patient Use of the Patient Portal in OpenEMR v6+">Patient Use of the Patient Portal in OpenEMR v6-Appointments</a></dd></dl>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Statuses">Statuses</span></h3>
+<ul><li>Appointment statuses may be customized</li></ul>
+<dl><dd><a href="/wiki/index.php/Patient_Flow_Board#Appointment_Statuses_and_Room_Lists_Set-Up" title="Patient Flow Board">Patient Flow Board-Appointment Statuses and Room Lists Set-Up</a></dd></dl>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Globals">Globals</span></h3>
+<ul><li>Calendar and schedule settings are found in:</li></ul>
+<dl><dd><a href="/wiki/index.php/Admin_Globals_4.2.0_Calendar" title="Admin Globals 4.2.0 Calendar">Globals 4.2.0 - Calendar</a></dd></dl>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Room_number">Room number</span></h3>
+<ul><li>May be completely customized to your preference. See the instructions for editing lists at the bottom.</li></ul>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Encounter_forms">Encounter forms</span></h3>
+<ul><li>The clinical forms available in the EMR may be modified.</li></ul>
+<dl><dd>first look here: <a href="/wiki/index.php/OpenEMR_Contributed_Forms" title="OpenEMR Contributed Forms">OpenEMR Contributed Forms</a></dd></dl>
+<dl><dd>then do this: <a href="/wiki/index.php/HOWTO_Register_OpenEMR_Contributed_Forms" title="HOWTO Register OpenEMR Contributed Forms">HOWTO Register OpenEMR Contributed Forms</a></dd></dl>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Fee_Sheet">Fee Sheet</span></h3>
+<ul><li>Automatically add CPT-4, ICD and other codes with their prices etc in one click: <a href="/wiki/index.php/HOWTO:_Create_Multiple_Code_Fee_Sheet_List_Categories" title="HOWTO: Create Multiple Code Fee Sheet List Categories">HOWTO: Create Multiple Code Fee Sheet List Categories</a></li></ul>
+<h2><span class="mw-headline" id="Editing_lists">Editing lists</span></h2>
+<p>Lists, AKA 'Dropdown Lists' are a very useful control object that are widely used in OpenEMR. Most of them are editable, though some of them do contain triggers to system actions. So editing them could result in unforseen EMR behaviors. However, editing lists comes in very handy to personalize OpenEMR to your preferences...
+</p><p><br />
+1. From the main menu, open the lists editor
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:1mlists.png" class="mw-file-description"><img src="/wiki/images/0/0b/1mlists.png" decoding="async" width="300" height="331" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+2. Search for the room list (or whatever the name of the data is that the list contains)
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:2listroom.png" class="mw-file-description"><img src="/wiki/images/8/80/2listroom.png" decoding="async" width="600" height="117" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+3. Change the room names ('Title' column) as desired.<br />
+<span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:3listroomlist.png" class="mw-file-description"><img src="/wiki/images/0/0b/3listroomlist.png" decoding="async" width="500" height="267" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p>4. Be sure to
+</p>
+<ul><li>keep ID unique to list</li>
+<li>make 'Order' their display in list</li>
+<li>be sure item is 'Active'</li></ul>
+<p>5. Click 'Save'
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260913153921
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.083 seconds
+Real time usage: 0.094 seconds
+Preprocessor visited node count: 84/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key mediawiki:pcache:4974:|#|:idhash:canonical and timestamp 20260913153921 and revision id 35614. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://www.open-emr.org/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;oldid=35614">https://www.open-emr.org/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;oldid=35614</a>"</div></div>
+			<!-- todo: replace with .mixin-clearfix -->
+			<div class="visualClear"></div>
+			<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+		</div>
+		
+	</div>
+	<div id="mw-navigation">
+		<h2>Navigation menu</h2>
+		<div id="p-logo" class="mw-portlet" role="banner">
+			<a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">
+				
+				
+				<h1>OpenEMR Project Wiki</h1>
+			</a>
+		</div>
+		<form action="/wiki/index.php" role="search" class="mw-portlet" id="p-search">
+			<input type="hidden" name="title" value="Special:Search">
+			<h3>
+				<label for="searchInput">Search</label>
+			</h3>
+			<input type="search" name="search" placeholder="Search OpenEMR Project Wiki" aria-label="Search OpenEMR Project Wiki" autocapitalize="sentences" spellcheck="false" title="Search OpenEMR Project Wiki [f]" accesskey="f" id="searchInput">
+			<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" class="searchButton" id="searchButton">
+		</form>
+		<div id="user-tools">
+			<div role="navigation" id="p-personal" class="mw-portlet mw-portlet-personal" title=" title=&quot;User menu&quot;"
+    aria-labelledby="p-personal-label">
+    <h3 id="p-personal-label" >Personal tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="pt-login" class="mw-list-item"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=A+Generic+Medical+Encounter+Workflow+in+OpenEMR+6.1" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="page-tools">
+			<div role="navigation" id="p-namespaces" class="mw-portlet mw-portlet-namespaces" title=""
+    aria-labelledby="p-namespaces-label">
+    <h3 id="p-namespaces-label" >Namespaces</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1" title="View the content page [c]" accesskey="c">Page</a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/index.php?title=Talk:A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t">Discussion</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet" title=""
+    aria-labelledby="p-variants-label">
+    <h3 id="p-variants-label" >Variants</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-views" class="mw-portlet mw-portlet-views" title=""
+    aria-labelledby="p-views-label">
+    <h3 id="p-views-label" >Views</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-view" class="selected mw-list-item"><a href="/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1">Read</a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet" title=" title=&quot;More options&quot;"
+    aria-labelledby="p-cactions-label">
+    <h3 id="p-cactions-label" >More</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="site-navigation">
+			<div role="navigation" id="p-wiki_navigation" class="mw-portlet mw-portlet-wiki_navigation" title=""
+    aria-labelledby="p-wiki_navigation-label">
+    <h3 id="p-wiki_navigation-label" >wiki navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-Main-wiki-page" class="mw-list-item"><a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">Main wiki page</a></li><li id="n-Categories" class="mw-list-item"><a href="/wiki/index.php/Special:Categories">Categories</a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li><li id="n-help" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" target="_blank" title="The place to find out">Help</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-tb" class="mw-portlet mw-portlet-tb" title=""
+    aria-labelledby="p-tb-label">
+    <h3 id="p-tb-label" >Tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/index.php/Special:WhatLinksHere/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChangesLinked/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;oldid=35614" title="Permanent link to this revision of this page">Permanent link</a></li><li id="t-info" class="mw-list-item"><a href="/wiki/index.php?title=A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1&amp;action=info" title="More information about this page">Page information</a></li>
+        </ul>
+        
+    </div>
+</div>
+<div role="navigation" id="p-navigation" class="mw-portlet mw-portlet-navigation" title=""
+    aria-labelledby="p-navigation-label">
+    <h3 id="p-navigation-label" >Navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-specialpages" class="mw-list-item"><a href="/wiki/index.php/Special:SpecialPages">Special pages</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			
+		</div>
+	</div>
+	<div id="footer" class="mw-footer" role="contentinfo" >
+		<ul id="footer-icons">
+<li id="footer-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><img src="/wiki/resources/assets/licenses/gnu-fdl.png" alt="GNU Free Documentation License 1.3" width="88" height="31" loading="lazy"></a></li>
+<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><picture><source media="(min-width: 500px)" srcset="/wiki/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/wiki/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+		<div id="footer-list">
+		<ul id="footer-info">
+<li id="footer-info-lastmod"> This page was last edited on 9 April 2024, at 20:33.</li>
+<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3</a> unless otherwise noted.</li>
+</ul>
+
+		<ul id="footer-places">
+<li id="footer-places-privacy"><a href="/wiki/index.php/OpenEMR_Project_Wiki:Privacy_policy">Privacy policy</a></li>
+<li id="footer-places-about"><a href="/wiki/index.php/OpenEMR_Project_Wiki:About">About OpenEMR Project Wiki</a></li>
+<li id="footer-places-disclaimers"><a href="/wiki/index.php/OpenEMR_Project_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+		</div>
+		<!-- todo: replace with .mixin-clearfix -->
+		<div class="visualClear"></div>
+	</div>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":232,"wgPageParseReport":{"limitreport":{"cputime":"0.083","walltime":"0.094","ppvisitednodes":{"value":84,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20260913153921","ttl":86400,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3d9f091c8522c62',t:'MTc4OTgzNTA1Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

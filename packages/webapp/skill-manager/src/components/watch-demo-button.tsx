@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function WatchDemoButton() {
+export function WatchDemoButton({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -15,11 +19,11 @@ export function WatchDemoButton() {
       const response = await fetch("/api/sessions/sample", { method: "POST" });
       const payload = (await response.json()) as { workflowUrl?: string; error?: string };
       if (!response.ok || !payload.workflowUrl) {
-        throw new Error(payload.error || "Could not open the demo workflow.");
+        throw new Error(payload.error || "Could not open the referral skill.");
       }
       router.push(payload.workflowUrl);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not open the demo workflow.");
+      setError(err instanceof Error ? err.message : "Could not open the referral skill.");
       setPending(false);
     }
   }
@@ -30,14 +34,11 @@ export function WatchDemoButton() {
         type="button"
         onClick={loadSample}
         disabled={pending}
-        className="inline-flex items-center gap-3 text-left font-semibold text-navy"
+        className={`inline-flex items-center justify-center rounded-full bg-[#111] font-semibold text-white transition-colors hover:bg-[#2a2a2a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:opacity-40 ${
+          compact ? "h-11 px-5 text-sm" : "h-14 px-6 text-[15px]"
+        }`}
       >
-        <span className="grid h-14 w-14 place-items-center rounded-full bg-[#f0c419] text-navy">
-          <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-            <path fill="currentColor" d="M8.5 6.8v10.4L18 12 8.5 6.8Z" />
-          </svg>
-        </span>
-        {pending ? "Opening demo…" : "Watch demo"}
+        {pending ? "Opening skill…" : compact ? "Referral skill" : "Open the referral skill"}
       </button>
       {error ? <p className="text-sm text-danger">{error}</p> : null}
     </div>

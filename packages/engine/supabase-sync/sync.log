@@ -1,0 +1,336 @@
+12:49:05 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:49:05   patients in run: 3; all last names start HACKDEMO-: True
+12:49:05   files checked: 44 (39 png, 3 pdf, 2 html)
+12:49:05   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:49:05   SAFETY CHECK: PASS
+12:49:05 dry run: would upsert 1 run, 3 referrals, 13 steps, 0 reviews; upload 44 files
+12:49:06 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:49:06   patients in run: 10; all last names start HACKDEMO-: True
+12:49:06   files checked: 258 (246 png, 10 pdf, 2 html)
+12:49:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:49:06   SAFETY CHECK: PASS
+12:49:06 dry run: would upsert 1 run, 10 referrals, 41 steps, 0 reviews; upload 258 files
+12:49:06 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:49:06   patients in run: 3; all last names start HACKDEMO-: True
+12:49:06   files checked: 44 (39 png, 3 pdf, 2 html)
+12:49:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:49:06   SAFETY CHECK: PASS
+12:49:06 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+12:50:02 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:50:02   patients in run: 3; all last names start HACKDEMO-: True
+12:50:02   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:02   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:50:02   SAFETY CHECK: PASS
+12:50:02 dry run: would upsert 1 run, 3 referrals, 13 steps, 0 reviews; upload 17 files
+12:50:39 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:50:39   patients in run: 3; all last names start HACKDEMO-: True
+12:50:39   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:39   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:50:39   SAFETY CHECK: PASS
+12:50:39 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+12:50:39 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:40   patients in run: 3; all last names start HACKDEMO-: True
+12:50:40   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:40   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:40   SAFETY CHECK: PASS
+12:50:40 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:50:40   upsert runs: 1 row(s) ok
+12:50:40   upsert referrals: 3 row(s) ok
+12:50:40   upsert steps: 13 row(s) ok
+12:50:40   upsert reviews: 0 row(s) ok
+12:50:40   row count runs: 1 for this run, 1 total
+12:50:40   row count referrals: 3 for this run, 3 total
+12:50:40   row count steps: 13 for this run, 13 total
+12:50:40   row count reviews: 0 for this run, 0 total
+12:50:40 PUBLIC URL: http://127.0.0.1:49809/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:50:40 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:40   patients in run: 10; all last names start HACKDEMO-: True
+12:50:40   files checked: 92 (80 png, 10 pdf, 2 html)
+12:50:40   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:40   SAFETY CHECK: PASS
+12:50:40 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+12:50:40   upsert runs: 1 row(s) ok
+12:50:40   upsert referrals: 10 row(s) ok
+12:50:40   upsert steps: 41 row(s) ok
+12:50:40   upsert reviews: 0 row(s) ok
+12:50:40   row count runs: 1 for this run, 2 total
+12:50:40   row count referrals: 10 for this run, 13 total
+12:50:40   row count steps: 41 for this run, 54 total
+12:50:40   row count reviews: 0 for this run, 0 total
+12:50:40 PUBLIC URL: http://127.0.0.1:49809/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+12:50:40 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:40   patients in run: 3; all last names start HACKDEMO-: True
+12:50:40   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:40   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:40   SAFETY CHECK: PASS
+12:50:40 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:50:40   upsert runs: 1 row(s) ok
+12:50:40   upsert referrals: 3 row(s) ok
+12:50:40   upsert steps: 13 row(s) ok
+12:50:40   upsert reviews: 0 row(s) ok
+12:50:40   row count runs: 1 for this run, 2 total
+12:50:40   row count referrals: 3 for this run, 13 total
+12:50:40   row count steps: 13 for this run, 54 total
+12:50:40   row count reviews: 0 for this run, 0 total
+12:50:40 PUBLIC URL: http://127.0.0.1:49809/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:50:59 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:50:59   patients in run: 3; all last names start HACKDEMO-: True
+12:50:59   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:59   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:50:59   SAFETY CHECK: PASS
+12:50:59 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+12:50:59 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:59   patients in run: 3; all last names start HACKDEMO-: True
+12:50:59   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:59   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:59   SAFETY CHECK: PASS
+12:50:59 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:50:59   upsert runs: 1 row(s) ok
+12:50:59   upsert referrals: 3 row(s) ok
+12:50:59   upsert steps: 13 row(s) ok
+12:50:59   upsert reviews: 0 row(s) ok
+12:50:59   row count runs: 1 for this run, 1 total
+12:50:59   row count referrals: 3 for this run, 3 total
+12:50:59   row count steps: 13 for this run, 13 total
+12:50:59   row count reviews: 0 for this run, 0 total
+12:50:59 PUBLIC URL: http://127.0.0.1:50349/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:50:59 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:59   patients in run: 10; all last names start HACKDEMO-: True
+12:50:59   files checked: 92 (80 png, 10 pdf, 2 html)
+12:50:59   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:59   SAFETY CHECK: PASS
+12:50:59 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+12:50:59   upsert runs: 1 row(s) ok
+12:50:59   upsert referrals: 10 row(s) ok
+12:50:59   upsert steps: 41 row(s) ok
+12:50:59   upsert reviews: 0 row(s) ok
+12:50:59   row count runs: 1 for this run, 2 total
+12:50:59   row count referrals: 10 for this run, 13 total
+12:50:59   row count steps: 41 for this run, 54 total
+12:50:59   row count reviews: 0 for this run, 0 total
+12:50:59 PUBLIC URL: http://127.0.0.1:50349/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+12:50:59 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:50:59   patients in run: 3; all last names start HACKDEMO-: True
+12:50:59   files checked: 17 (12 png, 3 pdf, 2 html)
+12:50:59   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:50:59   SAFETY CHECK: PASS
+12:50:59 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:50:59   upsert runs: 1 row(s) ok
+12:50:59   upsert referrals: 3 row(s) ok
+12:50:59   upsert steps: 13 row(s) ok
+12:50:59   upsert reviews: 0 row(s) ok
+12:50:59   row count runs: 1 for this run, 2 total
+12:50:59   row count referrals: 3 for this run, 13 total
+12:50:59   row count steps: 13 for this run, 54 total
+12:50:59   row count reviews: 0 for this run, 0 total
+12:50:59 PUBLIC URL: http://127.0.0.1:50349/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:51:09 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:51:09   patients in run: 3; all last names start HACKDEMO-: True
+12:51:09   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:09   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:51:09   SAFETY CHECK: PASS
+12:51:09 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+12:51:09 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:09   patients in run: 3; all last names start HACKDEMO-: True
+12:51:09   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:09   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:09   SAFETY CHECK: PASS
+12:51:09 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:51:09   upsert runs: 1 row(s) ok
+12:51:09   upsert referrals: 3 row(s) ok
+12:51:09   upsert steps: 13 row(s) ok
+12:51:09   upsert reviews: 0 row(s) ok
+12:51:09   row count runs: 1 for this run, 1 total
+12:51:09   row count referrals: 3 for this run, 3 total
+12:51:09   row count steps: 13 for this run, 13 total
+12:51:09   row count reviews: 0 for this run, 0 total
+12:51:09 PUBLIC URL: http://127.0.0.1:50705/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:51:09 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:09   patients in run: 10; all last names start HACKDEMO-: True
+12:51:09   files checked: 92 (80 png, 10 pdf, 2 html)
+12:51:09   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:09   SAFETY CHECK: PASS
+12:51:09 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+12:51:09   upsert runs: 1 row(s) ok
+12:51:09   upsert referrals: 10 row(s) ok
+12:51:09   upsert steps: 41 row(s) ok
+12:51:09   upsert reviews: 0 row(s) ok
+12:51:09   row count runs: 1 for this run, 2 total
+12:51:09   row count referrals: 10 for this run, 13 total
+12:51:09   row count steps: 41 for this run, 54 total
+12:51:09   row count reviews: 0 for this run, 0 total
+12:51:09 PUBLIC URL: http://127.0.0.1:50705/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+12:51:09 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:09   patients in run: 3; all last names start HACKDEMO-: True
+12:51:09   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:09   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:09   SAFETY CHECK: PASS
+12:51:09 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:51:09   upsert runs: 1 row(s) ok
+12:51:09   upsert referrals: 3 row(s) ok
+12:51:09   upsert steps: 13 row(s) ok
+12:51:09   upsert reviews: 0 row(s) ok
+12:51:09   row count runs: 1 for this run, 2 total
+12:51:09   row count referrals: 3 for this run, 13 total
+12:51:09   row count steps: 13 for this run, 54 total
+12:51:09   row count reviews: 0 for this run, 0 total
+12:51:09 PUBLIC URL: http://127.0.0.1:50705/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:51:24 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+12:51:24   patients in run: 3; all last names start HACKDEMO-: True
+12:51:24   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:24   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+12:51:24   SAFETY CHECK: PASS
+12:51:24 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+12:51:24 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:24   patients in run: 3; all last names start HACKDEMO-: True
+12:51:24   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:24   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:24   SAFETY CHECK: PASS
+12:51:24 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:51:24   upsert runs: 1 row(s) ok
+12:51:24   upsert referrals: 3 row(s) ok
+12:51:24   upsert steps: 13 row(s) ok
+12:51:24   upsert reviews: 0 row(s) ok
+12:51:24   row count runs: 1 for this run, 1 total
+12:51:24   row count referrals: 3 for this run, 3 total
+12:51:24   row count steps: 13 for this run, 13 total
+12:51:24   row count reviews: 0 for this run, 0 total
+12:51:24 PUBLIC URL: http://127.0.0.1:51081/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+12:51:24 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:25   patients in run: 10; all last names start HACKDEMO-: True
+12:51:25   files checked: 92 (80 png, 10 pdf, 2 html)
+12:51:25   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:25   SAFETY CHECK: PASS
+12:51:25 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+12:51:25   upsert runs: 1 row(s) ok
+12:51:25   upsert referrals: 10 row(s) ok
+12:51:25   upsert steps: 41 row(s) ok
+12:51:25   upsert reviews: 0 row(s) ok
+12:51:25   row count runs: 1 for this run, 2 total
+12:51:25   row count referrals: 10 for this run, 13 total
+12:51:25   row count steps: 41 for this run, 54 total
+12:51:25   row count reviews: 0 for this run, 0 total
+12:51:25 PUBLIC URL: http://127.0.0.1:51081/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+12:51:25 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+12:51:25   patients in run: 3; all last names start HACKDEMO-: True
+12:51:25   files checked: 17 (12 png, 3 pdf, 2 html)
+12:51:25   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+12:51:25   SAFETY CHECK: PASS
+12:51:25 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+12:51:25   upsert runs: 1 row(s) ok
+12:51:25   upsert referrals: 3 row(s) ok
+12:51:25   upsert steps: 13 row(s) ok
+12:51:25   upsert reviews: 0 row(s) ok
+12:51:25   row count runs: 1 for this run, 2 total
+12:51:25   row count referrals: 3 for this run, 13 total
+12:51:25   row count steps: 13 for this run, 54 total
+12:51:25   row count reviews: 0 for this run, 0 total
+12:51:25 PUBLIC URL: http://127.0.0.1:51081/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+13:29:04 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+13:29:05   patients in run: 3; all last names start HACKDEMO-: True
+13:29:05   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:05   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+13:29:05   SAFETY CHECK: PASS
+13:29:05 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+13:29:05 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:05   patients in run: 3; all last names start HACKDEMO-: True
+13:29:05   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:05   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:05   SAFETY CHECK: PASS
+13:29:05 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+13:29:05   upsert runs: 1 row(s) ok
+13:29:05   upsert referrals: 3 row(s) ok
+13:29:05   upsert steps: 13 row(s) ok
+13:29:05   upsert reviews: 0 row(s) ok
+13:29:05   row count runs: 1 for this run, 1 total
+13:29:05   row count referrals: 3 for this run, 3 total
+13:29:05   row count steps: 13 for this run, 13 total
+13:29:05   row count reviews: 0 for this run, 0 total
+13:29:05 PUBLIC URL: http://127.0.0.1:59620/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+13:29:05 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:05   patients in run: 10; all last names start HACKDEMO-: True
+13:29:05   files checked: 92 (80 png, 10 pdf, 2 html)
+13:29:05   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:05   SAFETY CHECK: PASS
+13:29:05 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+13:29:05   upsert runs: 1 row(s) ok
+13:29:05   upsert referrals: 10 row(s) ok
+13:29:05   upsert steps: 41 row(s) ok
+13:29:05   upsert reviews: 0 row(s) ok
+13:29:05   row count runs: 1 for this run, 2 total
+13:29:05   row count referrals: 10 for this run, 13 total
+13:29:05   row count steps: 41 for this run, 54 total
+13:29:05   row count reviews: 0 for this run, 0 total
+13:29:05 PUBLIC URL: http://127.0.0.1:59620/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+13:29:05 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:06   patients in run: 3; all last names start HACKDEMO-: True
+13:29:06   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:06   SAFETY CHECK: PASS
+13:29:06 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+13:29:06   upsert runs: 1 row(s) ok
+13:29:06   upsert referrals: 3 row(s) ok
+13:29:06   upsert steps: 13 row(s) ok
+13:29:06   upsert reviews: 0 row(s) ok
+13:29:06   row count runs: 1 for this run, 2 total
+13:29:06   row count referrals: 3 for this run, 13 total
+13:29:06   row count steps: 13 for this run, 54 total
+13:29:06   row count reviews: 0 for this run, 0 total
+13:29:06 PUBLIC URL: http://127.0.0.1:59620/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+13:29:06 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+13:29:06   patients in run: 3; all last names start HACKDEMO-: True
+13:29:06   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+13:29:06   SAFETY CHECK: PASS
+13:29:06 supabase-sync: keys absent — skipped (nothing uploaded, nothing written)
+13:29:06 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:06   patients in run: 3; all last names start HACKDEMO-: True
+13:29:06   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:06   SAFETY CHECK: PASS
+13:29:06 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+13:29:06   upsert runs: 1 row(s) ok
+13:29:06   upsert referrals: 3 row(s) ok
+13:29:06   upsert steps: 13 row(s) ok
+13:29:06   upsert reviews: 0 row(s) ok
+13:29:06   row count runs: 1 for this run, 1 total
+13:29:06   row count referrals: 3 for this run, 3 total
+13:29:06   row count steps: 13 for this run, 13 total
+13:29:06   row count reviews: 0 for this run, 0 total
+13:29:06 PUBLIC URL: http://127.0.0.1:59917/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+13:29:06 supabase-sync <repo>/test-runner/runs/2026-09-19_121306 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:06   patients in run: 10; all last names start HACKDEMO-: True
+13:29:06   files checked: 92 (80 png, 10 pdf, 2 html)
+13:29:06   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:06   SAFETY CHECK: PASS
+13:29:07 uploaded 92/92 files to bucket demo-runs/2026-09-19_121306/
+13:29:07   upsert runs: 1 row(s) ok
+13:29:07   upsert referrals: 10 row(s) ok
+13:29:07   upsert steps: 41 row(s) ok
+13:29:07   upsert reviews: 0 row(s) ok
+13:29:07   row count runs: 1 for this run, 2 total
+13:29:07   row count referrals: 10 for this run, 13 total
+13:29:07   row count steps: 41 for this run, 54 total
+13:29:07   row count reviews: 0 for this run, 0 total
+13:29:07 PUBLIC URL: http://127.0.0.1:59917/storage/v1/object/public/demo-runs/2026-09-19_121306/index.html
+13:29:07 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL present | SUPABASE_SERVICE_ROLE_KEY present
+13:29:07   patients in run: 3; all last names start HACKDEMO-: True
+13:29:07   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:07   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 1 literal key value(s)
+13:29:07   SAFETY CHECK: PASS
+13:29:07 uploaded 17/17 files to bucket demo-runs/2026-09-19_123032/
+13:29:07   upsert runs: 1 row(s) ok
+13:29:07   upsert referrals: 3 row(s) ok
+13:29:07   upsert steps: 13 row(s) ok
+13:29:07   upsert reviews: 0 row(s) ok
+13:29:07   row count runs: 1 for this run, 2 total
+13:29:07   row count referrals: 3 for this run, 13 total
+13:29:07   row count steps: 13 for this run, 54 total
+13:29:07   row count reviews: 0 for this run, 0 total
+13:29:07 PUBLIC URL: http://127.0.0.1:59917/storage/v1/object/public/demo-runs/2026-09-19_123032/index.html
+13:29:07 supabase-sync <repo>/automation-server/intake/20260919_173031 | SUPABASE_URL absent | SUPABASE_SERVICE_ROLE_KEY absent
+13:29:07   patients in run: 3; all last names start HACKDEMO-: True
+13:29:07   files checked: 17 (12 png, 3 pdf, 2 html)
+13:29:07   forbidden tokens checked: PHPSESSID, cookie, storageState, Authorization, SERVICE_ROLE + 0 literal key value(s)
+13:29:07   SAFETY CHECK: PASS
+13:29:07 dry run: would upsert 1 run, 3 referrals, 13 steps, 0 reviews; upload 17 files

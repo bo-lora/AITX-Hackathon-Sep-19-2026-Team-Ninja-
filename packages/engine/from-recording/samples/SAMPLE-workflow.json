@@ -1,0 +1,329 @@
+{
+  "bullets": [
+    "Log in to the app as admin (password hidden).",
+    "Create the new patient Maria HACKDEMO-SAMPLE-0001 (born 1985-04-12, Female) and confirm the duplicate check.",
+    "Book a New Patient appointment on 2026-09-21 10:00.",
+    "Enter the referral's insurance: Blue Cross Blue Shield, policy HD123456789, group 55501, then Save Policy.",
+    "Attach the referral sample-referral.pdf to the patient's Documents (Medical Record)."
+  ],
+  "steps": [
+    {
+      "screen": "Login",
+      "field_label": "",
+      "value": "https://demo.openemr.io/openemr/interface/login/login.php?<redacted>",
+      "action": "open"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Username",
+      "value": "admin",
+      "action": "type"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Password",
+      "value": "[hidden]",
+      "action": "type"
+    },
+    {
+      "screen": "Login",
+      "field_label": "Login",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Main menu",
+      "field_label": "Patient",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Main menu",
+      "field_label": "New/Search",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "First Name",
+      "value": "Maria",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Last Name",
+      "value": "HACKDEMO-SAMPLE-0001",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "DOB",
+      "value": "1985-04-12",
+      "action": "type"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Birth Sex",
+      "value": "Female",
+      "action": "select"
+    },
+    {
+      "screen": "Search or Add Patient",
+      "field_label": "Create New Patient",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Duplicate check popup",
+      "field_label": "Confirm Create New Patient",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Patient Dashboard",
+      "field_label": "icon that opens Appointment dialog (unlabeled a a:has-text(\"\"))",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Appointment dialog",
+      "field_label": "Category",
+      "value": "New Patient",
+      "action": "select"
+    },
+    {
+      "screen": "Appointment dialog",
+      "field_label": "Date",
+      "value": "2026-09-21",
+      "action": "type"
+    },
+    {
+      "screen": "Appointment dialog",
+      "field_label": "Time (hour)",
+      "value": "10",
+      "action": "type"
+    },
+    {
+      "screen": "Appointment dialog",
+      "field_label": "Time (minute)",
+      "value": "00",
+      "action": "type"
+    },
+    {
+      "screen": "Appointment dialog",
+      "field_label": "Save",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Patient Dashboard",
+      "field_label": "icon that opens Insurance Edit (unlabeled a a.edit-insurance)",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Relationship",
+      "value": "Self",
+      "action": "select"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Provider",
+      "value": "Blue Cross Blue Shield (, , , )",
+      "action": "select"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Effective Date",
+      "value": "2026-09-01",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Policy Number",
+      "value": "HD123456789",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Group Number",
+      "value": "55501",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Subscriber Address",
+      "value": "100 Congress Ave",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "City",
+      "value": "Austin",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "State",
+      "value": "Texas",
+      "action": "select"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Zip Code",
+      "value": "78701",
+      "action": "type"
+    },
+    {
+      "screen": "Insurance Edit",
+      "field_label": "Save Policy",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Patient Dashboard",
+      "field_label": "Documents",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Documents",
+      "field_label": "Medical Record",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "Documents",
+      "field_label": "Source File Path",
+      "value": "sample-referral.pdf",
+      "action": "upload"
+    },
+    {
+      "screen": "Documents",
+      "field_label": "Upload",
+      "value": "",
+      "action": "click"
+    }
+  ],
+  "_debug": {
+    "source": "<repo>/from-recording/samples/SAMPLE-events.json",
+    "input_format": "recorder.ts events.json",
+    "bullets_by": "deterministic (no ANTHROPIC_API_KEY)",
+    "events_in": 52,
+    "steps_out": 33,
+    "step_event_ids": [
+      1,
+      3,
+      5,
+      6,
+      9,
+      11,
+      14,
+      16,
+      18,
+      21,
+      22,
+      23,
+      24,
+      26,
+      28,
+      29,
+      30,
+      31,
+      33,
+      35,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      47,
+      48,
+      50,
+      51
+    ],
+    "dropped_as_noise": [
+      {
+        "event_i": 2,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 4,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 7,
+        "reason": "form submit caused by the preceding click"
+      },
+      {
+        "event_i": 8,
+        "reason": "page load caused by the preceding action"
+      },
+      {
+        "event_i": 10,
+        "reason": "repeated click"
+      },
+      {
+        "event_i": 12,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 13,
+        "reason": "overwritten by a later value"
+      },
+      {
+        "event_i": 15,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 17,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 19,
+        "reason": "click on empty space"
+      },
+      {
+        "event_i": 20,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 25,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 27,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 32,
+        "reason": "repeated click"
+      },
+      {
+        "event_i": 34,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 36,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 46,
+        "reason": "form submit caused by the preceding click"
+      },
+      {
+        "event_i": 49,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 52,
+        "reason": "form submit caused by the preceding click"
+      }
+    ]
+  }
+}

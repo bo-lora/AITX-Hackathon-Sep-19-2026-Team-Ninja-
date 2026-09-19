@@ -1,0 +1,48 @@
+automation-server test log (handoff 08)
+Pre-test note: at 12:11 CDT the server started by Hackathon prep (PID 79732) was stopped, and a test instance was started on port 4710 with the test-only AUTH_LOGIN_HOOK autofill and the public demo creds in its environment. A HOLD arrived afterwards (Aurora testing by hand, 12:12-12:25), so that instance was left running until 12:25.
+12:11:28-12:11:50 CDT: first POST /login → HTTP 200 {"status":"LOGGED_IN"}; sessions/openemr.json written (mode 600). Raw curl output was captured in the session transcript only.
+12:25 restart: test instance (hooks) replaced PID 88882 after /health busy:null; staged recorder/server changes installed
+
+=== automation-server endpoint tests 2026-09-19 12:25:50 CDT against http://localhost:4710 ===
+PASS GET /health → HTTP 200 {"ok":true,"site":"https://demo.openemr.io/openemr","busy":null,"endpoints":["POST/login","GET/status","POST/record","GE
+PASS OPTIONS /run (CORS preflight) → HTTP 204
+PASS POST /login → HTTP 200 {"status":"LOGGED_IN"}
+PASS GET /status → HTTP 200 {"status":"LOGGED_IN","site":"https://demo.openemr.io/openemr"}
+PASS POST /login while /record runs → HTTP 409 {"error":"busy:recordisstillrunning","busy":"record","retry":"pollGET/healthuntilbusyisnull"}
+PASS POST /run while /record runs → HTTP 409 {"error":"busy:recordisstillrunning","busy":"record","retry":"pollGET/healthuntilbusyisnull"}
+PASS POST /record → HTTP 200 id=20260919_172629 events=21 iframe_events=10 iframe_events_with_label=10 password_events=2 password_masked=True sample_iframe_fills=["'First Name'='Rec'", "'Last Name'='HACKDEMO-REC-122640'", "'Date of Birth'='1970-01-01'", "'Birth Sex'='Female'"]
+PASS GET /recordings/latest → HTTP 200 (7091 bytes)
+FAIL 
+PASS GET /report/latest → 302 http://localhost:4710/runs/2026-09-19_121306/report.html
+PASS GET /report/latest.json → HTTP 200 (72590 bytes)
+=== done: 1 failure(s). Raw responses: <repo>/automation-server/test/out ===
+12:28:46 restart: test instance replaced PID 15883 (fix: /run no longer forces PLAYWRIGHT_BROWSERS_PATH=0; added /intake)
+PASS POST /run (1 referral, retest 12:30:20 after fix) → HTTP 200 run_id=2026-09-19_122846 exit_code=0 steps_confirmed 5/5 (login, patient, insurance, document, appointment all 'Confirmed ✓'); report.json at test-runner/runs/2026-09-19_122846/report.json. Raw: test/out/run.json
+  (first attempt at 12:27 FAILED: runner could not launch Chromium — server forced PLAYWRIGHT_BROWSERS_PATH=0 onto test-runner, whose browsers live in the default cache. Fixed in server.ts run(): /run and /intake unset it.)
+PASS GET /report/latest (after /run) → 302 http://localhost:4710/runs/2026-09-19_122846/report.html
+PASS POST /intake {"limit":3} (12:34:10 run, 12:30:31→12:34:01) → HTTP 200 intake_id=20260919_173031 run_id=2026-09-19_123032 exit_code=0; REAL extractor (extract/extract per PDF, 0.1s each) → make-commands.ts --source intake/20260919_173031/extracted.json → run.ts. Items ✓ 3/3, steps ✓ 13/13, headline "Mary: 12m 00s · AI: 3m 29s" (manual time is the 240s PLACEHOLDER). Patients: Rosa HACKDEMO-Alvarez-TR123032, Marcus HACKDEMO-Bellweather-TR123032, Linh HACKDEMO-Cartwright-TR123032. Raw: test/out/intake.json; progress lines in server.test.log ([intake ...]).
+PASS GET /report/latest (after /intake) → 302 http://localhost:4710/runs/2026-09-19_123032/report.html
+12:34:46 FINAL: test instance (PID 24036) stopped; demo server started WITHOUT AUTH_LOGIN_HOOK / REC_DRIVER / TEST_LOGIN_* (env -u ... ./start >> server.log), listening PID 37141 on 4710.
+12:34:50 GET /status on the final server → LOGGED_OUT (the saved session from the 12:25 test /login no longer validates after the later runs; cause UNVERIFIED). Before the demo, Mary clicks /login once.
+12:35-12:37 Default site changed to /a (decision 12:35). Not tested against /a (by instruction). Checked instead: /health → site https://demo.openemr.io/a/openemr, default_site a. Dry calls with site "zzz" to /run and /intake → HTTP 500 {"error":"unknown site \"zzz\" (use main | a | b)"}; no site was touched.
+  The first dry call CRASHED the server: an exception inside a browser job was an unhandled rejection, so node exited. This bug was there before my change. Fixed: exclusive() now catches the error → HTTP 500, and there is a process-level unhandledRejection handler. Restarted hook-free, PID 44079. Both dry calls then returned 500 and the server stayed up.
+
+=== 12:40-12:52 honesty fix + per-site sessions + Mary's review page ===
+- /intake now runs through the openemr CLI (openemr intake <pdf> --site <s> [--suffix T] --json, with AUTH_SESSION_FILE=sessions/openemr-<site>.json). It no longer uses test-runner, whose commands carry '--pass pass'. A grep for 'pass' in the 3 generated commands of intake 20260919_174243 found 0 matches. The only 'pass' anywhere in intake.json is the word "password" in the backend description. /run (test-runner, agent testing on Main) is unchanged.
+- Sessions are per site: sessions/openemr-<site>.json. /status?site=X and /login {site} default to a, and the JSON includes "site". 12:42 check: GET 4710 /status?site=a → {"status":"LOGGED_OUT","site":"a",...,"session_file":"openemr-a.json"}.
+- If there is no session and headed is not set: 12:52 check, POST 4710 /intake {"site":"main","limit":1} with no Main session → HTTP 401 {"error":"login needed",...}. Nothing ran.
+- The Main test used a separate test instance on port 4711 (SESSION_DIR=sessions-test, auth-broker test hook). 4711 POST /login {"site":"main"} → 200 LOGGED_IN.
+- PASS headed POST /intake on 4711 {"site":"main","headed":true,"suffix":"RV124243","pdfs":[06,07,08]}: 12:42:43→12:48:36, HTTP 200, "3/3 confirmed · 0 need Mary". Patients: HACKDEMO-Escobedo-RV124243 (pid 74), HACKDEMO-Fairbanks-RV124243 (pid 75), HACKDEMO-Harrowgate-RV124243 (pid 76). All 4 CLI steps VERIFIED for each. Visible windows came from headed-preload.cjs, which makes the CLI's chromium launch non-headless with a 300 ms slowMo. Checked by user agent: "Chrome/153" instead of "HeadlessChrome". The server log printed '[review] opening visible browser' before each window.
+- PASS GET /review/latest → 302 to /intake/20260919_174243/review.html. PDF link → 200 application/pdf. POST /review/<id>/mark → 200, and review.json saved {"referral-06.pdf": looks_right}.
+- Link check (review-test-log.txt): 12/12 links opened the right HACKDEMO record (name + pid on the page). Two links were fixed along the way. insurance_edit.php opened on its own stays on "Loading…", so the insurance link now points at the chart, which shows the member ID. On the documents page the PDF is in this patient's document tree, but my script's click did not expand the folder, so "the file is visible on screen" is UNVERIFIED; Mary opens the Medical Record folder herself.
+- Review page screenshot: intake/20260919_174243/review-page.png
+- 4710 restarted hook-free with the final code: PID 51088 → 68857.
+12:52:54 test instance 4711 (PID 51087) stopped.
+
+=== 13:33-13:39 /a DRESS REHEARSAL (product server 4710) ===
+- 13:33:13 GET /status?site=a → LOGGED_OUT (Aurora had not logged in), so I used the planned fallback. At 13:33:45 I ran the auth-broker CLI with its TEST hook to write sessions/openemr-a.json directly, without calling /login on 4710. 13:34:01 /status?site=a → LOGGED_IN.
+- PASS POST 4710 /intake {"site":"a","headed":true,"pdfs":["referral-04.pdf","referral-05.pdf"]}, no suffix: 13:34:13→13:37:39, HTTP 200, "2/2 confirmed · 0 need Mary", 207 s. HACKDEMO-Okonkwo pid 8 (96.7 s) and HACKDEMO-Duvall pid 9 (104.5 s), all 4 steps VERIFIED for each. Two visible windows ('[review] opening visible browser').
+- grep for 'pass' over the 2 generated commands: 0 matches. The only 'pass' in intake.json/triage.json is the phrase "no password".
+- Link check: 8/8 opened the right HACKDEMO record on /a (review-test-log.txt). On the Documents pages, the file being visible on screen is still UNVERIFIED; it is present in that patient's document tree.
+- PASS GET /review/latest → 302 /intake/20260919_183413/review.html; PDF link 200 application/pdf.
+- 13:38 cosmetic fix: the Got column now shows the first value of read-back pairs (Male, Female, Texas). Both review pages were rebuilt, and "Male|Male", "Female|Female" and "Texas|TX" now appear 0 times. 4710 restarted hook-free, PID 68857 → 15990. Afterwards /status?site=a → LOGGED_IN. The review page was screenshotted again: intake/20260919_183413/review-page.png

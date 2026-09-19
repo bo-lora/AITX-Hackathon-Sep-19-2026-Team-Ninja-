@@ -24,7 +24,7 @@ async function setBadge(recording) {
 
 async function injectRecorder(tabId) {
   await chrome.scripting.executeScript({
-    target: { tabId },
+    target: { tabId, allFrames: true },
     files: ["content.js"],
   });
 }

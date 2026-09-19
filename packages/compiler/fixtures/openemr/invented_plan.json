@@ -1,0 +1,29 @@
+{
+  "spec_title": "OpenEMR API",
+  "spec_version": "8.4.0",
+  "spec_path": "fixtures/openemr/openapi.yaml",
+  "workflows": [
+    {
+      "workflow_name": "Checkout with invented billing APIs",
+      "goal": "Record a payment using endpoints that do not exist.",
+      "inputs_observed": ["payment_amount"],
+      "apis": [
+        {
+          "method": "POST",
+          "path": "/api/fee-sheet",
+          "purpose": "Add CPT codes to a visit.",
+          "maps_from": ["add_fee_sheet_code"],
+          "params": {"cpt_code": "code"}
+        },
+        {
+          "method": "POST",
+          "path": "/api/payment",
+          "purpose": "Take the copay.",
+          "maps_from": ["record_payment"],
+          "params": {"payment_amount": "amount"}
+        }
+      ],
+      "unmapped": []
+    }
+  ]
+}

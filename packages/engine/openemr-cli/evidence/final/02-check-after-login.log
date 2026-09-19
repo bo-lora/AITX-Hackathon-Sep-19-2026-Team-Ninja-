@@ -1,0 +1,2 @@
+[7.8s] LOGGED_IN
+{"command":"check","site":"https://demo.openemr.io/openemr","ok":true,"exit_code":0,"steps":[],"session":"LOGGED_IN","session_file":"<repo>/openemr-cli/test-sessions/broker.json","dialogs":[],"seconds":7.8}

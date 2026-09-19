@@ -27,10 +27,9 @@
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 
-html,
-body {
-  background: var(--background);
-  color: var(--foreground);
+::selection {
+  background: #1b2433;
+  color: #f3efed;
 }
 
 body {

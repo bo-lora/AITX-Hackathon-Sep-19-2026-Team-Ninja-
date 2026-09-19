@@ -1,0 +1,156 @@
+Contents
+1 Introduction
+2 Particulars
+2.1 Global Settings
+2.1.1 User Preferences
+2.2 Calendar 7.0.1 Appearance
+2.2.1 Default appearance of the Calendar
+2.2.2 Appointment Event Dialog
+2.3 Configuring A Provider's Schedule
+2.4 Making Patient Appointments
+2.4.1 Create the Appointment
+2.4.2 Check the Patient In
+2.5 Calendar Customization
+2.5.1 Appointment Statuses
+2.5.2 Room Number
+2.5.3 Event Category
+2.6 Calendar- Dependent Features
+2.6.1 Holidays
+2.6.2 Flow Board
+2.6.3 The Patient Portal Calendar
+2.6.4 Reports Of Calendar Information
+2.6.5 Recall Board
+Introduction
+The Calendar is the tool OpenEMR uses to make, track and access patient appointments. It is also how the practice's and the providers' work schedules are set up and monitored so that accurate data can be available when making an appointment. In addition to scheduling, the calendar feeds appointment and encounter data to the practice management functions such as the Billing Manager and sundry reports.
+This document will walk through the Calendar using OpenEMR v7.0.1 and will look at:
+Globals Settings
+Appearance
+Configuring A Schedule
+Making Patient Appointments
+Customization
+Calendar- Dependant Features And Modules
+If a feature has documentation for an OpenEMR version earlier than v7 but the screens look almost identical to v7, that page will be linked here instead of duplicating the info.
+Particulars
+Basic settings for the calendar are covered in the wiki page, OpenEMR_7_Calendar which describes the very minimum configurations required for the calendar to function properly.
+However the calendar has some elective configurations that add even more useful capabilities.
+Global Settings
+Global settings determine the overall parameters that control the Calendar functions. For example, they specify the practice's hours of operation, whether it will auto-create new encounters, time/ date display formats, etc. The Globals are found on the Main Menu at: Admin/ Config (oval) Calendar tab (round rectangle)
+Here's a page that looks briefly at all the calendar globals.
+AllCalendarGlobals-v7
+User Preferences
+A subset of the system- wide globals that apply to the Calendar and Flow Board may be customized for each individual user. These will override the system globals as displayed for that logged- in user; described in 'Globals' page linked above.
+Calendar 7.0.1 Appearance
+Default appearance of the Calendar
+Note: some elements of this display will not be seen in an unconfigured/ unused Calendar.
+1. 'Hamburger' button - remove all calendar features from display except the calendar itself
+2. Shortcut button - 'add' new appointment, pre-set for first provider in list (#6 below), 1st time slot of their day- all of which can be manually edited when filling out the appointment details.
+3. Appointment Search (see below) - find existing appointments by search terms
+4. Current month - displayed date is highlighted
+5. Select facilities to display in list #7 below
+6. Select Providers - assigned in their user profiles to work in the selectd facilities
+7. Facilities whose calendars are displayed
+8. Date or date range being displayed
+9. Print displayed calendar with browser print dialog
+10. Reload calendar
+11. (rectangle) Buttons to select number of days to display (current display is a single day for three providers)
+12. Column of times showing this facility's hours of operation; derived from globals
+13. Name of selected provider's schedule, from item #6
+14. This provider's 'In Office' time from the calendar's Provider event tab
+15. This provider's 'Lunch' time from the calendar's Provider event tab
+16. This provider's 'Out of office’ time from the calendar's Provider event tab
+17. This provider's calendar has not been configured
+Notes:
+Searching for Appointments (#3 in pic):
+Enter search terms as 'Keywords' to search the appointments of the specified category, that have been scheduled between the selected dates for the selected provider and facility.
+Key words will be found in any appointment information, including:
+patient name
+appointment status
+the comments blank
+The 'AND and 'OR' terms look for all or any of the keywords, respectively.
+Note: it may be a bug in this version of OpenEMR but if you select 'Any Category' it returns all appointments, with or without the key words.
+Click ‘Return to calendar’ (oval) to... return to calendar.
+Appointment Event Dialog
+Click on an appointment time to open an Event Dialog
+and see the controls:
+Some of these controls are pre-set in the event's Calendar Category configuration; see section 'Appointment Categories' below. If a control has a suitable default setting you can simply leave it as it is and set any controls that you want different.
+Patient tab:
+1. Category - what type of appointment this is. Categories are customizable; see below. Most of them also interact with other aspects of the EMR, such as billing, reports, etc.
+2. Title - apparently is a read- only area that provides the category name to some inner workings of the EMR. Weird!
+3. Facility - which facility's calendar is being edited; derived from the list of the practice's facilities in (from Main Menu) 'Admin/ Clinic/ Facilities'
+4. Billing facility - which facility will handle billing for this appointment (from facilities list)
+5. Patient - who the appointment is for; derived from the patient roster
+6. Provider - dropdown contains all users who are indicated as 'Provider' in their user profile
+7. Event date/ time/ repeat controls (rectangle) - from the cal cat config; those lists are hard- coded so EMR knows how to use them
+8. Status - customizable names for the stages of completion of an encounter; see below
+9. Room Number - customizable names of patient's current physical location as they progress through the encounter; see below
+10. Comments - free text area for reason for appointment. Appears on calendar and appears on encounter summary when encounter form is created.
+11. Save - store the completed appointment
+12. Find Available - shows available appointment slots of the desired type for the selected provider at this facility.
+NOTE: if the provider's calendar is not configured at least with 'In/ Out of Office' times you will see popup saying that the provider is not available at this time (etc)'
+13 Delete - this selected appointment
+14. Cancel - the appointment creation operation
+15. Create Duplicate - what it says, make a duplicate appointment at another time/ date. If more than one duplicate is desired, make it a repeating appointment.
+Provider tab:
+The Providers' event dialog tab has the same controls as the Patient tab but they are used to configure the providers' schedule; see next section.
+All controls are the same as patient tab except you will see a 'Pref Cat' dropdown list which originally restricted the appointment categories that can be scheduled in that block of time. This feature now appears to be broken.
+After the practice calendar preferences are determined and set in the global settings, the providers' schedules should be configured in this tab.
+Configuring A Provider's Schedule
+The older documents on this process are still accurate. See this page, proceeding from the section 'HOWTO:_Create_and_Delete_Recurring_Calendar_Events':
+OpenEMR_7_Calendar#Provider_Calendar_Events
+The 'Recurring Calendar Events' are used because presumably most of a provider's schedule repeats in a fixed pattern. For any parts of the schedule that are individual non- repeating events, use these instructions
+Making Patient Appointments
+Making an appointment is basically a two step workflow:
+1) create the appointment, then
+2) check the patient in on arrival at the clinic.
+Create the Appointment
+Most standard appointments are single events, and this process is well documented in this recent wiki page:
+A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1#1._Appointment_Creation_-_Receptionist
+Recurring appointments can also be made, using the 'Recurring Calendar Events' steps linked above.
+Some OpenEMR features may alter the calendar display from its default configuration when they are activated.
+the Groups module will add a tab to the event dialog in which group sessions are scheduled. The steps to schedule a group therapy session are similar but slightly different from scheduling a regular treatment appointment:
+HOWTO_Setup_and_Use_OpenEMR_Groups_Module#C._Schedule_group_sessions
+The Telehealth module will add two new appointment categories, 'Telehealth Established Patient' and 'Telehealth New Patient' to the default Category dropdown. The telehealth appointments are made as the usual single-event appointment, thusly:
+Comlink_Telehealth_Module_Admin_Instructions
+Check the Patient In
+This workflow is covered in 
+this other section of the document linked above.
+A patient can also be checked in using the Flowboard; see that section below..
+Calendar Customization
+Date/ time format, days of work week etc are governed by the system globals found from the Main Menu at: Admin/ Config/ Calendar and discussed here
+The only truly customizable calendar controls, as distinct from the items configured by the globals, are found in the event dialog. Use the List Editor for these first two:
+Appointment Statuses
+In list editor look for 'Appointment Statuses'
+Be careful when editing these because in addition to the list's use to select indicators of the progression of an encounter, many of the individual statuses interact with EMR code to trigger other events. The older docs on this feature are still relevant but the new v7 docs have another look at it and show the current interface.
+AppointmentStatuses-v7
+Room Number
+In list editor look for 'Patient Flow Board Rooms'. Changes here apply to all places in the EMR where the room numbers are referenced including flowboard, event dialogs, reports, etc. 
+This list is a simple plain- text list that can be modified to display any desired alphanumeric values without interacting with any other feature. The intention of this list is to designate the patient's physical location in the clinic when their appointment is at a particular status but the names of those locations have no restrictions. Except that without some php coding of the panel that the name appears in, the list will always be called, 'Room Number'.
+The third, the event 'Category', is quite a different type of list; see next.
+Event Category
+Calendar event Categories are heavily integrated into the code that operates the Calendar feature, so must be built and modified with care.
+New ones may be made but be wary of deleting existing ones; they may contribute data to some obscure internal EMR process
+You may change the 'sequence' value to rearrange the order of their display in the dropdown, and put the more frequently- used ones at the top of the list.
+Older tutorials on the Calendar Categories exist in the Wiki, but see Calendar_CategoriesV7 for the updated version.
+Calendar- Dependent Features
+As mentioned elsewhere, one may search the calendar for a provider's available appointments if their work schedule is properly configured in the calendar. Otherwise, any un-reserved appointment slots must be manually located.
+Holidays
+The calendar has the capability to import a list of dates with their labels, and alter the background display of those dates in the calendar. I'm purposely vague here because the list is not required to be holidays but that is the most common use of the feature.
+Old wiki docs: Calendar_Holidays
+New re-written page on the Holidays feature v7
+Flow Board
+The Flow Board is a very efficient tool to track the flow of all patients through the clinic during a practice's workday. The display summarizes the status of each patient's appointment, how long they have been at the status and physical location they are at, akong with many other useful data.
+Here's the old Flow Board page with some useful details,
+and here's the new Flow Board v7 page
+The Patient Portal Calendar
+A patient's portal account does not have a comprehensive calendar display but it does give access to selected calendar functions.
+They can submit requests for types of appointments for specific days and times, and providers
+They can find dates/ times the provider is available
+They can see a list of their existing appointments and the status of their appointment requests.
+For details see the page on the portal documentation about appointments
+Reports Of Calendar Information
+Virtually all OpenEMR reports (from the main menu: ‘Reports’) require a calendar date range be specified from which to sample data.
+Some of the reports will not work without a calendar that is properly configured with events and providers' schedules. However, most actually use encounter and appointment data, and encounters and appointments can be made even in an improperly configured calendar.
+Recall Board
+Per the current page, ‘the Recall Board is an OpenEMR feature that stores lists of patients who need to schedule a follow-up appointment. The Recall Board lists active patients who need appointments but are not scheduled.' And this information is derived from calendar data.
+It is accessed from the main menu:
+The existing documentation is still good, found here: Recall_Board

@@ -35,6 +35,13 @@ export default function LandingPage() {
               <DownloadChromeButton />
               <WatchDemoButton />
             </div>
+            <p className="max-w-[42ch] text-sm leading-6 text-muted">
+              Not the Chrome Web Store.{" "}
+              <a href="#install" className="font-semibold text-navy underline-offset-2 hover:underline">
+                Load it unpacked
+              </a>{" "}
+              — the steps are below.
+            </p>
           </div>
 
           <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:justify-self-end">
@@ -51,6 +58,56 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="install" className="border-b border-line py-14" aria-labelledby="install-heading">
+          <h2 id="install-heading" className="max-w-[18ch] text-4xl sm:text-5xl">
+            Load the extension yourself
+          </h2>
+          <p className="mt-4 max-w-[52ch] text-lg leading-7 text-muted">
+            Chrome will not install this from the Web Store. You download the zip and load the folder
+            unpacked.
+          </p>
+          <ol className="mt-10 divide-y divide-line border-y border-line">
+            {[
+              {
+                n: "01",
+                does: "Download Chrome Extension. You get contextninja-extension.zip. Not the Chrome Web Store.",
+              },
+              {
+                n: "02",
+                does: "Unzip. The folder must contain manifest.json. Keep that folder; do not load a parent Downloads directory.",
+              },
+              {
+                n: "03",
+                does: "In Chrome, open chrome://extensions",
+              },
+              {
+                n: "04",
+                does: "Turn on Developer mode (toggle, top right).",
+              },
+              {
+                n: "05",
+                does: "Click Load unpacked. Choose the unzipped folder. Chrome may warn about developer extensions — keep it enabled.",
+              },
+              {
+                n: "06",
+                does: "Pin ContextNinja. Open email or OpenEMR (a normal page, not chrome://). Icon → Create skill → do the path → Done.",
+              },
+            ].map((step) => (
+              <li
+                key={step.n}
+                className="grid gap-2 py-5 sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:items-baseline sm:gap-8"
+              >
+                <p className="font-mono text-sm font-semibold text-navy">{step.n}</p>
+                <p className="text-muted">{step.does}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 max-w-[52ch] text-sm leading-6 text-muted">
+            Same folder in this repo: packages/extension. Skill manager must be running at 127.0.0.1:43124
+            before Done.
+          </p>
+        </section>
+
         <section id="demo" className="border-b border-line py-14" aria-labelledby="demo-heading">
           <h2 id="demo-heading" className="max-w-[16ch] text-4xl sm:text-5xl">
             Demo on this laptop
@@ -63,7 +120,7 @@ export default function LandingPage() {
             {[
               {
                 n: "01",
-                does: "Load the extension unpacked (chrome://extensions → packages/extension). Create skill.",
+                does: "Load the extension unpacked (see Install). Create skill.",
               },
               {
                 n: "02",
@@ -149,9 +206,12 @@ export default function LandingPage() {
             Later
           </h2>
           <p className="mt-5 max-w-[52ch] text-lg leading-7 text-muted">
-            After a path is taught in Chrome, compile the steps that actually exist in an OpenAPI spec onto REST.
-            Leave attach-fax, check-in, and billing on the UI path when the spec has no call. That compiler already
-            lives in this repo. It is not how she trains, and it is not this weekend&apos;s run.
+            After a path is taught in Chrome, a Cursor skill asks the compiler service to ground the
+            steps that actually exist in an OpenAPI spec onto REST. Gemini and OpenAI keys stay on
+            that service — not in the skill, not in the extension. The service is already hosted.
+            Leave attach-fax, check-in, and billing on the UI when the spec has no call. Source:{" "}
+            <span className="font-semibold text-navy">packages/compiler</span>. It is not how she
+            trains, and it is not this weekend&apos;s run.
           </p>
         </section>
       </main>

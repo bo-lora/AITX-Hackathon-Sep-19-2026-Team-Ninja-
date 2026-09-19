@@ -1,0 +1,14 @@
+Install ContextNinja by loading this folder yourself. It is not on the Chrome Web Store.
+
+1. Unzip. You should have a folder named contextninja-extension with manifest.json inside it.
+2. Open Chrome and go to chrome://extensions
+3. Turn on Developer mode (toggle, top right).
+4. Click Load unpacked.
+5. Choose this folder (the one that contains manifest.json).
+6. Pin ContextNinja. Open a normal page (email or OpenEMR — not chrome://). Click the icon → Create skill → do the path → Done.
+
+Skill manager must already be running at http://127.0.0.1:43124.
+
+Chrome may show “Disable developer mode extensions” after a restart. Keep the extension enabled for the demo.
+
+Same folder in the repo: packages/extension

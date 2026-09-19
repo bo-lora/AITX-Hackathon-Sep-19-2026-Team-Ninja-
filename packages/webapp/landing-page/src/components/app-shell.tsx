@@ -6,6 +6,7 @@ const SKILL_MANAGER = "http://127.0.0.1:43124";
 
 const links: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Home" },
+  { href: "/#install", label: "Install" },
   { href: "/#demo", label: "Demo" },
   { href: "/team", label: "Team" },
   { href: "/#how", label: "How it works" },

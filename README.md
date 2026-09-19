@@ -1,39 +1,50 @@
 # Team Ninja — Cursor Austin × AITX
 
-19 Sep 2026 hackathon. We turn a **screen recording of legacy software** into something Mary can paste into **her** AI client.
+19 Sep 2026 hackathon. **ContextNinja** records a real workflow in Chrome, then a webapp turns that session into a Grok computer-use skill.
 
-## Problem
+Mary does not know Cursor and never should. Her product is the Chrome extension, this webapp, and Grok. No API key in the extension.
 
-Older job software lives behind a GUI. It is not AI-addressable. Mary already knows the clicks in that app; they do not transfer into Cursor, Grok, or ChatGPT.
+## Operator flow
 
-She should not have to click through every screen again.
+1. Load `apps/extension` unpacked in Chrome. Click **Create skill**, do the work, click **Done**.
+2. Done POSTs session JSON to the webapp and opens the **workflow** page.
+3. Edit the steps. **Save** opens the **skill** page.
+4. **Add to Grok**, **Download**, optional **Publish**. The homepage lists trained skills.
 
-## Product
+## Monorepo
 
-1. Mary records the repetitive workflow (any video file; capture app does not matter).
-2. She uploads the video, adds a little context, and runs it.
-3. She gets a **copy-paste MCP artifact** for the client she already uses: Cursor, Grok, or ChatGPT. That choice is hers.
+```
+apps/web         Next.js operator app (port 43123)
+apps/extension   Chrome MV3 recorder (no keys)
+packages/session Shared session / skill types
+docs/            Product lock and pipeline notes
+docs/brand/      Accepted ContextNinja logo
+research/        Ingress examples
+```
 
-**Ingress is video.** The recording is the source of the workflow. The presented result must match that recording: no silent extra sources, no fake claims.
+Type lock for `apps/web`: headlines **Bricolage Grotesque**, body **Open Sans** (Google Fonts via `next/font`). Logo is `apps/web/public/logo.png`. Home follows the cream extension-landing structure (nav, hero, circular mark, official Chrome Web Store badge); `docs/brand/landing-reference.png` is layout reference only.
 
-## Example targets (research)
+## Run
 
-These are the kinds of GUI apps the pipeline is for, with public tutorial/screencast examples in [`research/`](research/):
+```bash
+pnpm install
+pnpm dev
+```
 
-- **QuickBooks Desktop** — bills, payments, batch entry
-- **Tyler / Incode** (municipal court, cashiering, related suites)
-- **Industrial / niche desktop** — e.g. Streampix camera setup, other long-tail tools with no native AI API
+Webapp: http://127.0.0.1:43123
 
-They are **vectors**, not the four-hour runtime. Epic-class EHRs are the story, not the demo environment.
+Then Chrome → Extensions → Load unpacked → `apps/extension`.
 
-For a slice judges can actually run, a small **owned stand-in** (ClinicDesk-style: labeled forms, fake patients, local login) is the right constrained target. Record that UI, compile the MCP tool, replay it. Same product; safer clock.
+A sample workflow button on the homepage skips the extension so a judge can still walk Save → Add to Grok.
 
-## This repo
+## Docs
 
-Right now this is **docs and research**, not a running server. There is nothing to `npm start` or `uvicorn` yet. Read the research note, then ship code on a branch.
-
-- Research: [`research/Legacy Software Video Ingress Examples.md`](research/Legacy%20Software%20Video%20Ingress%20Examples.md)
-- License: Apache-2.0 (`LICENSE`)
+- [`docs/deliverables.md`](docs/deliverables.md) — demo lock
+- [`docs/product-name.md`](docs/product-name.md) — ContextNinja
+- [`docs/hackathon-pipeline.md`](docs/hackathon-pipeline.md) — recorder → AST → artifact
+- [`docs/huddle-video-vs-live.md`](docs/huddle-video-vs-live.md) — live DOM vs video
+- [`research/ingestion-to-workflow-for-agents.md`](research/ingestion-to-workflow-for-agents.md)
+- [`research/Legacy Software Video Ingress Examples.md`](research/Legacy%20Software%20Video%20Ingress%20Examples.md)
 
 ## Contribute
 
@@ -43,6 +54,4 @@ cd AITX-Hackathon-Sep-19-2026-Team-Ninja-
 git checkout -b your-slice
 ```
 
-Push the branch and open a **pull request into `main`**. Cursor Cloud Agents are welcome: grant the GitHub App this repo, start the agent here, and have it open a PR. Do not force-push `main`.
-
-Keep secrets out of git (`.env`, API keys). Add `.env.example` if you introduce config.
+Push the branch and open a pull request into `main`. Do not force-push `main`. Keep secrets out of git.

@@ -1,9 +1,10 @@
-:HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/_next/static/chunks/1q7linacf9xav.css","style"]
+:HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/_next/static/chunks/2-b07m0-su0up.css","style"]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/_next/static/media/017d9bea37084d9b-s.p.41rroleoq1br7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/_next/static/media/cf514f5d0007dafa-s.p.1wc2mf9hp9pav.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/chrome-icon.png","image"]
+:HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/team.jpg","image"]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/pranav.jpg","image"]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/aurora.jpg","image"]
-:HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/travis.svg","image"]
+:HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/travis.jpg","image"]
 :HL["/AITX-Hackathon-Sep-19-2026-Team-Ninja-/team/bo.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4180,"slots":{"children":{"name":"team","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"UYIAO9Q_vbB6YNqb-6xIm"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4180,"slots":{"children":{"name":"team","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"rP_xh9oQDIToIWrRC5en4"}

@@ -38,8 +38,13 @@ yarn-error.log*
 pnpm-debug.log*
 .pnpm-store/
 
-# Cursor / editors
-.cursor/
+# Cursor / editors — keep the project impeccable skill
+.cursor/*
+!.cursor/skills/
+!.cursor/skills/**
+!.cursor/agents/
+!.cursor/agents/**
+!.cursor/hooks.json
 .vscode/
 *.swp
 *~

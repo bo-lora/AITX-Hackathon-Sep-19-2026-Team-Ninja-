@@ -53,7 +53,7 @@ Skill-creator logic (understand the payload, emit the Grok skill) **lives behind
 | `packages/session` | Shared session payload, steps, Grok skill text |
 | `docs/brand/contextninja-logo.png` | Accepted mark (also `apps/web/public/logo.png`) |
 
-`apps/web` type lock: headlines **Kolker Brush**, body **Open Sans**.
+`apps/web` type lock: headlines **Bricolage Grotesque**, body **Open Sans**.
 
 ## Related local docs
 

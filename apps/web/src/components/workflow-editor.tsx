@@ -150,7 +150,7 @@ export function WorkflowEditor({ session }: { session: SessionPayload }) {
       <aside className="space-y-3 lg:sticky lg:top-6 lg:self-start">
         <h2 className="text-4xl text-navy">Recorded events</h2>
         <p className="text-sm text-muted">
-          Source of truth from her Chrome. Each step should stay tied to an event.
+          Source of truth from the recorded Chrome session. Each step should stay tied to an event.
         </p>
         {session.events.length === 0 ? (
           <p className="border border-dashed border-line px-4 py-8 text-sm text-muted">

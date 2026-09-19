@@ -22,7 +22,7 @@ docs/brand/      Accepted ContextNinja logo
 research/        Ingress examples
 ```
 
-Type lock for `apps/web`: headlines **Kolker Brush**, body **Open Sans** (Google Fonts via `next/font`). Logo is `apps/web/public/logo.png`. Home follows the cream extension-landing structure (nav, hero, circular mark); `docs/brand/landing-reference.png` is layout reference only.
+Type lock for `apps/web`: headlines **Bricolage Grotesque**, body **Open Sans** (Google Fonts via `next/font`). Logo is `apps/web/public/logo.png`. Home follows the cream extension-landing structure (nav, hero, circular mark, official Chrome Web Store badge); `docs/brand/landing-reference.png` is layout reference only.
 
 ## Run
 

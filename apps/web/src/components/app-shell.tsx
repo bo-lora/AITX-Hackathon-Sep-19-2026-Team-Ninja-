@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { DownloadChromeButton } from "@/components/download-chrome-button";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/#how", label: "How it works" },
   { href: "/#skills", label: "Skills" },
-  { href: "/#install", label: "Chrome extension" },
 ];
 
 export function AppShell({
@@ -17,9 +16,9 @@ export function AppShell({
   live?: boolean;
 }) {
   return (
-    <div className="flex min-h-full flex-col px-3 py-3 sm:px-6 sm:py-5">
-      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col bg-paper px-4 py-4 shadow-[0_18px_50px_-32px_rgba(27,36,51,0.45)] sm:px-8 sm:py-5">
-        <header className="flex flex-wrap items-center justify-between gap-4 pb-2">
+    <div className="flex min-h-full flex-col bg-background">
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-5 py-5 sm:px-8 sm:py-6">
+        <header className="flex flex-wrap items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3 text-navy">
             <Image
               src="/logo.png"
@@ -29,7 +28,7 @@ export function AppShell({
               className="h-10 w-10"
               priority
             />
-            <span className="headline text-[1.85rem] leading-none">ContextNinja</span>
+            <span className="headline text-xl leading-none">ContextNinja</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-navy md:flex">
             {links.map((link) => (
@@ -44,9 +43,7 @@ export function AppShell({
                 Live session
               </p>
             ) : null}
-            <Button asChild variant="outline" size="pill">
-              <a href="/#install">Load the extension</a>
-            </Button>
+            <DownloadChromeButton compact />
           </div>
           <nav className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-navy md:hidden">
             {links.map((link) => (

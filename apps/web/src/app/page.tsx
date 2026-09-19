@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { DownloadChromeButton } from "@/components/download-chrome-button";
 import { WatchDemoButton } from "@/components/watch-demo-button";
 import { listSkills } from "@/lib/store";
 
@@ -14,39 +14,28 @@ export default async function HomePage() {
   return (
     <AppShell>
       <main>
-        <section className="grid items-center gap-12 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-8 lg:py-16">
+        <section className="grid items-center gap-12 py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 lg:py-16">
           <div className="max-w-xl space-y-6">
-            <p className="text-sm font-semibold text-navy">In the Chrome you already use</p>
-            <h1 className="max-w-[11ch] text-[3.4rem] leading-[0.95] sm:text-[4.6rem] lg:text-[5.4rem]">
-              Teach a workflow in your real Chrome.
+            <h1 className="max-w-[12ch] text-[3.15rem] sm:text-[4.25rem] lg:text-[4.75rem]">
+              Do the click-path once.
             </h1>
-            <p className="max-w-[36ch] text-lg leading-7 text-muted">
-              Record the clicks once. Confirm the steps here. Add the skill to Grok. Mary never sees Cursor, and the
-              extension never holds an API key.
+            <p className="max-w-[38ch] text-lg leading-7 text-muted">
+              You&apos;re already on the real site. Same login. Same fields. Hit Create, run the task, hit Done.
+              The workflow is waiting here to become a Grok skill.
             </p>
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-              <Button asChild variant="default" size="hero">
-                <a href="/contextninja-extension.zip" download>
-                  <ChromeMark />
-                  Download Chrome Extension
-                </a>
-              </Button>
+            <div className="flex flex-col items-start gap-5 pt-1 sm:flex-row sm:items-center">
+              <DownloadChromeButton />
               <WatchDemoButton />
             </div>
-            <dl className="grid max-w-lg grid-cols-3 gap-4 pt-4 text-navy">
-              <Stat value={String(skills.length)} label="Skills trained" />
-              <Stat value="0" label="Keys in the extension" />
-              <Stat value="Grok" label="Where she runs it" />
-            </dl>
           </div>
 
           <div className="relative mx-auto w-full max-w-md">
             <span className="absolute left-[12%] top-[8%] h-3 w-3 rounded-full bg-[#7ea6ff]" />
             <span className="absolute right-[18%] top-[22%] h-2.5 w-2.5 rounded-full bg-mint" />
             <span className="absolute bottom-[18%] left-[6%] h-2.5 w-2.5 rounded-full bg-live" />
-            <Sparkle className="absolute right-[8%] top-[12%] text-[#f0c419]" />
+            <Sparkle className="absolute right-[8%] top-[12%] text-navy/35" />
             <Sparkle className="absolute bottom-[28%] right-[4%] text-navy" />
-            <div className="relative mx-auto aspect-square max-w-[28rem] overflow-hidden rounded-full bg-[#f6edd8]">
+            <div className="relative mx-auto aspect-square max-w-[28rem] overflow-hidden rounded-full bg-[#eae5e2]">
               <Image
                 src="/logo.png"
                 alt="ContextNinja"
@@ -63,58 +52,36 @@ export default async function HomePage() {
           <h2 className="text-4xl sm:text-5xl">How it works</h2>
           <ol className="mt-8 grid gap-8 md:grid-cols-3">
             <li className="max-w-[28ch] space-y-2">
-              <p className="font-semibold">Create skill</p>
+              <p className="font-semibold">Create</p>
               <p className="text-muted">
-                Load the extension. Do the real workflow in her logged-in Chrome, 2FA and all.
+                Stay on the live site. Click Create, then do the task the way you always do it.
               </p>
             </li>
             <li className="max-w-[28ch] space-y-2">
-              <p className="font-semibold">Done, then edit</p>
+              <p className="font-semibold">Done</p>
               <p className="text-muted">
-                Done sends the session here. Fix the steps. Save turns it into a skill.
+                Hit Done. The recorded workflow lands here, steps tied to the real clicks.
               </p>
             </li>
             <li className="max-w-[28ch] space-y-2">
-              <p className="font-semibold">Add to Grok</p>
+              <p className="font-semibold">Grok skill</p>
               <p className="text-muted">
-                Copy or download the computer-use skill. Prompt Grok to open the site and run it.
+                Edit, save, Add to Grok. Next time the agent walks that path for you.
               </p>
             </li>
           </ol>
         </section>
 
-        <section id="install" className="border-t border-line py-14">
-          <h2 className="text-4xl sm:text-5xl">Load it unpacked</h2>
-          <p className="mt-3 max-w-[52ch] text-muted">
-            There is no store listing yet. Download the zip, or point Chrome at `apps/extension` in this repo. Developer
-            mode, Load unpacked. No key to paste.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="pill">
-              <a href="/contextninja-extension.zip" download>
-                Download Chrome Extension
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="pill">
-              <a href="#skills">See trained skills</a>
-            </Button>
-          </div>
-        </section>
-
         <section id="skills" className="border-t border-line py-14">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-4xl sm:text-5xl">Trained skills</h2>
-              <p className="mt-2 max-w-[46ch] text-muted">
-                Every skill started as a Chrome session. Open one to add it to Grok, download it, or edit the workflow.
-              </p>
-            </div>
-          </div>
-          {skills.length === 0 ? (
-            <p className="mt-8 max-w-[46ch] border border-dashed border-line px-5 py-8 text-muted">
-              None yet. Load the extension, click Done, or use Watch demo to land a sample workflow here.
+          <div>
+            <h2 className="text-4xl sm:text-5xl">Trained skills</h2>
+            <p className="mt-2 max-w-[46ch] text-muted">
+              {skills.length === 0
+                ? "None yet. Install the extension, hit Done, or watch the demo."
+                : "Every skill started as a Chrome session. Open one to add it to Grok or edit the workflow."}
             </p>
-          ) : (
+          </div>
+          {skills.length === 0 ? null : (
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {skills.map((skill) => (
                 <li key={skill.id}>
@@ -140,24 +107,6 @@ export default async function HomePage() {
         </section>
       </main>
     </AppShell>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="border-l border-line pl-3 first:border-l-0 first:pl-0">
-      <dt className="text-2xl font-semibold">{value}</dt>
-      <dd className="text-sm text-muted">{label}</dd>
-    </div>
-  );
-}
-
-function ChromeMark() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.75" />
-      <circle cx="12" cy="12" r="3.25" fill="currentColor" />
-    </svg>
   );
 }
 

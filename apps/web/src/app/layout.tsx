@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kolker_Brush, Open_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Open_Sans } from "next/font/google";
 import "./globals.css";
 
 const openSans = Open_Sans({
@@ -8,31 +8,30 @@ const openSans = Open_Sans({
   weight: ["400", "600", "700"],
 });
 
-const kolkerBrush = Kolker_Brush({
+const bricolage = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
 });
 
 export const metadata: Metadata = {
   title: "ContextNinja",
   description:
-    "Teach a task in Chrome, confirm the workflow, then add the skill to Grok. No API key in the extension.",
+    "You're on the real site. Hit Create, do the task once, hit Done. The workflow is waiting to become a Grok skill.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${openSans.variable} ${kolkerBrush.variable} h-full antialiased`}
+      className={`${openSans.variable} ${bricolage.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         {/*
-          THESIS: The log of what she just did in Chrome, not a SaaS skill catalog.
-          OWN-WORLD: Cream paper, accepted ninja PNG, Kolker Brush headlines, Open Sans body, mint for Done.
-          STORY: Confirm the taught workflow, save a skill, add it to Grok.
-          FIRST VIEWPORT: Cream frame, white stage, nav + pill, left headline, right circular logo.
-          FORM: Extension-marketing landing structure, type locked to Kolker Brush / Open Sans.
+          THESIS: One real click-path, captured in the live site, not a script-font pitch.
+          OWN-WORLD: Logo cream #f3efed, navy mark, Bricolage Grotesque headlines, Open Sans body.
+          STORY: Create, do the task, Done, the workflow waits to become a Grok skill.
+          FIRST VIEWPORT: Nav, huge grotesque headline, dark Download Chrome Extension pill with Chrome icon, circular logo.
+          FORM: Extension-landing structure; type is heavy grotesque, never a brush script.
           FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
         */}
         {children}

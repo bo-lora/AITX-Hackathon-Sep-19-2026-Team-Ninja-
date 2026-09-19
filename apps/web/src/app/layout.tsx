@@ -16,7 +16,7 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "ContextNinja",
   description:
-    "You're on the real site. Hit Create, do the task once, hit Done. The workflow is waiting to become a Grok skill.",
+    "Tired of dealing with repetitive tasks that give you carpal tunnel? Power through it one more time. ContextNinja records it and creates a skill for your favorite LLM.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

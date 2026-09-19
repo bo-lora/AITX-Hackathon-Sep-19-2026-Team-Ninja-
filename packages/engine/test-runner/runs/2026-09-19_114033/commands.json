@@ -1,0 +1,59 @@
+{
+  "workflow": "Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment",
+  "target_url": "https://demo.openemr.io/openemr",
+  "manual_seconds": 240,
+  "manual_seconds_placeholder": true,
+  "setup": [
+    {
+      "id": "login",
+      "bullet": "Log in as the front desk (receptionist)",
+      "command": "npx tsx oe.ts login --user receptionist --pass receptionist",
+      "verify": "npx tsx oe.ts verify-login"
+    }
+  ],
+  "items": [
+    {
+      "id": "r01",
+      "label": "referral-01.pdf: Rosa HACKDEMO-Alvarez-TR{{HHMMSS}} (Aekna)",
+      "vars": {
+        "LNAME": "HACKDEMO-Alvarez-TR{{HHMMSS}}",
+        "PDF": "<repo>/referrals/referral-01.pdf"
+      },
+      "steps": [
+        {
+          "id": "patient",
+          "bullet": "Create patient Rosa HACKDEMO-Alvarez-TR{{HHMMSS}}, DOB 03/14/1985, Female",
+          "command": "npx tsx oe.ts create-patient --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --fname 'Rosa' --dob 1985-03-14 --sex Female --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'",
+          "verify": "npx tsx oe.ts verify-patient --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --fname 'Rosa' --dob 1985-03-14"
+        },
+        {
+          "id": "insurance",
+          "bullet": "Add primary insurance Aekna, member AXX2650168, group GRP-56000",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts add-insurance --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000'",
+          "verify": "npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000'"
+        },
+        {
+          "id": "document",
+          "bullet": "Attach referral-01.pdf to the patient's Documents",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts upload-doc --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --file {{PDF}}",
+          "verify": "npx tsx oe.ts verify-doc --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --file {{PDF}}"
+        },
+        {
+          "id": "appointment",
+          "bullet": "Book a New Patient appointment tomorrow 10:00",
+          "depends_on": [
+            "patient"
+          ],
+          "command": "npx tsx oe.ts book-appt --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --date tomorrow --time 10:00 --category 'New Patient'",
+          "verify": "npx tsx oe.ts verify-appt --lname 'HACKDEMO-Alvarez-TR{{HHMMSS}}' --date tomorrow --time 10:00"
+        }
+      ]
+    }
+  ]
+}

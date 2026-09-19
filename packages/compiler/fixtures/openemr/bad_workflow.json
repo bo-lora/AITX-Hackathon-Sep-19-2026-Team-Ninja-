@@ -1,0 +1,20 @@
+{
+  "workflows": [
+    {
+      "workflow_name": "Teleport a patient",
+      "goal": "Move a patient to another clinic with an API that does not exist.",
+      "inputs_observed": ["patient_name", "destination_clinic"],
+      "steps": [
+        {
+          "action": "teleport_patient",
+          "input": "patient_name",
+          "object": "patient",
+          "side_effect": true,
+          "notes": "Invented UI action with no OpenEMR endpoint"
+        }
+      ],
+      "final_state": "Patient is at the destination clinic.",
+      "entities": ["patient"]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+Contents
+1 Calendar
+1.1 Calendar Globals
+1.2 Provider Calendar Events
+1.2.1 Flow Board Configuration
+2 Conclusion
+Calendar
+The practice's appointment and provider schedule
+The calendar is perhaps the most important feature of OpenEMR which is frequently left un- configured. Fortunately, only a few settings are needed to activate its most useful capabilities.
+Upon login to a new instance of OpenEMR the calendar is blank and it has one user, the default administrator account.
+Here the public demo calendar is shown with its sample provider accounts listed, but not configured (round rectangle).
+The calendar will function in this unconfigured state but many capabilities will be unavailable, including:
+automatic detection of provider's available appointment slots
+multiple practice management and billing reports
+ability to control the types of appointments that are made
+Patient appointment requests from the Portal will not work
+and more.
+Calendar Globals
+Configure the calendar's fundamental state
+From Main Menu go to Admin/ Config, select the left tab 'Calendar' (arrow)
+(Image cropped to minimize empty space)
+Scroll through the list of settings and confirm or revise these settings:
+1. Globals for clinic hours of operation
+Calendar Starting/ Ending Hour must be set to the times the calendar can be used. For example, if staff schedule events outside of appointment hours, include that time in the calendar
+2. Calendar Interval - minimum appointment/ event duration. Longer events may be sized as multiples of this value.
+3. Providers See Entire Calendar - default is that they can only see their own appointments
+4. Auto-Create New Encounters - how many encounter forms shall the calendar automatically create for each patient's appointments per day. Normally when a patient is checked in for an appointment an encounter form is created. 'Off' prevents any from being automatically created; they must be created manually when needed.
+Provider Calendar Events
+Construct each Provider's basic work schedule
+1. In the Calendar display, select the provider's calendar (shaded name, in oval at left)
+2. Follow the steps to create a recurring event found in this wiki page:
+HOWTO:_Create_and_Delete_Recurring_Calendar_Events
+3. Create each provider's 'In Office' and 'Out of Office' times
+In Office and Out of Office are special categories
+they do not have a duration time; leave it at '0'
+Ensure that the Provider and the Facility are correct
+In and out of office times are necessary
+Lunch times are optional but do require a duration.
+Flow Board Configuration
+The flow board is closely associated with the Calendar, but it is basically only a display of the calendar's own configuration, data and activities. Its few non- essential configuration options are to be found at the end of the list of Calendar globals. Some aspects of the flow board may be customized for advanced displays, but none are required for proper basic function; see the wiki for details if interested: Patient_Flow_Board
+Conclusion
+The calendar has several configurable behaviors which can be very useful We have only touched on the most useful ones here. But if you are interested in advanced modifications you can research the following topics.
+custom calendar categories for different types of treatment sessions
+have your own appointment statuses
+change the Eoom Numbers to text names, such as 'Exam Room 1'
+go through the Calendar Globals and see other options available
+Back to >>> OpenEMR_7_New_Clinic_Setup <<<

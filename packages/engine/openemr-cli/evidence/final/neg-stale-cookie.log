@@ -1,0 +1,2 @@
+ERROR: session is logged out (HTTP 400 at /interface/main/finder/dynamic_finder.php); run: openemr login
+{"command":"appt create","site":"https://demo.openemr.io/openemr","ok":false,"exit_code":2,"steps":[],"error":"session is logged out (HTTP 400 at /interface/main/finder/dynamic_finder.php); run: openemr login","dialogs":[],"seconds":1.3}

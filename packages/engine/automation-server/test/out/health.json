@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "site": "https://demo.openemr.io/openemr",
+  "busy": null,
+  "endpoints": [
+    "POST /login",
+    "GET /status",
+    "POST /record",
+    "GET /recordings/latest",
+    "POST /run",
+    "GET /report/latest",
+    "GET /report/latest.json"
+  ]
+}

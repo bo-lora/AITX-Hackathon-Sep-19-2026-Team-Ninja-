@@ -1,0 +1,34 @@
+Contents
+1 Introduction
+2 Procedure
+2.1 Columns
+2.2 Notes:
+3 Conclusion
+Introduction
+Appointment statuses are contained in a list in the List Manager.
+Each status on the list has characteristics and parameters that determine how the status is displayed in the various places it appears in the Calendar, the Flowboard, the appointment dialog, etc.
+The list is found here, from the Main Menu:
+Admin/ Forms/ Lists
+Procedure
+Editing this list is done the same as any other list as long as you make sure to accommodate the special requirements of some of the columns here.
+Top few rows shown for brevity:
+Columns
+ID - unique identifier for this list item; see below
+Title - what it's called; see below
+Order - where it appears in dropdown list
+Default - makes it displayed in the un-opened list; only 1 allowed
+Active - checked status does appear in the dropdown
+Color - of the text area the status appears in; see below for details
+Alert Time - minutes from change to this status before the appointment's 'Current Status Time' area in the flow board starts blinking
+Check In - if this status triggers the 'Check in' activities, e.g., creation of an encounter form, if that global is configured; see below
+Check Out - if this status triggers the 'Check Out' activities, e.g., set the check- out time for the visit, referred to in report and status calculations; see below
+Code(s) - if any code is associated with this status
+Notes:
+ID - keep it brief, will be used to show status in the appointment's blank on the calendar.
+Title - the leading special character is not required but is visually useful to relate to calendar display reference
+Color - this is the color the flowboard shows when the appointment display changes its status. Also appears in other contexts right
+Check In/ Out - any status can be either Check In or Check Out but not both. You may have multiple statuses that trigger Check In/ Out mechanisms but they all should mark the beginning or end of the patient's presence in the facility.
+Conclusion
+The original doc is still useful, though slightly dated:Patient_Flow_Board#Appointment_Statuses_and_Room_Lists_Set-Up
+by Bradymiller
+Return to main calendar v7 page

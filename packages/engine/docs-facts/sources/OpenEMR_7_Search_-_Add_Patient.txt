@@ -1,0 +1,21 @@
+Search - Add Patient
+OpenEMR's 'New/ Search' function isn't much of a search tool but it is the only way to manually add new patients to the system.
+It's located on the main menu at 'Patient/ New/Search:
+The data fields collect the patient's information in the different categories, 'Who', 'Contact', 'Choices', etc.
+Most items are optional but a new patient record cannot be created without all the fields that have been designated as 'required'.
+You can tell the required field names because they're red.
+In the default OpenEMR instance, those are: Name, Sex, DOB.
+To add or change the required fields, you need to edit the demographics LBF data form.
+Do this:
+1. From the main menu: 
+'Admin/ Forms/ Lists'
+2. Select 'Demographics' in the 'Edit Layout' dropdown (oval) and see the controls that generate the Demographics LBF (round rectangle)
+Notice that the 'Labels' column names in the 'Who' section of the LBF are the same as the field names in the 'Who' section of 'Search or Add' screen
+3. Scroll down to the field you want to make required.
+Here we're making 'License/ ID' required
+4. Open the dropdown in the UOR column (Unused / Optional/ Required) and set it to 'Required'.
+5. Click 'Save Changes' button (not shown; is at top of form)
+6. Go back to the 'Search or Add Patient' screen; see the one you changed is now red = 'Required'.
+Try to create a new patient record without the newly required data...
+...and see the error: 'is not valid'
+Back to >>> OpenEMR_7_Useful_Configurations <<<

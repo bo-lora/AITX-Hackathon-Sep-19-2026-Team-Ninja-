@@ -1,0 +1,3 @@
+[0.1s] extracted referral-02.pdf with <repo>/extract/extract: Marcus HACKDEMO-Bellweather 1972-11-02 Male Aekna AXX3338965
+ERROR: no session file at <repo>/openemr-cli/test-sessions/missing.json; run: openemr login
+{"command":"intake ../referrals/referral-02.pdf","site":"https://demo.openemr.io/openemr","ok":false,"exit_code":2,"steps":[],"extractor":"<repo>/extract/extract","patient":{"first":"Marcus","last":"HACKDEMO-Bellweather-neg","dob":"1972-11-02"},"appointment":{"date":"2026-09-21","time":"10:00","category":"New Patient"},"error":"no session file at <repo>/openemr-cli/test-sessions/missing.json; run: openemr login","dialogs":[],"seconds":0.1}

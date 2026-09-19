@@ -1,0 +1,112 @@
+{
+  "bullets": [
+    "On main.php: open main.php; type \"Billy Smith\" in Search by any demographics; press Enter.",
+    "On main.php > frame [3]: click Jean, Billy J.",
+    "On main.php > frame [4]: click Demographics, Immunizations, Billing, Insurance.",
+    "On main.php: click Billy Jean."
+  ],
+  "steps": [
+    {
+      "screen": "main.php",
+      "field_label": "",
+      "value": "https://demo.openemr.io/openemr/interface/main/tabs/main.php?<redacted>",
+      "action": "open"
+    },
+    {
+      "screen": "main.php",
+      "field_label": "Search by any demographics",
+      "value": "Billy Smith",
+      "action": "type"
+    },
+    {
+      "screen": "main.php",
+      "field_label": "Search by any demographics",
+      "value": "Enter",
+      "action": "press"
+    },
+    {
+      "screen": "main.php > frame [3]",
+      "field_label": "Jean, Billy J",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "main.php > frame [4]",
+      "field_label": "Demographics",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "main.php > frame [4]",
+      "field_label": "Immunizations",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "main.php > frame [4]",
+      "field_label": "Billing",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "main.php > frame [4]",
+      "field_label": "Insurance",
+      "value": "",
+      "action": "click"
+    },
+    {
+      "screen": "main.php",
+      "field_label": "Billy Jean",
+      "value": "",
+      "action": "click"
+    }
+  ],
+  "_debug": {
+    "source": "<repo>/from-recording/inputs/chrome-recorder-Mary_OpenEMR_Baseline_001.json",
+    "input_format": "Chrome DevTools Recorder",
+    "bullets_by": "deterministic (no ANTHROPIC_API_KEY)",
+    "events_in": 12,
+    "steps_out": 9,
+    "step_event_ids": [
+      2,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "dropped_as_noise": [
+      {
+        "event_i": 1,
+        "reason": "chrome step setViewport dropped as keystroke/viewport noise"
+      },
+      {
+        "event_i": 5,
+        "reason": "chrome step keyUp b dropped as keystroke/viewport noise"
+      },
+      {
+        "event_i": 7,
+        "reason": "chrome step keyUp s dropped as keystroke/viewport noise"
+      },
+      {
+        "event_i": 10,
+        "reason": "chrome step keyUp Enter dropped as keystroke/viewport noise"
+      },
+      {
+        "event_i": 3,
+        "reason": "focus click before fill"
+      },
+      {
+        "event_i": 4,
+        "reason": "overwritten by a later value"
+      },
+      {
+        "event_i": 6,
+        "reason": "overwritten by a later value"
+      }
+    ]
+  }
+}

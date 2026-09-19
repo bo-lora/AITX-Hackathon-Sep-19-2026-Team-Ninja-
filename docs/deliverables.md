@@ -48,12 +48,13 @@ Skill-creator logic (understand the payload, emit the Grok skill) **lives behind
 
 | Path | Role |
 | --- | --- |
-| `apps/extension` | MV3 Create / Done. DOM + navigation. POST JSON. Redirect. **No API key.** |
-| `apps/web` | Workflow landing, save, skill page, homepage skill list |
-| `packages/session` | Shared session payload, steps, Grok skill text |
-| `docs/brand/contextninja-logo.png` | Accepted mark (also `apps/web/public/logo.png`) |
+| `packages/extension` | MV3 Create / Done. DOM + navigation. POST JSON. Redirect. **No API key.** |
+| `packages/webapp/landing-page` | Marketing / download landing (cream `#f3efed`, locked copy, Chrome-icon CTA) |
+| `packages/webapp/skill-manager` | Workflow edit, save, skill page, skill list. Hosts backend HTTP. |
+| `packages/backend` | `SessionPayload`, `deriveSteps`, store, `POST /api/sessions` |
+| `docs/brand/contextninja-logo.png` | Accepted mark (also `packages/webapp/landing-page/public/logo.png`) |
 
-`apps/web` type lock: headlines **Bricolage Grotesque**, body **Open Sans**.
+Type lock: headlines **Bricolage Grotesque**, body **Open Sans**.
 
 ## Related local docs
 

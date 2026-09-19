@@ -1,0 +1,4 @@
+#!/bin/sh
+DIR="$(cd "$(dirname "$0")" && pwd)"
+export PLAYWRIGHT_BROWSERS_PATH=0
+exec "$DIR/node_modules/.bin/tsx" "$DIR/server.ts"

@@ -1,0 +1,23 @@
+node_modules/
+.venv/
+__pycache__/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Playwright storageState (cookies + localStorage) — never commit a login session
+sessions/
+test-sessions/
+*.session.json
+.oe-state*
+# Run artefacts regenerated on every run
+test-runner/runs/*/shots/
+automation-server/recordings/
+test-runner/scratch/
+sessions*/
+*-sessions/
+*.sqlite
+*.sqlite3
+*.db

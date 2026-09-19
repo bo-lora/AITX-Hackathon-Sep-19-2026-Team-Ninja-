@@ -1,0 +1,7 @@
+[auth-broker 2026-09-19T17:36:12.970Z] login window open at https://demo.openemr.io/a/openemr/interface/login/login.php — waiting for the user to log in
+[test-hook] submitted login form (values not logged)
+[auth-broker 2026-09-19T17:36:17.301Z] login detected (URL left the login page)
+[auth-broker 2026-09-19T17:36:22.285Z] session saved: <repo>/openemr-cli/test-sessions/broker-a.json
+LOGGED_IN
+session file: <repo>/openemr-cli/test-sessions/broker-a.json
+{"command":"login","site":"https://demo.openemr.io/a/openemr","ok":true,"exit_code":0,"steps":[],"session_file":"<repo>/openemr-cli/test-sessions/broker-a.json","dialogs":[],"seconds":18}

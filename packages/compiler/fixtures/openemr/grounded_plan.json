@@ -1,0 +1,182 @@
+{
+  "spec_title": "OpenEMR API",
+  "spec_version": "8.4.0",
+  "spec_path": "fixtures/openemr/openapi.yaml",
+  "workflows": [
+    {
+      "workflow_name": "Schedule and Check-in Patient",
+      "goal": "Schedule an appointment for an existing patient and mark them as arrived to generate an encounter.",
+      "inputs_observed": [
+        "patient_name",
+        "appointment_date",
+        "appointment_time",
+        "appointment_status"
+      ],
+      "apis": [
+        {
+          "method": "GET",
+          "path": "/api/patient",
+          "purpose": "Search for a patient by name.",
+          "maps_from": ["search_patient"],
+          "params": {"fname": "patient_name"}
+        },
+        {
+          "method": "POST",
+          "path": "/api/patient/{pid}/appointment",
+          "purpose": "Create a new appointment for the patient.",
+          "maps_from": ["create_appointment"],
+          "params": {
+            "pid": "patient_id",
+            "pc_eventDate": "appointment_date",
+            "pc_startTime": "appointment_time",
+            "pc_apptstatus": "appointment_status"
+          }
+        }
+      ],
+      "unmapped": [
+        {
+          "action": "update_appointment_status",
+          "reason": "Check-in and status update to Arrived is UI-only; no API for status change."
+        }
+      ]
+    },
+    {
+      "workflow_name": "Register Patient and Create Encounter",
+      "goal": "Register a new patient with demographics and create a new encounter for their visit.",
+      "inputs_observed": [
+        "first_name",
+        "last_name",
+        "dob",
+        "sex",
+        "marital_status",
+        "visit_category",
+        "reason_for_visit"
+      ],
+      "apis": [
+        {
+          "method": "POST",
+          "path": "/api/patient",
+          "purpose": "Register a new patient with demographic details.",
+          "maps_from": ["create_patient"],
+          "params": {
+            "fname": "first_name",
+            "lname": "last_name",
+            "DOB": "dob",
+            "sex": "sex"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/api/patient/{puuid}/encounter",
+          "purpose": "Create a new encounter for the registered patient.",
+          "maps_from": ["create_encounter"],
+          "params": {
+            "puuid": "patient_uuid",
+            "reason": "reason_for_visit"
+          }
+        }
+      ],
+      "unmapped": []
+    },
+    {
+      "workflow_name": "Complete Clinical Documentation",
+      "goal": "Document the patient visit by adding SOAP notes, vitals, and a prescription.",
+      "inputs_observed": [
+        "subjective_notes",
+        "assessment_notes",
+        "plan_notes",
+        "weight",
+        "height",
+        "bp_systolic",
+        "bp_diastolic",
+        "pulse",
+        "respiration",
+        "drug_name",
+        "quantity"
+      ],
+      "apis": [
+        {
+          "method": "POST",
+          "path": "/api/patient/{pid}/encounter/{eid}/soap_note",
+          "purpose": "Add SOAP notes to the patient's encounter.",
+          "maps_from": ["create_soap_note"],
+          "params": {
+            "pid": "patient_id",
+            "eid": "encounter_id",
+            "subjective": "subjective_notes",
+            "assessment": "assessment_notes",
+            "plan": "plan_notes"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/api/patient/{pid}/encounter/{eid}/vital",
+          "purpose": "Record vitals for the patient's encounter.",
+          "maps_from": ["record_vitals"],
+          "params": {
+            "pid": "patient_id",
+            "eid": "encounter_id",
+            "weight": "weight",
+            "height": "height",
+            "bps": "bp_systolic",
+            "bpd": "bp_diastolic",
+            "pulse": "pulse",
+            "respiration": "respiration"
+          }
+        },
+        {
+          "method": "POST",
+          "path": "/api/prescription",
+          "purpose": "Add a prescription for the patient.",
+          "maps_from": ["add_prescription"],
+          "params": {
+            "patient_id": "patient_id",
+            "drug": "drug_name",
+            "quantity": "quantity"
+          }
+        }
+      ],
+      "unmapped": []
+    },
+    {
+      "workflow_name": "Process Billing and Checkout",
+      "goal": "Add billing codes to the fee sheet, record patient payment, and generate a receipt.",
+      "inputs_observed": ["cpt_code", "payment_method", "payment_amount"],
+      "apis": [],
+      "unmapped": [
+        {
+          "action": "add_fee_sheet_code",
+          "reason": "No fee-sheet endpoint in spec."
+        },
+        {
+          "action": "record_payment",
+          "reason": "No payment endpoint in spec."
+        },
+        {
+          "action": "generate_receipt",
+          "reason": "No receipt endpoint in spec."
+        }
+      ]
+    },
+    {
+      "workflow_name": "Schedule Future Appointment",
+      "goal": "Schedule a follow-up appointment for the patient directly from their dashboard.",
+      "inputs_observed": ["visit_category", "appointment_date", "appointment_time"],
+      "apis": [
+        {
+          "method": "POST",
+          "path": "/api/patient/{pid}/appointment",
+          "purpose": "Schedule a follow-up appointment for the patient.",
+          "maps_from": ["create_appointment"],
+          "params": {
+            "pid": "patient_id",
+            "pc_eventDate": "appointment_date",
+            "pc_startTime": "appointment_time",
+            "pc_catid": "visit_category"
+          }
+        }
+      ],
+      "unmapped": []
+    }
+  ]
+}

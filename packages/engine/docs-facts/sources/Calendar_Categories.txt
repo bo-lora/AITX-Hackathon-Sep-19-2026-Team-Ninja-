@@ -1,0 +1,61 @@
+Contents
+1 Why Customize?
+2 Module Location
+3 Category Types
+3.1 Patient
+3.2 Provider
+4 Modifications
+4.1 Attributes
+4.2 Color
+4.3 Completion of Choices
+4.4 Out Of Office Event
+5 Results
+5.1 Visit Category and Add Event
+5.2 Encounter List
+5.3 Aesthetics and Functionality
+Why Customize?
+The reasons to customize the Calendar Categories are:
+to have specific types of visits for a particular practice.
+to color code the types of visits to facilitate scheduling of appointments.
+to block off durations of visits thereby decreasing repetitive tasks.
+to have a bird's eye view of the type of past visits to facilitate planning of appointments.
+to have an aesthetically pleasing Calendar.
+Module Location
+Calendar Categories can be found via Administration/Other/Calendar and clicking the link for Categories.
+Category Types
+There are two types, Patient and Provider.
+Patient
+These are the default Patient Categories.
+Provider
+These are the default Provider Categories.
+Modifications
+Attributes
+Some of the Categories cannot be deleted, namely 1 though 4, 8 and 11. Their attributes can be changed. It is important not to rename the In Office and the Out Of Office events because the Calendar will not function properly in their absence. Their colors can be changed without repercussions.
+In addition to deletion of the remaining Categories, new Categories can be added.
+Color
+If the offered color palette is insufficient, vastly more choices can be obtained here. If a color is the incorrect shade, clicking the color code will bring up dark or lighter shades.
+Completion of Choices
+After all the attributes have been changed and the duration of the visit designated, click go for each Category. On the next screen, click Yes! to confirm the changes.
+Out Of Office Event
+If the color for the Out Of Office event cannot be changed, the .css file must be altered. Go to xampp\htdocs\openemr\interface\themes\ajax_calendar.css and change the color code in Line 339.
+If the color does not load; clear the browser cache, as shown below for Firefox.
+Results
+Visit Category and Add Event
+The visits will be alphabetized in the Visit Category drop down menu and in the Add Event dialog. Staff can quickly find and choose the type of visit.
+Encounter List
+A quick perusal of the Encounter List would prevent staff from scheduling duplicate visits and allow the practitioner to have a thumbnail sketch of past visits.
+Aesthetics and Functionality
+We refer to the Calendar multiple times in the work day, therefore it should be aesthetically pleasant and functionally simple to use.
+Colors used in the above Calendar:
+E0E0FF, Light Perwinkle, In Office.
+CCFFCC, Mint Green, Catherine Aragon.
+CCFFFF, Baby Blue, Anne Boleyn.
+FFCCCC, Ham Pink, Henry Tudor.
+66FFCC, Light Teal, Jane Seymour.
+33FFFF, Aquamarine, Anne Cleves.
+FFFFCC, Light Maize, Lunch.
+FFE1DD, Pale Ham Pink, Catherine Howard.
+9CFFC4, Light Jade, Catherine Parr.
+FFD1FF, Light Lavender, Mary Tudor.
+FFDFB8, Light Peach, Elizabeth Tudor.
+E1FF68, Pale Chartreuse, Edward Tudor.

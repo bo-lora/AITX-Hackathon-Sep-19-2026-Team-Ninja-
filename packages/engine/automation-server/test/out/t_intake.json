@@ -1,0 +1,428 @@
+{
+  "intake_id": "20260919_174243",
+  "site": "main",
+  "site_url": "https://demo.openemr.io/openemr",
+  "backend": "openemr-cli (session only; no password in any command)",
+  "headed": true,
+  "wall_seconds": 352,
+  "summary": "3/3 confirmed · 0 need Mary",
+  "review_url": "/intake/20260919_174243/review.html",
+  "referrals": [
+    {
+      "file": "referral-06.pdf",
+      "pdf_url": "/intake/20260919_174243/pdfs/referral-06.pdf",
+      "extracted": {
+        "file": "referral-06.pdf",
+        "template": "faxcover",
+        "faxed_look": false,
+        "clinic_name": "Cedar Hollow Community Clinic",
+        "clinic_address": "92 Makebelieve Ln, Bldg C, Round Rock, TX 78664",
+        "clinic_phone": "512-555-0160",
+        "clinic_fax": "512-555-0161",
+        "referring_provider": "Priya Ramanathan, FNP-C",
+        "referring_npi": "9345678012",
+        "referral_date": "2026-09-11",
+        "first_name": "Tomas",
+        "last_name": "HACKDEMO-Escobedo",
+        "dob": "1958-04-30",
+        "sex": "Male",
+        "phone": "512-555-0116",
+        "address_street": "9021 Prairie Wind Dr",
+        "address_city": "Cedar Park",
+        "address_state": "TX",
+        "address_zip": "78613",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX2559605",
+        "group_number": "GRP-80508",
+        "reason": "Shortness of breath on exertion; please evaluate for possible asthma or COPD.",
+        "specialty": "Pulmonology",
+        "urgency": "Urgent",
+        "display_dob": "04-30-1958",
+        "display_referral_date": "09/11/2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0116"
+      },
+      "flags": [
+        {
+          "type": "URGENT",
+          "reason": "Urgent referral: booked first, earliest slot"
+        }
+      ],
+      "triage_decision": "READY",
+      "seconds": 125.7,
+      "command": "openemr intake referrals/referral-06.pdf --site main --json --shots automation-server/intake/20260919_174243/shots/referral-06 --suffix RV124243",
+      "cli": {
+        "command": "intake <repo>/referrals/referral-06.pdf",
+        "site": "https://demo.openemr.io/openemr",
+        "ok": true,
+        "exit_code": 0,
+        "steps": [
+          {
+            "step": "patient create",
+            "status": "VERIFIED",
+            "detail": "pid 74; fresh load of demographics_full.php matches",
+            "readback": {
+              "first": "Tomas",
+              "last": "HACKDEMO-Escobedo-RV124243",
+              "dob": "1958-04-30",
+              "sex": "Male|Male",
+              "phone": "512-555-0116",
+              "street": "9021 PRAIRIE WIND DR",
+              "city": "CEDAR PARK",
+              "state": "Texas|TX",
+              "zip": "78613"
+            }
+          },
+          {
+            "step": "insurance add",
+            "status": "VERIFIED",
+            "detail": "fresh load of insurance_edit.php matches",
+            "readback": {
+              "carrier": "Aekna (4345 Donkey Road, , FL, 44433)",
+              "member_id": "AXX2559605",
+              "group": "GRP-80508",
+              "end_date": "",
+              "subscriber_last": "HACKDEMO-Escobedo-RV124243"
+            }
+          },
+          {
+            "step": "doc attach",
+            "status": "VERIFIED",
+            "detail": "fresh load of Documents list for pid 74 contains referral-06.pdf",
+            "readback": {
+              "document": "referral-06.pdf",
+              "category_id": "3"
+            }
+          },
+          {
+            "step": "appt create",
+            "status": "VERIFIED",
+            "detail": "fresh dashboard load shows \"New Patient Mon, 2026-09-21 10:00 Billy Smith (eid 85)\"",
+            "readback": {
+              "date": "2026-09-21",
+              "time": "10:00",
+              "category": "New Patient",
+              "provider": "Billy Smith",
+              "eid": "85"
+            }
+          }
+        ],
+        "extractor": "<repo>/extract/extract",
+        "patient": {
+          "first": "Tomas",
+          "last": "HACKDEMO-Escobedo-RV124243",
+          "dob": "1958-04-30"
+        },
+        "appointment": {
+          "date": "2026-09-21",
+          "time": "10:00",
+          "category": "New Patient"
+        },
+        "pid": "74",
+        "dialogs": [
+          "New Due Clinical Reminders\n\nMeasurement: Weight\nAssessment: Colon Cancer Screening\nAssessment: Prostate Cancer Screening\nTreatment: Influenza Vaccine\nTreatment: Pneumococcal Vaccine\nAssessment: Tobacco\n\nSee the Clinical Reminders widget for more details",
+          "Provider not available, use it anyway?"
+        ],
+        "seconds": 124.8
+      },
+      "final_shot": "/intake/20260919_174243/shots/referral-06/final-1789839894776.png",
+      "links": [
+        {
+          "key": "chart",
+          "label": "Patient chart",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=74"
+        },
+        {
+          "key": "insurance",
+          "label": "Insurance",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=74"
+        },
+        {
+          "key": "documents",
+          "label": "Documents (referral PDF)",
+          "url": "https://demo.openemr.io/openemr/controller.php?document&list&patient_id=74"
+        },
+        {
+          "key": "appointment",
+          "label": "Appointment",
+          "url": "https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=85"
+        }
+      ],
+      "status": "Confirmed ✓"
+    },
+    {
+      "file": "referral-07.pdf",
+      "pdf_url": "/intake/20260919_174243/pdfs/referral-07.pdf",
+      "extracted": {
+        "file": "referral-07.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-13",
+        "first_name": "Grace",
+        "last_name": "HACKDEMO-Fairbanks",
+        "dob": "1979-12-05",
+        "sex": "Female",
+        "phone": "512-555-0117",
+        "address_street": "615 Bluestem Ave",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78723",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX1377048",
+        "group_number": "GRP-51684",
+        "reason": "Thyroid nodule found on routine exam; ultrasound and endocrine review requested.",
+        "specialty": "Endocrinology",
+        "urgency": "Routine",
+        "display_dob": "12/05/1979",
+        "display_referral_date": "September 13, 2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0117"
+      },
+      "flags": [],
+      "triage_decision": "READY",
+      "seconds": 115.5,
+      "command": "openemr intake referrals/referral-07.pdf --site main --json --shots automation-server/intake/20260919_174243/shots/referral-07 --suffix RV124243",
+      "cli": {
+        "command": "intake <repo>/referrals/referral-07.pdf",
+        "site": "https://demo.openemr.io/openemr",
+        "ok": true,
+        "exit_code": 0,
+        "steps": [
+          {
+            "step": "patient create",
+            "status": "VERIFIED",
+            "detail": "pid 75; fresh load of demographics_full.php matches",
+            "readback": {
+              "first": "Grace",
+              "last": "HACKDEMO-Fairbanks-RV124243",
+              "dob": "1979-12-05",
+              "sex": "Female|Female",
+              "phone": "512-555-0117",
+              "street": "615 BLUESTEM AVE",
+              "city": "AUSTIN",
+              "state": "Texas|TX",
+              "zip": "78723"
+            }
+          },
+          {
+            "step": "insurance add",
+            "status": "VERIFIED",
+            "detail": "fresh load of insurance_edit.php matches",
+            "readback": {
+              "carrier": "Aekna (4345 Donkey Road, , FL, 44433)",
+              "member_id": "AXX1377048",
+              "group": "GRP-51684",
+              "end_date": "",
+              "subscriber_last": "HACKDEMO-Fairbanks-RV124243"
+            }
+          },
+          {
+            "step": "doc attach",
+            "status": "VERIFIED",
+            "detail": "fresh load of Documents list for pid 75 contains referral-07.pdf",
+            "readback": {
+              "document": "referral-07.pdf",
+              "category_id": "3"
+            }
+          },
+          {
+            "step": "appt create",
+            "status": "VERIFIED",
+            "detail": "fresh dashboard load shows \"New Patient Mon, 2026-09-21 10:00 Billy Smith (eid 87)\"",
+            "readback": {
+              "date": "2026-09-21",
+              "time": "10:00",
+              "category": "New Patient",
+              "provider": "Billy Smith",
+              "eid": "87"
+            }
+          }
+        ],
+        "extractor": "<repo>/extract/extract",
+        "patient": {
+          "first": "Grace",
+          "last": "HACKDEMO-Fairbanks-RV124243",
+          "dob": "1979-12-05"
+        },
+        "appointment": {
+          "date": "2026-09-21",
+          "time": "10:00",
+          "category": "New Patient"
+        },
+        "pid": "75",
+        "dialogs": [
+          "New Due Clinical Reminders\n\nMeasurement: Weight\nMeasurement: Mammogram\nExamination: Pap Smear\nAssessment: Tobacco\n\nSee the Clinical Reminders widget for more details",
+          "Provider not available, use it anyway?"
+        ],
+        "seconds": 114.9
+      },
+      "final_shot": "/intake/20260919_174243/shots/referral-07/final-1789840010679.png",
+      "links": [
+        {
+          "key": "chart",
+          "label": "Patient chart",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=75"
+        },
+        {
+          "key": "insurance",
+          "label": "Insurance",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=75"
+        },
+        {
+          "key": "documents",
+          "label": "Documents (referral PDF)",
+          "url": "https://demo.openemr.io/openemr/controller.php?document&list&patient_id=75"
+        },
+        {
+          "key": "appointment",
+          "label": "Appointment",
+          "url": "https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=87"
+        }
+      ],
+      "status": "Confirmed ✓"
+    },
+    {
+      "file": "referral-08.pdf",
+      "pdf_url": "/intake/20260919_174243/pdfs/referral-08.pdf",
+      "extracted": {
+        "file": "referral-08.pdf",
+        "template": "form",
+        "faxed_look": true,
+        "clinic_name": "Barton Ridge Primary Care",
+        "clinic_address": "1807 Imaginary Creek Rd, Austin, TX 78704",
+        "clinic_phone": "512-555-0150",
+        "clinic_fax": "512-555-0151",
+        "referring_provider": "Dr. Owen Whitcombe, DO",
+        "referring_npi": "9234567801",
+        "referral_date": "2026-09-15",
+        "first_name": "Kenji",
+        "last_name": "HACKDEMO-Harrowgate",
+        "dob": "1995-02-21",
+        "sex": "Male",
+        "phone": "512-555-0118",
+        "address_street": "3308 Canyon View Rd",
+        "address_city": "Georgetown",
+        "address_state": "TX",
+        "address_zip": "78626",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX1393956",
+        "group_number": "GRP-60247",
+        "reason": "Left shoulder pain after lifting injury, limited range of motion.",
+        "specialty": "Orthopedics",
+        "urgency": "Routine",
+        "display_dob": "02/21/1995",
+        "display_referral_date": "09/15/2026",
+        "display_sex": "M",
+        "display_phone": "(512) 555-0118"
+      },
+      "flags": [],
+      "triage_decision": "READY",
+      "seconds": 105.1,
+      "command": "openemr intake referrals/referral-08.pdf --site main --json --shots automation-server/intake/20260919_174243/shots/referral-08 --suffix RV124243",
+      "cli": {
+        "command": "intake <repo>/referrals/referral-08.pdf",
+        "site": "https://demo.openemr.io/openemr",
+        "ok": true,
+        "exit_code": 0,
+        "steps": [
+          {
+            "step": "patient create",
+            "status": "VERIFIED",
+            "detail": "pid 76; fresh load of demographics_full.php matches",
+            "readback": {
+              "first": "Kenji",
+              "last": "HACKDEMO-Harrowgate-RV124243",
+              "dob": "1995-02-21",
+              "sex": "Male|Male",
+              "phone": "512-555-0118",
+              "street": "3308 CANYON VIEW RD",
+              "city": "GEORGETOWN",
+              "state": "Texas|TX",
+              "zip": "78626"
+            }
+          },
+          {
+            "step": "insurance add",
+            "status": "VERIFIED",
+            "detail": "fresh load of insurance_edit.php matches",
+            "readback": {
+              "carrier": "Aekna (4345 Donkey Road, , FL, 44433)",
+              "member_id": "AXX1393956",
+              "group": "GRP-60247",
+              "end_date": "",
+              "subscriber_last": "HACKDEMO-Harrowgate-RV124243"
+            }
+          },
+          {
+            "step": "doc attach",
+            "status": "VERIFIED",
+            "detail": "fresh load of Documents list for pid 76 contains referral-08.pdf",
+            "readback": {
+              "document": "referral-08.pdf",
+              "category_id": "3"
+            }
+          },
+          {
+            "step": "appt create",
+            "status": "VERIFIED",
+            "detail": "fresh dashboard load shows \"New Patient Mon, 2026-09-21 10:00 Billy Smith (eid 89)\"",
+            "readback": {
+              "date": "2026-09-21",
+              "time": "10:00",
+              "category": "New Patient",
+              "provider": "Billy Smith",
+              "eid": "89"
+            }
+          }
+        ],
+        "extractor": "<repo>/extract/extract",
+        "patient": {
+          "first": "Kenji",
+          "last": "HACKDEMO-Harrowgate-RV124243",
+          "dob": "1995-02-21"
+        },
+        "appointment": {
+          "date": "2026-09-21",
+          "time": "10:00",
+          "category": "New Patient"
+        },
+        "pid": "76",
+        "dialogs": [
+          "New Due Clinical Reminders\n\nMeasurement: Weight\nAssessment: Tobacco\n\nSee the Clinical Reminders widget for more details",
+          "Provider not available, use it anyway?"
+        ],
+        "seconds": 104.3
+      },
+      "final_shot": "/intake/20260919_174243/shots/referral-08/final-1789840115888.png",
+      "links": [
+        {
+          "key": "chart",
+          "label": "Patient chart",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/demographics.php?set_pid=76"
+        },
+        {
+          "key": "insurance",
+          "label": "Insurance",
+          "url": "https://demo.openemr.io/openemr/interface/patient_file/summary/insurance_edit.php?set_pid=76"
+        },
+        {
+          "key": "documents",
+          "label": "Documents (referral PDF)",
+          "url": "https://demo.openemr.io/openemr/controller.php?document&list&patient_id=76"
+        },
+        {
+          "key": "appointment",
+          "label": "Appointment",
+          "url": "https://demo.openemr.io/openemr/interface/main/calendar/add_edit_event.php?eid=89"
+        }
+      ],
+      "status": "Confirmed ✓"
+    }
+  ]
+}

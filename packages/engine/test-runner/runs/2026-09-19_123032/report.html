@@ -1,0 +1,182 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Test report — Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment (values extracted from the PDFs: extracted.json)</title><style>
+body{font:14px/1.45 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:0;background:#f6f7f9;color:#1d2330}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+.clock{display:flex;gap:16px;margin:12px 0 20px}.clock>div{flex:1;background:#fff;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px #0001}
+.clock .n{font-size:34px;font-weight:700}.clock .ai .n{color:#11804a}.clock small{color:#667}
+.item{background:#fff;border-radius:10px;margin:12px 0;box-shadow:0 1px 3px #0001}.item>summary{padding:12px 16px;cursor:pointer;font-weight:600}
+.step{border-top:1px solid #eee;padding:10px 16px}.head{display:flex;gap:10px;align-items:center}.secs{margin-left:auto;color:#667}
+.badge{font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px}.ok .badge{background:#dff5e7;color:#11804a}.hyp .badge{background:#fff1d6;color:#8a5a00}
+.reason{color:#667;font-size:12px;margin:2px 0 6px}.shots{display:flex;gap:10px}figure{margin:0}figure img{width:240px;border:1px solid #ddd;border-radius:4px}figcaption{font-size:11px;color:#667}
+pre{white-space:pre-wrap;font-size:12px;background:#f3f4f6;padding:8px;border-radius:6px;max-height:260px;overflow:auto}pre.err{background:#fdecec;color:#8b1c1c}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;margin-left:8px}.pill.ok{background:#dff5e7;color:#11804a}.pill.hyp{background:#fff1d6;color:#8a5a00}
+</style></head><body><div class="wrap">
+<h1>Referral fax intake: create patient with demographics + insurance, attach the referral PDF, book a new-patient appointment (values extracted from the PDFs: extracted.json)</h1><div style="color:#667">https://demo.openemr.io/openemr · started 2026-09-19T17:30:32.652Z</div>
+<div class="clock"><div><small>Mary, by hand (PLACEHOLDER length)</small><div class="n">12m 00s</div><small>3 × 4m 00s</small></div>
+<div class="ai"><small>AI, wall clock</small><div class="n">3m 29s</div><small>sum of steps 206.4s</small></div>
+<div><small>Checked by read-back</small><div class="n">13/13</div><small>steps Confirmed ✓ · 3/3 items fully confirmed</small></div></div>
+<details class="item" open><summary>Setup</summary><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Log in to OpenEMR (admin — receptionist cannot open patient Documents)</b><span class="secs">16.7s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/setup-login-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/setup-login-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/setup-login-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts login --user admin --pass pass
+$ npx tsx oe.ts verify-login
+
+[10.9s] login submitted as admin at https://demo.openemr.io/openemr ; landed on https://demo.openemr.io/openemr/interface/main/tabs/main.php?<redacted>
+
+[11.8s] removed 1 leftover modal element(s) before this step
+[17.1s] VERIFIED on fresh load: patient finder page renders for the logged-in session; reads: Patient Finder Add New Patient Patient List Recent Patients Show 10 25 50 100 entries Search: Full N
+</pre></details></div></details>
+<details class="item" open><summary>referral-01.pdf: Rosa HACKDEMO-Alvarez-TR123032 (Aekna) <span class="pill ok">4/4 ✓</span> <span style="color:#667;font-weight:400">64.7s</span></summary><div class="step ok"><div class="head"><span class="badge">✓ Extraction</span><b>Values read from the PDF vs answer key: 12/12 fields match</b><span class="secs">source: extracted.json</span></div></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Create patient Rosa HACKDEMO-Alvarez-TR123032, DOB 03/14/1985, Female, phone 512-555-0111, 2210 Willowbend Dr, Austin TX 78745</b><span class="secs">26.6s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r01-patient-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-patient-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-patient-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts create-patient --lname 'HACKDEMO-Alvarez-TR123032' --fname 'Rosa' --dob 1985-03-14 --sex Female --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'
+$ npx tsx oe.ts verify-patient --lname 'HACKDEMO-Alvarez-TR123032' --fname 'Rosa' --dob 1985-03-14 --phone '512-555-0111' --street '2210 Willowbend Dr' --city 'Austin' --zip '78745'
+
+[20.0s] contact fields entered on form: phone=512-555-0111, street=2210 Willowbend Dr, city=Austin, zip=78745, st=TX
+[26.5s] FALLBACK: calling srcConfirmSave() (known flaky spot from smoke test)
+[33.4s] create submitted for HACKDEMO-Alvarez-TR123032 ; dashboard opened for pid 69 (save only — NOT a verification)
+
+[43.8s] VERIFIED on fresh load: finder lists HACKDEMO-Alvarez-TR123032 ; dashboard pid 69 shows HACKDEMO-Alvarez-TR123032 / first name Rosa / DOB 1985-03-14 / phone 512-555-0111 / street 2210 Willowbend Dr (stored as &quot;2210 WILLOWBEND DR&quot;) / city Austin (stored as &quot;AUSTIN&quot;) / zip 78745
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Add primary insurance Aekna, member AXX2650168, group GRP-56000</b><span class="secs">19.2s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r01-insurance-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-insurance-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-insurance-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts add-insurance --lname 'HACKDEMO-Alvarez-TR123032' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000' --fname 'Rosa' --dob 1985-03-14 --sex Female --street '2210 Willowbend Dr' --city 'Austin' --st 'TX' --zip '78745'
+$ npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Alvarez-TR123032' --carrier 'Aekna' --member-id 'AXX2650168' --group 'GRP-56000'
+
+[54.5s] insurance form filled via widgets: carrier Aekna (4345 Donkey Road, , FL, 44433) member AXX2650168 group GRP-56000
+[58.6s] Save Policy clicked for Aekna (4345 Donkey Road, , FL, 44433) member AXX2650168 group GRP-56000 — no validation error shown (save only — NOT a verification)
+
+[63.3s] VERIFIED on fresh load: insurance_edit.php shows provider Aekna (4345 Donkey Road, , FL, 44433) | policy/group [&quot;AXX2650168&quot;,&quot;GRP-56000&quot;] | end date empty | dashboard contains member id: true
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Attach referral-01.pdf to the patient's Documents</b><span class="secs">7.3s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r01-document-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-document-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-document-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts upload-doc --lname 'HACKDEMO-Alvarez-TR123032' --file <repo>/referrals/referral-01.pdf
+$ npx tsx oe.ts verify-doc --lname 'HACKDEMO-Alvarez-TR123032' --file <repo>/referrals/referral-01.pdf
+
+[67.8s] upload submitted as admin: file referral-01.pdf to pid 69 category 3 (save only — NOT a verification)
+
+[70.7s] VERIFIED on fresh load: Documents list for pid 69 contains 2026-09-19 referral-01.pdf-158
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Book a New Patient appointment next weekday 09:00</b><span class="secs">11.6s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r01-appointment-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r01-appointment-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r01-appointment-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts book-appt --lname 'HACKDEMO-Alvarez-TR123032' --date next-weekday --time 09:00 --category 'New Patient'
+$ npx tsx oe.ts verify-appt --lname 'HACKDEMO-Alvarez-TR123032' --date next-weekday --time 09:00
+
+[72.4s] JS DIALOG accepted: Provider not available, use it anyway?
+[76.0s] appointment form saved: patient HACKDEMO-Alvarez-TR123032, Rosa date 2026-09-21 09:00 category New Patient provider Smith, Billy (save only — NOT a verification)
+
+[76.6s] removed 2 leftover modal element(s) before this step
+[82.5s] VERIFIED on fresh load: dashboard pid 69 shows 2026-09-21 09:00 Billy Smith - None Recurring Appointments No Recurring Appointments Healt
+</pre></details></div></details><details class="item" open><summary>referral-02.pdf: Marcus HACKDEMO-Bellweather-TR123032 (Aekna) <span class="pill ok">4/4 ✓</span> <span style="color:#667;font-weight:400">70.4s</span></summary><div class="step ok"><div class="head"><span class="badge">✓ Extraction</span><b>Values read from the PDF vs answer key: 12/12 fields match</b><span class="secs">source: extracted.json</span></div></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Create patient Marcus HACKDEMO-Bellweather-TR123032, DOB 11/02/1972, Male, phone 512-555-0112, 508 Sagebrush Trl, Austin TX 78704</b><span class="secs">30.1s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r02-patient-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r02-patient-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r02-patient-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts create-patient --lname 'HACKDEMO-Bellweather-TR123032' --fname 'Marcus' --dob 1972-11-02 --sex Male --phone '512-555-0112' --street '508 Sagebrush Trl' --city 'Austin' --st 'TX' --zip '78704'
+$ npx tsx oe.ts verify-patient --lname 'HACKDEMO-Bellweather-TR123032' --fname 'Marcus' --dob 1972-11-02 --phone '512-555-0112' --street '508 Sagebrush Trl' --city 'Austin' --zip '78704'
+
+[84.3s] contact fields entered on form: phone=512-555-0112, street=508 Sagebrush Trl, city=Austin, zip=78704, st=TX
+[90.7s] no duplicate-check popup after 6s; clicking Create again (smoke.js does the same)
+[98.6s] create submitted for HACKDEMO-Bellweather-TR123032 ; dashboard opened for pid 70 (save only — NOT a verification)
+
+[100.8s] JS DIALOG accepted: New Due Clinical Reminders
+
+Measurement: Weight
+Assessment: Colon Cancer Screening
+Assessment: Prostate Cancer Screening
+Treatment: Influenza Vaccine
+Assessment: Tobacco
+
+See the Clinical Reminders widget for more details
+[112.6s] VERIFIED on fresh load: finder lists HACKDEMO-Bellweather-TR123032 ; dashboard pid 70 shows HACKDEMO-Bellweather-TR123032 / first name Marcus / DOB 1972-11-02 / phone 512-555-0112 / street 508 Sagebrush Trl (stored as &quot;508 SAGEBRUSH TRL&quot;) / city Austin (stored as &quot;AUSTIN&quot;) / zip 78704
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Add primary insurance Aekna, member AXX3338965, group GRP-95834</b><span class="secs">23.3s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r02-insurance-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r02-insurance-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r02-insurance-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts add-insurance --lname 'HACKDEMO-Bellweather-TR123032' --carrier 'Aekna' --member-id 'AXX3338965' --group 'GRP-95834' --fname 'Marcus' --dob 1972-11-02 --sex Male --street '508 Sagebrush Trl' --city 'Austin' --st 'TX' --zip '78704'
+$ npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Bellweather-TR123032' --carrier 'Aekna' --member-id 'AXX3338965' --group 'GRP-95834'
+
+[124.9s] insurance form filled via widgets: carrier Aekna (4345 Donkey Road, , FL, 44433) member AXX3338965 group GRP-95834
+[129.0s] Save Policy clicked for Aekna (4345 Donkey Road, , FL, 44433) member AXX3338965 group GRP-95834 — no validation error shown (save only — NOT a verification)
+
+[136.2s] VERIFIED on fresh load: insurance_edit.php shows provider Aekna (4345 Donkey Road, , FL, 44433) | policy/group [&quot;AXX3338965&quot;,&quot;GRP-95834&quot;] | end date empty | dashboard contains member id: true
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Attach referral-02.pdf to the patient's Documents</b><span class="secs">6.5s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r02-document-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r02-document-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r02-document-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts upload-doc --lname 'HACKDEMO-Bellweather-TR123032' --file <repo>/referrals/referral-02.pdf
+$ npx tsx oe.ts verify-doc --lname 'HACKDEMO-Bellweather-TR123032' --file <repo>/referrals/referral-02.pdf
+
+[139.8s] upload submitted as admin: file referral-02.pdf to pid 70 category 3 (save only — NOT a verification)
+
+[142.9s] VERIFIED on fresh load: Documents list for pid 70 contains 2026-09-19 referral-02.pdf-160
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Book a New Patient appointment next weekday 09:15</b><span class="secs">10.5s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r02-appointment-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r02-appointment-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r02-appointment-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts book-appt --lname 'HACKDEMO-Bellweather-TR123032' --date next-weekday --time 09:15 --category 'New Patient'
+$ npx tsx oe.ts verify-appt --lname 'HACKDEMO-Bellweather-TR123032' --date next-weekday --time 09:15
+
+[144.3s] JS DIALOG accepted: Provider not available, use it anyway?
+[148.1s] appointment form saved: patient HACKDEMO-Bellweather-TR123032, Marcus date 2026-09-21 09:15 category New Patient provider Smith, Billy (save only — NOT a verification)
+
+[148.8s] removed 2 leftover modal element(s) before this step
+[153.6s] VERIFIED on fresh load: dashboard pid 70 shows 2026-09-21 09:15 Billy Smith - None Recurring Appointments No Recurring Appointments Healt
+</pre></details></div></details><details class="item" open><summary>referral-03.pdf: Linh HACKDEMO-Cartwright-TR123032 (Aekna) <span class="pill ok">4/4 ✓</span> <span style="color:#667;font-weight:400">54.6s</span></summary><div class="step ok"><div class="head"><span class="badge">✓ Extraction</span><b>Values read from the PDF vs answer key: 12/12 fields match</b><span class="secs">source: extracted.json</span></div></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Create patient Linh HACKDEMO-Cartwright-TR123032, DOB 06-27-1990, Female, phone 512-555-0113, 1319 Mockingbird Ln, Pflugerville TX 78660</b><span class="secs">19.8s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r03-patient-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r03-patient-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r03-patient-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts create-patient --lname 'HACKDEMO-Cartwright-TR123032' --fname 'Linh' --dob 1990-06-27 --sex Female --phone '512-555-0113' --street '1319 Mockingbird Ln' --city 'Pflugerville' --st 'TX' --zip '78660'
+$ npx tsx oe.ts verify-patient --lname 'HACKDEMO-Cartwright-TR123032' --fname 'Linh' --dob 1990-06-27 --phone '512-555-0113' --street '1319 Mockingbird Ln' --city 'Pflugerville' --zip '78660'
+
+[155.5s] contact fields entered on form: phone=512-555-0113, street=1319 Mockingbird Ln, city=Pflugerville, zip=78660, st=TX
+[161.9s] FALLBACK: calling srcConfirmSave() (known flaky spot from smoke test)
+[163.8s] JS DIALOG accepted: New Due Clinical Reminders
+
+Measurement: Weight
+Examination: Pap Smear
+Assessment: Tobacco
+
+See the Clinical Reminders widget for more details
+[164.5s] create submitted for HACKDEMO-Cartwright-TR123032 ; dashboard opened for pid 71 (save only — NOT a verification)
+
+[173.6s] VERIFIED on fresh load: finder lists HACKDEMO-Cartwright-TR123032 ; dashboard pid 71 shows HACKDEMO-Cartwright-TR123032 / first name Linh / DOB 1990-06-27 / phone 512-555-0113 / street 1319 Mockingbird Ln (stored as &quot;1319 MOCKINGBIRD LN&quot;) / city Pflugerville (stored as &quot;PFLUGERVILLE&quot;) / zip 78660
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Add primary insurance Aekna, member AXX6680201, group GRP-62720</b><span class="secs">19s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r03-insurance-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r03-insurance-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r03-insurance-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts add-insurance --lname 'HACKDEMO-Cartwright-TR123032' --carrier 'Aekna' --member-id 'AXX6680201' --group 'GRP-62720' --fname 'Linh' --dob 1990-06-27 --sex Female --street '1319 Mockingbird Ln' --city 'Pflugerville' --st 'TX' --zip '78660'
+$ npx tsx oe.ts verify-insurance --lname 'HACKDEMO-Cartwright-TR123032' --carrier 'Aekna' --member-id 'AXX6680201' --group 'GRP-62720'
+
+[183.7s] insurance form filled via widgets: carrier Aekna (4345 Donkey Road, , FL, 44433) member AXX6680201 group GRP-62720
+[187.8s] Save Policy clicked for Aekna (4345 Donkey Road, , FL, 44433) member AXX6680201 group GRP-62720 — no validation error shown (save only — NOT a verification)
+
+[192.8s] VERIFIED on fresh load: insurance_edit.php shows provider Aekna (4345 Donkey Road, , FL, 44433) | policy/group [&quot;AXX6680201&quot;,&quot;GRP-62720&quot;] | end date empty | dashboard contains member id: true
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Attach referral-03.pdf to the patient's Documents</b><span class="secs">6.8s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r03-document-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r03-document-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r03-document-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts upload-doc --lname 'HACKDEMO-Cartwright-TR123032' --file <repo>/referrals/referral-03.pdf
+$ npx tsx oe.ts verify-doc --lname 'HACKDEMO-Cartwright-TR123032' --file <repo>/referrals/referral-03.pdf
+
+[195.9s] upload submitted as admin: file referral-03.pdf to pid 71 category 3 (save only — NOT a verification)
+
+[199.7s] VERIFIED on fresh load: Documents list for pid 71 contains 2026-09-19 referral-03.pdf-162
+</pre></details></div><div class="step ok"><div class="head"><span class="badge">✓ Confirmed</span><b>Book a New Patient appointment next weekday 09:30</b><span class="secs">9s</span></div>
+<div class="reason">command exit 0 and verify exit 0 after a fresh page load</div>
+<div class="shots"><figure><a href="shots/r03-appointment-before.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>before</figcaption></figure><figure><a href="shots/r03-appointment-after.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>after</figcaption></figure><figure><a href="shots/r03-appointment-verify.png"><span class="shot-omitted">[screenshot not included in the repo]</span></a><figcaption>read-back (fresh load)</figcaption></figure></div>
+
+<details><summary>command, verify &amp; output</summary><pre>$ npx tsx oe.ts book-appt --lname 'HACKDEMO-Cartwright-TR123032' --date next-weekday --time 09:30 --category 'New Patient'
+$ npx tsx oe.ts verify-appt --lname 'HACKDEMO-Cartwright-TR123032' --date next-weekday --time 09:30
+
+[201.2s] JS DIALOG accepted: Provider not available, use it anyway?
+[205.0s] appointment form saved: patient HACKDEMO-Cartwright-TR123032, Linh date 2026-09-21 09:30 category New Patient provider Smith, Billy (save only — NOT a verification)
+
+[205.6s] removed 2 leftover modal element(s) before this step
+[208.8s] VERIFIED on fresh load: dashboard pid 71 shows 2026-09-21 09:30 Billy Smith - None Recurring Appointments No Recurring Appointments Healt
+</pre></details></div></details>
+<p style="color:#667;font-size:12px">Confirmed ✓ = the step's command exited 0 AND its verify command exited 0 after re-reading the record on a fresh page load (never a save message). Hypothesis ? = anything else; the reason is shown on the step.</p>
+</div></body></html>

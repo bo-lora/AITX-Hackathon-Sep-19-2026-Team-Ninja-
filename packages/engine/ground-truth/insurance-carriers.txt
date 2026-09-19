@@ -1,0 +1,21 @@
+Aekna (4345 Donkey Road, , FL, 44433)
+Blue Cross Blue Shield (, , , )
+Signal (000, , California, 0000)
+
+## If a carrier disappears
+(Read from the live admin screens on https://demo.openemr.io/openemr as admin/pass on 2026-09-19 ~11:50 CDT. Nothing was saved.)
+1. Top menu: Admin > Practice > Practice Settings
+2. On the Practice Settings page, click the tab/link "Insurance Companies"
+3. Click "Add a Company"
+4. Fill the form. Labels shown on screen, in order: Deactivate, Name, Attn, Address, Address, City, State, Zip Code, Phone, Fax, Payer ID, Payer Type, Default X12 Partner, CQM Source of Payment
+   Example: Name = HACKDEMO Lone Star Health ; Address = 100 Congress Ave ; City = Austin ; State = TX ; Zip Code = 78701
+   (No field carries an HTML "required" attribute; which fields the server actually insists on is UNVERIFIED because nothing was saved.)
+5. Click "Save" (the other button is "Cancel")
+6. The new company then appears in the patient Insurance "Provider" dropdown as "<Name> (<Address>, <City>, <State>, <Zip>)" -- format inferred from the existing entries; UNVERIFIED for a newly added company.
+
+## Backup copies
+Checked 2026-09-19 ~11:50 CDT, logged in as admin/pass, read-only (Admin > Practice > Practice Settings > Insurance Companies list):
+- https://demo.openemr.io/a/openemr : ONE company only -- "Aekna" (4345 Donkey Road, Longview FL 44433). No "Signal", no "Blue Cross Blue Shield".
+- https://demo.openemr.io/b/openemr : ONE company only -- "Aekna" (4345 Donkey Road, Longview FL 44433). No "Signal", no "Blue Cross Blue Shield".
+- Main instance https://demo.openemr.io/openemr : "Aekna" listed TWICE (one row marked Deactivated = Yes), plus "Blue Cross Blue Shield" and "Signal".
+Conclusion: "Aekna" is on all 3, so it is probably seed data. "Signal" and "Blue Cross Blue Shield" exist only on the main instance, so they were most likely added by other public users today and could be changed/deactivated at any time before the 08:00 UTC nightly reset.

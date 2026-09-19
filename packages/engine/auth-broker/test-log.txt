@@ -1,0 +1,55 @@
+[2026-09-19T11:43:59-0500] ===== RUN START =====
+[2026-09-19T11:43:59-0500] --- TEST (a): auth login (headed) -> auth check prints LOGGED_IN
+[2026-09-19T11:43:59-0500] $ ./auth login https://demo.openemr.io/openemr/interface/login/login.php --session sessions/test-openemr.json
+[2026-09-19T11:44:03-0500]   [auth-broker 2026-09-19T16:44:03.570Z] login window open at https://demo.openemr.io/openemr/interface/login/login.php — waiting for the user to log in
+[2026-09-19T11:44:04-0500]   [test-hook] screenshot of headed login window: screenshots/a-popup-login-window-2026-09-19T16-44-03-613Z.png
+[2026-09-19T11:44:08-0500]   [test-hook] submitted login form (values not logged)
+[2026-09-19T11:44:08-0500]   [auth-broker 2026-09-19T16:44:08.730Z] login detected (URL left the login page)
+[2026-09-19T11:44:12-0500]   [auth-broker 2026-09-19T16:44:12.875Z] session saved: <repo>/auth-broker/sessions/test-openemr.json
+[2026-09-19T11:44:13-0500]   LOGGED_IN
+[2026-09-19T11:44:13-0500]   session file: <repo>/auth-broker/sessions/test-openemr.json
+[2026-09-19T11:44:13-0500] login exit=0
+[2026-09-19T11:44:17-0500] check stdout='LOGGED_IN' exit=0
+[2026-09-19T11:44:17-0500] TEST (a): PASS
+[2026-09-19T11:44:17-0500] --- TEST (b): strip cookies from session file -> auth check prints LOGGED_OUT
+[2026-09-19T11:44:17-0500] $ node_modules/.bin/tsx test/strip-cookies.ts sessions/test-openemr.json
+[2026-09-19T11:44:17-0500]   strip-cookies: sessions/test-openemr.json cookies before=2 after=0
+[2026-09-19T11:44:19-0500] check stdout='LOGGED_OUT' exit=1
+[2026-09-19T11:44:19-0500] TEST (b): PASS
+[2026-09-19T11:44:20-0500] (b extra) missing session file: check stdout='LOGGED_OUT' exit=1
+[2026-09-19T11:44:20-0500] --- TEST (c): logged-out session -> auth run re-opens headed login, re-logs in, command succeeds
+[2026-09-19T11:44:22-0500] pre-state: LOGGED_OUT
+[2026-09-19T11:44:22-0500] $ ./auth run --url https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php --login-url https://demo.openemr.io/openemr/interface/login/login.php --session sessions/test-openemr.json -- node_modules/.bin/tsx test/probe-main.ts
+[2026-09-19T11:44:24-0500]   [auth-broker 2026-09-19T16:44:24.930Z] check: LOGGED_OUT — opening login window
+[2026-09-19T11:44:31-0500]   [auth-broker 2026-09-19T16:44:31.390Z] login window open at https://demo.openemr.io/openemr/interface/login/login.php — waiting for the user to log in
+[2026-09-19T11:44:32-0500]   [test-hook] screenshot of headed login window: screenshots/c-popup-login-window-2026-09-19T16-44-31-434Z.png
+[2026-09-19T11:44:35-0500]   [test-hook] submitted login form (values not logged)
+[2026-09-19T11:44:36-0500]   [auth-broker 2026-09-19T16:44:36.466Z] login detected (URL left the login page)
+[2026-09-19T11:44:40-0500]   [auth-broker 2026-09-19T16:44:40.275Z] session saved: <repo>/auth-broker/sessions/test-openemr.json
+[2026-09-19T11:44:46-0500]   PROBE: status=200 url=/openemr/interface/main/finder/dynamic_finder.php passwordFields=0 title="Patient Finder" -> OK (main page loaded)
+[2026-09-19T11:44:46-0500] auth run exit=0
+[2026-09-19T11:44:51-0500] post-state: check stdout='LOGGED_IN'
+[2026-09-19T11:44:51-0500] TEST (c): PASS (see stderr lines above: LOGGED_OUT -> login window -> probe OK)
+[2026-09-19T11:44:51-0500] --- TEST (c2, extra): command fails mid-run because session expired -> check LOGGED_OUT -> headed re-login -> retried ONCE -> succeeds
+[2026-09-19T11:44:51-0500] $ ./auth run --url https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php --login-url https://demo.openemr.io/openemr/interface/login/login.php --session sessions/test-openemr.json -- node_modules/.bin/tsx test/expire-then-probe.ts
+[2026-09-19T11:44:55-0500]   [auth-broker 2026-09-19T16:44:55.452Z] check: LOGGED_IN
+[2026-09-19T11:44:55-0500]   C2 wrapped command invocation #1
+[2026-09-19T11:44:55-0500]   C2: simulated session expiry mid-run (cookies removed), exiting 1
+[2026-09-19T11:44:57-0500]   [auth-broker 2026-09-19T16:44:57.281Z] run failed and check says LOGGED_OUT — re-login then retry once
+[2026-09-19T11:45:00-0500]   [auth-broker 2026-09-19T16:45:00.691Z] login window open at https://demo.openemr.io/openemr/interface/login/login.php — waiting for the user to log in
+[2026-09-19T11:45:01-0500]   [test-hook] screenshot of headed login window: screenshots/c2-popup-login-window-2026-09-19T16-45-00-724Z.png
+[2026-09-19T11:45:04-0500]   [test-hook] submitted login form (values not logged)
+[2026-09-19T11:45:05-0500]   [auth-broker 2026-09-19T16:45:05.427Z] login detected (URL left the login page)
+[2026-09-19T11:45:09-0500]   [auth-broker 2026-09-19T16:45:09.948Z] session saved: <repo>/auth-broker/sessions/test-openemr.json
+[2026-09-19T11:45:10-0500]   C2 wrapped command invocation #2
+[2026-09-19T11:45:16-0500]   PROBE: status=200 url=/openemr/interface/main/finder/dynamic_finder.php passwordFields=0 title="Patient Finder" -> OK (main page loaded)
+[2026-09-19T11:45:16-0500] auth run exit=0
+[2026-09-19T11:45:16-0500] TEST (c2): PASS
+[2026-09-19T11:45:16-0500] --- TEST (d, extra): command fails while session is LOGGED_IN -> NO retry, original exit code (7) passed through
+[2026-09-19T11:45:16-0500] $ ./auth run --url https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php --login-url https://demo.openemr.io/openemr/interface/login/login.php --session sessions/test-openemr.json -- sh -c echo "D wrapped command ran; exiting 7"; exit 7
+[2026-09-19T11:45:20-0500]   [auth-broker 2026-09-19T16:45:20.086Z] check: LOGGED_IN
+[2026-09-19T11:45:20-0500]   D wrapped command ran; exiting 7
+[2026-09-19T11:45:24-0500]   [auth-broker 2026-09-19T16:45:24.572Z] run failed but check says LOGGED_IN — not retrying
+[2026-09-19T11:45:24-0500] auth run exit=7
+[2026-09-19T11:45:24-0500] TEST (d): PASS
+[2026-09-19T11:45:24-0500] ===== RUN END =====

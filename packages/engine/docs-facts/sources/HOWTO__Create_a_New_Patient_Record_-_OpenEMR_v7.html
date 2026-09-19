@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>HOWTO: Create a New Patient Record - OpenEMR v7 - OpenEMR Project Wiki</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"cc58e8a5923e2fdbe33c1cf1","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7","wgTitle":"HOWTO: Create a New Patient Record - OpenEMR v7","wgCurRevisionId":36154,"wgRevisionId":36154,"wgArticleId":5778,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7","wgRelevantArticleId":5778,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.openemr":"ready","ext.embedVideo.styles":"ready"};RLPAGEMODULES=["mediawiki.page.media","site","mediawiki.page.ready","mediawiki.toc","skins.openemr.js","ext.embedVideo.overlay"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=ext.embedVideo.styles%7Cskins.openemr&amp;only=styles&amp;skin=openemr">
+<script async="" src="/wiki/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=openemr"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/wiki/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=openemr">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0">
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/rest.php/v1/search" title="OpenEMR Project Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://www.open-emr.org/wiki/api.php?action=rsd">
+<link rel="license" href="https://www.gnu.org/copyleft/fdl.html">
+<link rel="alternate" type="application/atom+xml" title="OpenEMR Project Wiki Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-HOWTO_Create_a_New_Patient_Record_-_OpenEMR_v7 rootpage-HOWTO_Create_a_New_Patient_Record_-_OpenEMR_v7 skin-openemr action-view skin--responsive"><a href="https://www.open-emr.org/cdn-cgi/content?id=6NbgPfk9K6s_YJYXaQ89hHHgaBm5z6kccsb2V99moWw-1789835033.1385999-1.2.1.1-cRz8Ug89PcwYp8ur7HfbR0oegNgwSiB6nUCWzsG4kOvPziLHYqqcj4fUU2L_Mabf" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a><div id="mw-wrapper">
+    <div class="mb-2">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/"><img height="45" src="/wiki/skins/Openemr/images/openemr-logo-wiki.svg"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Features">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/demo">Demo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki/index.php/OpenEMR_Downloads">Download</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/modules">Modules</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/blog">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wiki">Docs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://community.open-emr.org/">Forum</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/chat">Chat</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Support
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/wiki/index.php/Professional_Support">Professional Support Vendors</a>
+                  <a class="dropdown-item" href="/support">Costs and Support Options</a>
+                  <a class="dropdown-item" href="https://community.open-emr.org/">Community Support</a>
+                  <a class="dropdown-item" href="/chat">Free Basic Live Chat Support</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+	<div class="mw-body" id="content" role="main">
+		<div id="siteNotice"></div>
+		
+		<div class="mw-indicators mw-body-content">
+		</div>
+		<h1 class="firstHeading" ><span class="mw-page-title-main">HOWTO: Create a New Patient Record - OpenEMR v7</span></h1>
+		<div id="siteSub">From OpenEMR Project Wiki</div>
+		<div class="mw-body-content">
+			<div id="contentSub">
+				<div id="mw-content-subtitle"></div>
+				
+			</div>
+			<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#The_Patient_Dashboard"><span class="tocnumber">2</span> <span class="toctext">The Patient Dashboard</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#The_New_Patient-_Relevant_Items"><span class="tocnumber">2.1</span> <span class="toctext">The New Patient- Relevant Items</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Customization"><span class="tocnumber">3</span> <span class="toctext">Customization</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Layout_Based_Forms"><span class="tocnumber">3.1</span> <span class="toctext">Layout Based Forms</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#User_Defined_fields"><span class="tocnumber">3.2</span> <span class="toctext">User Defined fields</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#OpenEMR_system_lists"><span class="tocnumber">3.3</span> <span class="toctext">OpenEMR system lists</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#‘Add_button’_lists"><span class="tocnumber">3.4</span> <span class="toctext">‘Add button’ lists</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Introduction">Introduction</span></h1>
+<p>This document is all about creating a complete new patient record in in OpenEMR v7. That complete process can be much more involved than simply clicking the 'New/Patient' main menu item and filling in the demographics. We will look at all the places a new patient's information might be entered, discuss how to properly enter it and how to customize the parts that are accessible to users who do not have developer skills.
+</p><p><br />
+This workflow was last documented for OPenEMR v5 and the application has been significantly upgraded since then so really needs an update.  This document was made using the OpenEMR v7.0.1 public demo. Some controls in older versions of OpenEMR may behave differently.
+</p><p><br />
+OpenEMR has three places to enter and display patient information. We will cover them in this order:
+</p><p><br />
+<b>Patient Dashboard </b>
+</p><p>1. This is the summary display of all patient record information; for discussion see below on this page. Most of the widgets will present content that has been previously entered into the other two input locations. In many cases one may add to the initial patient record from the dashboard.
+</p><p><br />
+If you do not want the overview you can get straight to the data entry tools on the following pages.
+</p><p><br />
+<b>New/ Search</b>
+</p><p>2. The primary tool to create a new patient record is on the main menu: the <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7_-_New_-_Search" title="HOWTO: Create a New Patient Record v7 - New - Search">New/Search</a> page, AKA 'Search or Add Patient'. All of a patient’s personal information may be initially recorded here, and much of that can be accessed through other displays in the EMR.
+</p><p><br />
+<b>Dashboard Links</b>
+</p><p>3. The <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7-_Dashboard_Links" title="HOWTO: Create a New Patient Record v7- Dashboard Links">Dashboard Links</a> are access points to the patient’s treatment, history, and financial information. Some of these are places to initially enter information to build the patient record; others are intended to be added to after treatment begins.
+</p>
+<h1><span class="mw-headline" id="The_Patient_Dashboard">The Patient Dashboard</span></h1>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/index.php/File:AddNewPt7_20dash00.png" class="mw-file-description"><img src="/wiki/images/thumb/5/53/AddNewPt7_20dash00.png/300px-AddNewPt7_20dash00.png" decoding="async" width="300" height="420" class="mw-file-element" srcset="/wiki/images/thumb/5/53/AddNewPt7_20dash00.png/450px-AddNewPt7_20dash00.png 1.5x, /wiki/images/5/53/AddNewPt7_20dash00.png 2x" /></a><figcaption>Patient Dashboard</figcaption></figure>
+<p>Refer to the thumbnailed image.
+</p><p><br />
+The dashboard is the centralized access point for practically all of a patient's information. It presents summaries of different features and allows most of them to be edited. In many cases the screens linked to by the Dashboard Links (see that page next) will display summaries of their information here. Note that the sections which are displayed will vary depending on the system configurations, the logged-in user's access permissions and their preference settings.
+</p><p><br />
+Each collection of patient data is localized in its own widget panel which, if the user viewing it is permitted to edit it, has an edit tool pencil icon (as circled in Demographics in the big image). When the pencil is clicked it displays the interface of the module that handles that function. For example, editing the Allergies widget will display the Allergies section in the patient's Medical Issues. Editing Prescriptions will open the native OpenEMR Prescription module's interface.
+</p><p><br />
+Some of the information collections in the widgets are also found in the 'New Patient' feature; when information is entered for a new patient it will also appear here. One implication of this is that a new patient workflow might be as simple as opening the 'New Patient' menu item, filling out only the few required demographics, and clicking 'Create New Patient'. Then at a later time more data can be entered through the Dashboard widgets.
+</p><p><br />
+The Demographics/ Insurance section consists of what are called 'Layout Based Visit Forms' AKA 'LBFs' (and sometimes 'LBVs'). They can be customized by an OpenEMR admin user; see the 'Customization' section below for details. The other widgets are hard- coded to retrieve information from the database. and display them here.
+</p><p><br />
+Keep in mind that because this tutorial is limited to creating the new patient record, not all of the dashboard items will be discussed. Most of the widgets monitor activities that will be conducted after the patient record is created and treatment begun, but not as part of creating that new record. For example, the 'Billing' widget displays a running summary of the patient's account, as they accrue charges and make payments. 'Appointments' will show this patient's upcoming appointments from the calendar as they are made.
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="The_New_Patient-_Relevant_Items">The New Patient- Relevant Items</span></h2>
+<p><b>Left column:</b>
+</p><p>1. The Dashboard Links - see <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7-_Dashboard_Links" title="HOWTO: Create a New Patient Record v7- Dashboard Links">Dashboard Links</a>
+</p><p>2. Demographics - the demographics shown here have the exact same data as is collected in the 'New/ Search' screens; refer to <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7_-_New_-_Search" title="HOWTO: Create a New Patient Record v7 - New - Search">New/Search</a>
+</p><p>3. Insurance - described with Demographics
+</p><p><br />
+<b>Right column:</b>
+See: <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7-_Dashboard_Links#Issues" title="HOWTO: Create a New Patient Record v7- Dashboard Links">Dashboard Links - Issues</a>
+</p><p>4. Medical Problems - displays the title of each Medical Problem entered into the 'Medical Issues' list. Click the pencil opens the 'Medical Problems' section
+</p><p>5. Allergies - displays the title of each allergy entered into the 'Medical Issues' list of allergies. Click the pencil opens the 'Allergies' section
+</p><p>6. Medications - displays the title of each Medication entered into the 'Medical Issues' list of medications. Note that these are medications which are treatment issues, not necessarily the list of current medications. Click the pencil opens the 'Medications' section
+</p><p>7. Immunizations - opens data input form for recording immunizations
+</p><p>8. Prescriptions - integrated with OpenEMR's native Prescriptions module, if used. It is the interface for entering prescriptions for new patient's current meds. Some 3d party e-prescription applications transfer their current medication list to this widget.
+</p>
+<h1><span class="mw-headline" id="Customization">Customization</span></h1>
+<p>A few of the dashboard controls are customizable without OpenEMR developer skills.
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Layout_Based_Forms">Layout Based Forms</span></h2>
+<p>The New/ Search page, and several other displays in OpenEMR, is built on what is called an ‘LBF’ (sometimes ‘LBV’) or ‘Layout Based Form’. LBFs contain different types of data entry controls which can be modified by a user (with Administrator privileges) from their default state to suit the needs of a particular practice.
+</p><p><br />
+While LBF form building does not require coding skills it is not a trivial endeavor. For more information on customizing LBFs search the forum and the wiki for 'LBF', or 'Layout', and this wiki page is a good place to start:
+</p><p><a href="/wiki/index.php/LBV_Forms" title="LBV Forms">LBV_Forms</a>
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="User_Defined_fields">User Defined fields</span></h2>
+<p>OpenEMR provides four data fields in the Demographics widget that can contain any arbitrary data, that is stored in the OpenEMR database. They can be accessed in the Demographics display (while editing) but not in the New/Search ‘Who’ panel so cannot be filled while adding a new patient record.
+</p><p><span class="mw-default-size mw-valign-top" typeof="mw:File"><a href="/wiki/index.php/File:AddNewPt7_21cust00.png" class="mw-file-description"><img src="/wiki/images/1/1f/AddNewPt7_21cust00.png" decoding="async" width="533" height="274" class="mw-file-element" /></a></span>
+</p><p>They can be customized as described here: <a href="/wiki/index.php/HOWTO:_Customize_A_Demographics_User_Defined_Field" title="HOWTO: Customize A Demographics User Defined Field">HOWTO:_Customize_A_Demographics_User_Defined_Field</a>]
+</p><p><br />
+and if desired, added to the ‘Patient Finder’ search tool:
+</p><p><a href="/wiki/index.php/HOWTO:_Change_Search_Columns_in_Patient_Finder" title="HOWTO: Change Search Columns in Patient Finder">HOWTO:_Change_Search_Columns_in_Patient_Finder</a>]
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="OpenEMR_system_lists">OpenEMR system lists</span></h2>
+<p>System lists are any of the dropdown lists that contain pre- coded options to select as responses. For example, the ‘Title’ dropdown in the previous image. Their contents can be edited by OpenEMR Administrator users.
+</p><p>Virtually every dropdown list in this New Patient workflow (and for that matter, in all of OpenEMR!) can be edited to suit particular needs. And in virtually every case, the name of the dropdown is the name of the list you are going to edit.
+</p><p><a href="/wiki/index.php/HOWTO:_Edit_a_List_in_OpenEMR" title="HOWTO: Edit a List in OpenEMR">HOWTO:_Edit_a_List_in_OpenEMR</a>
+</p><p><br />
+</p>
+<h2><span id=".E2.80.98Add_button.E2.80.99_lists"></span><span class="mw-headline" id="‘Add_button’_lists">‘Add button’ lists</span></h2>
+<p>The dropdown lists to which most users can add items.
+</p><p>Here we are adding a new job title to the ‘Occupation’ list:
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:AddNewPt7_09.png" class="mw-file-description"><img src="/wiki/images/8/81/AddNewPt7_09.png" decoding="async" width="400" height="217" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+1. Click ‘Add’ button next to dropdown (oval at right, above)
+</p><p>2. Enter the new item
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:AddNewPt7_10.png" class="mw-file-description"><img src="/wiki/images/4/47/AddNewPt7_10.png" decoding="async" width="400" height="252" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+</p><p>3. Click blue ‘Add’ button
+</p><p>… and see the new item added to the list...
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/index.php/File:AddNewPt7_11.png" class="mw-file-description"><img src="/wiki/images/b/b7/AddNewPt7_11.png" decoding="async" width="400" height="210" class="mw-file-element" /></a></span>
+</p><p><br />
+</p><p><br />
+… which will now appear in the ‘Occupation’ system list and all the ‘Occupation’ list displays in OpenEMR.
+</p><p><br />
+</p><p><br />
+Next page: <a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_v7_-_New_-_Search" title="HOWTO: Create a New Patient Record v7 - New - Search">New/Search</a> page.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260912111114
+Cache expiry: 86400
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.024 seconds
+Real time usage: 0.028 seconds
+Preprocessor visited node count: 34/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 -total
+-->
+
+<!-- Saved in parser cache with key mediawiki:pcache:5778:|#|:idhash:canonical and timestamp 20260912111114 and revision id 36154. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://www.open-emr.org/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;oldid=36154">https://www.open-emr.org/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;oldid=36154</a>"</div></div>
+			<!-- todo: replace with .mixin-clearfix -->
+			<div class="visualClear"></div>
+			<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+		</div>
+		
+	</div>
+	<div id="mw-navigation">
+		<h2>Navigation menu</h2>
+		<div id="p-logo" class="mw-portlet" role="banner">
+			<a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">
+				
+				
+				<h1>OpenEMR Project Wiki</h1>
+			</a>
+		</div>
+		<form action="/wiki/index.php" role="search" class="mw-portlet" id="p-search">
+			<input type="hidden" name="title" value="Special:Search">
+			<h3>
+				<label for="searchInput">Search</label>
+			</h3>
+			<input type="search" name="search" placeholder="Search OpenEMR Project Wiki" aria-label="Search OpenEMR Project Wiki" autocapitalize="sentences" spellcheck="false" title="Search OpenEMR Project Wiki [f]" accesskey="f" id="searchInput">
+			<input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" class="searchButton" id="searchButton">
+		</form>
+		<div id="user-tools">
+			<div role="navigation" id="p-personal" class="mw-portlet mw-portlet-personal" title=" title=&quot;User menu&quot;"
+    aria-labelledby="p-personal-label">
+    <h3 id="p-personal-label" >Personal tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="pt-login" class="mw-list-item"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=HOWTO%3A+Create+a+New+Patient+Record+-+OpenEMR+v7" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="page-tools">
+			<div role="navigation" id="p-namespaces" class="mw-portlet mw-portlet-namespaces" title=""
+    aria-labelledby="p-namespaces-label">
+    <h3 id="p-namespaces-label" >Namespaces</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7" title="View the content page [c]" accesskey="c">Page</a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/index.php?title=Talk:HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t">Discussion</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet" title=""
+    aria-labelledby="p-variants-label">
+    <h3 id="p-variants-label" >Variants</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-views" class="mw-portlet mw-portlet-views" title=""
+    aria-labelledby="p-views-label">
+    <h3 id="p-views-label" >Views</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="ca-view" class="selected mw-list-item"><a href="/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7">Read</a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet" title=" title=&quot;More options&quot;"
+    aria-labelledby="p-cactions-label">
+    <h3 id="p-cactions-label" >More</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            
+        </ul>
+        
+    </div>
+</div>
+
+		</div>
+		<div id="site-navigation">
+			<div role="navigation" id="p-wiki_navigation" class="mw-portlet mw-portlet-wiki_navigation" title=""
+    aria-labelledby="p-wiki_navigation-label">
+    <h3 id="p-wiki_navigation-label" >wiki navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-Main-wiki-page" class="mw-list-item"><a href="/wiki/index.php/OpenEMR_Wiki_Home_Page">Main wiki page</a></li><li id="n-Categories" class="mw-list-item"><a href="/wiki/index.php/Special:Categories">Categories</a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li><li id="n-help" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" target="_blank" title="The place to find out">Help</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			<div role="navigation" id="p-tb" class="mw-portlet mw-portlet-tb" title=""
+    aria-labelledby="p-tb-label">
+    <h3 id="p-tb-label" >Tools</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/index.php/Special:WhatLinksHere/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/index.php/Special:RecentChangesLinked/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;oldid=36154" title="Permanent link to this revision of this page">Permanent link</a></li><li id="t-info" class="mw-list-item"><a href="/wiki/index.php?title=HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7&amp;action=info" title="More information about this page">Page information</a></li>
+        </ul>
+        
+    </div>
+</div>
+<div role="navigation" id="p-navigation" class="mw-portlet mw-portlet-navigation" title=""
+    aria-labelledby="p-navigation-label">
+    <h3 id="p-navigation-label" >Navigation</h3>
+    <div class="mw-portlet-body">
+        <ul >
+            <li id="n-specialpages" class="mw-list-item"><a href="/wiki/index.php/Special:SpecialPages">Special pages</a></li>
+        </ul>
+        
+    </div>
+</div>
+
+			
+		</div>
+	</div>
+	<div id="footer" class="mw-footer" role="contentinfo" >
+		<ul id="footer-icons">
+<li id="footer-copyrightico"><a href="http://www.gnu.org/copyleft/fdl.html" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><img src="/wiki/resources/assets/licenses/gnu-fdl.png" alt="GNU Free Documentation License 1.3" width="88" height="31" loading="lazy"></a></li>
+<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled" target="_blank"><picture><source media="(min-width: 500px)" srcset="/wiki/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/wiki/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+		<div id="footer-list">
+		<ul id="footer-info">
+<li id="footer-info-lastmod"> This page was last edited on 29 November 2024, at 21:40.</li>
+<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License 1.3</a> unless otherwise noted.</li>
+</ul>
+
+		<ul id="footer-places">
+<li id="footer-places-privacy"><a href="/wiki/index.php/OpenEMR_Project_Wiki:Privacy_policy">Privacy policy</a></li>
+<li id="footer-places-about"><a href="/wiki/index.php/OpenEMR_Project_Wiki:About">About OpenEMR Project Wiki</a></li>
+<li id="footer-places-disclaimers"><a href="/wiki/index.php/OpenEMR_Project_Wiki:General_disclaimer">Disclaimers</a></li>
+</ul>
+
+		</div>
+		<!-- todo: replace with .mixin-clearfix -->
+		<div class="visualClear"></div>
+	</div>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":141,"wgPageParseReport":{"limitreport":{"cputime":"0.024","walltime":"0.028","ppvisitednodes":{"value":34,"limit":1000000},"postexpandincludesize":{"value":0,"limit":2097152},"templateargumentsize":{"value":0,"limit":2097152},"expansiondepth":{"value":2,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    0.000      1 -total"]},"cachereport":{"timestamp":"20260912111114","ttl":86400,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3d9effd1dbfc6dd',t:'MTc4OTgzNTAzMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

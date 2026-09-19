@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""docs-search "<query>" [--backend mock|supabase] [--json] -> top 3 cited passages."""
+import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+import docslib
+
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
+backend = None
+if "--backend" in sys.argv:
+    backend = sys.argv[sys.argv.index("--backend") + 1]; args.remove(backend)
+if not args:
+    sys.exit('usage: docs-search "<query>" [--backend mock|supabase] [--json]')
+docslib.load_env()
+q = " ".join(args)
+used, res = docslib.search(q, 3, backend)
+if "--json" in sys.argv:
+    print(json.dumps({"query": q, "backend": used, "results": [{k: r[k] for k in ("url", "title", "snippet")} for r in res]}, indent=2))
+else:
+    print("query: %s   (backend: %s)" % (q, used))
+    for i, r in enumerate(res, 1):
+        print("\n[%d] %s\n    %s\n    \"%s\"" % (i, r["title"], r["url"], r["snippet"].replace("\n", " / ")))
+    if not res:
+        print("no results")

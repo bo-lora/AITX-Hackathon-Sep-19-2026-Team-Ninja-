@@ -1,0 +1,163 @@
+{
+  "required_queries": {
+    "new patient required fields": [
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+        "title": "OpenEMR 7 Search - Add Patient",
+        "snippet": "Search - Add Patient\nOpenEMR's 'New/ Search' function isn't much of a search tool but it is the only way to manually add new patients to the system.\nIt's located on the main menu at 'Patient/ New/Search:\nThe data fields collect the patient's information in the different categories, 'Who', 'Contact', 'Choices', etc.\nMost items are optional but a new patient record cannot be created without all the fields that have been designated as 'required'.\nYo"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+        "title": "OpenEMR 7 Search - Add Patient",
+        "snippet": "'Edit Layout' dropdown (oval) and see the controls that generate the Demographics LBF (round rectangle)\nNotice that the 'Labels' column names in the 'Who' section of the LBF are the same as the field names in the 'Who' section of 'Search or Add' screen\n3. Scroll down to the field you want to make required.\nHere we're making 'License/ ID' required\n4. Open the dropdown in the UOR column (Unused / Optional/ Required) and set it to 'Required'.\n5. Cli"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7",
+        "title": "HOWTO: Create a New Patient Record - OpenEMR v7",
+        "snippet": "For more information on customizing LBFs search the forum and the wiki for 'LBF', or 'Layout', and this wiki page is a good place to start:\nLBV_Forms\nUser Defined fields\nOpenEMR provides four data fields in the Demographics widget that can contain any arbitrary data, that is stored in the OpenEMR database. They can be accessed in the Demographics display (while editing) but not in the New/Search \u2018Who\u2019 panel so cannot be filled while adding a new "
+      }
+    ],
+    "appointment category": [
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/Calendar_Categories",
+        "title": "Calendar Categories",
+        "snippet": "Module Location\nCalendar Categories can be found via Administration/Other/Calendar and clicking the link for Categories. Category Types\nThere are two types, Patient and Provider. Patient\nThese are the default Patient Categories. Provider\nThese are the default Provider Categories. Modifications\nAttributes\nSome of the Categories cannot be deleted, namely 1 though 4, 8 and 11. Their attributes can be changed. It is important not to rename the In Off"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "title": "TheCalendarNotes-v7",
+        "snippet": "1. Category - what type of appointment this is. Categories are customizable; see below. Most of them also interact with other aspects of the EMR, such as billing, reports, etc.\n2. Title - apparently is a read- only area that provides the category name to some inner workings of the EMR. Weird!\n3. Facility - which facility's calendar is being edited; derived from the list of the practice's facilities in (from Main Menu) 'Admin/ Clinic/ Facilities'\n"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "title": "TheCalendarNotes-v7",
+        "snippet": "any of the keywords, respectively.\nNote: it may be a bug in this version of OpenEMR but if you select 'Any Category' it returns all appointments, with or without the key words.\nClick \u2018Return to calendar\u2019 (oval) to... return to calendar.\nAppointment Event Dialog\nClick on an appointment time to open an Event Dialog\nand see the controls:\nSome of these controls are pre-set in the event's Calendar Category configuration; see section 'Appointment Categ"
+      }
+    ],
+    "insurance": [
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7",
+        "title": "HOWTO: Create a New Patient Record - OpenEMR v7",
+        "snippet": "1. The Dashboard Links - see Dashboard Links\n2. Demographics - the demographics shown here have the exact same data as is collected in the 'New/ Search' screens; refer to New/Search\n3. Insurance - described with Demographics\nRight column:\nSee: Dashboard Links - Issues\n4. Medical Problems - displays the title of each Medical Problem entered into the 'Medical Issues' list. Click the pencil opens the 'Medical Problems' section\n5. Allergies - display"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7",
+        "title": "HOWTO: Create a New Patient Record - OpenEMR v7",
+        "snippet": "information collections in the widgets are also found in the 'New Patient' feature; when information is entered for a new patient it will also appear here. One implication of this is that a new patient workflow might be as simple as opening the 'New Patient' menu item, filling out only the few required demographics, and clicking 'Create New Patient'. Then at a later time more data can be entered through the Dashboard widgets. The Demographics/ In"
+      },
+      {
+        "url": "https://www.open-emr.org/wiki/index.php/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them",
+        "title": "Basic User ACLs In OpenEMR And How To Customize Them",
+        "snippet": "This tutorial is for those who know generally what ACLs are but not necessarily how OpenEMR uses them. One obstacle you will encounter doing this procedure is that the specific ACLs are poorly documented and it can take a lot of trial/ error to determine which ones grant precisely what access-- for example, our sample ACL modification shown below of editing Demographics also affects editing Insurance data. HOWEVER- once you know which ACL you\u2019re "
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F1-required-fields",
+      "query": "new patient required fields",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+        "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+        "https://www.open-emr.org/wiki/index.php/HOWTO:_Create_a_New_Patient_Record_-_OpenEMR_v7"
+      ],
+      "url_in_top3": true,
+      "quote_in_top3_passage": true
+    },
+    {
+      "id": "F2-new-search-only-way",
+      "query": "manually add new patients",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Search_-_Add_Patient",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/OpenEMR_7_Calendar"
+      ],
+      "url_in_top3": true,
+      "quote_in_top3_passage": true
+    },
+    {
+      "id": "F3-duplicate-check",
+      "query": "duplicate patient check",
+      "fact_url": "https://github.com/openemr/openemr/blob/master/interface/new/new_comprehensive.php",
+      "in_crawl_scope": false,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/Calendar_Categories"
+      ],
+      "url_in_top3": false,
+      "quote_in_top3_passage": false
+    },
+    {
+      "id": "F4-appointment-from-calendar",
+      "query": "click time open appointment scheduler dialog",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7"
+      ],
+      "url_in_top3": true,
+      "quote_in_top3_passage": true
+    },
+    {
+      "id": "F5-appointment-category",
+      "query": "appointment category",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/Calendar_Categories",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7"
+      ],
+      "url_in_top3": true,
+      "quote_in_top3_passage": true
+    },
+    {
+      "id": "F6-appointment-status-side-effects",
+      "query": "appointment status encounter",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+        "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+        "https://www.open-emr.org/wiki/index.php/AppointmentStatuses-v7"
+      ],
+      "url_in_top3": false,
+      "quote_in_top3_passage": false
+    },
+    {
+      "id": "F7-find-available-needs-schedule",
+      "query": "provider not available calendar",
+      "fact_url": "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+      "in_crawl_scope": true,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7"
+      ],
+      "url_in_top3": true,
+      "quote_in_top3_passage": true
+    },
+    {
+      "id": "F8-api-must-be-enabled",
+      "query": "enable REST API",
+      "fact_url": "https://github.com/openemr/openemr/blob/master/API_README.md",
+      "in_crawl_scope": false,
+      "top3_urls": [
+        "https://www.open-emr.org/wiki/index.php/A_Generic_Medical_Encounter_Workflow_in_OpenEMR_6.1",
+        "https://www.open-emr.org/wiki/index.php/TheCalendarNotes-v7",
+        "https://www.open-emr.org/wiki/index.php/Basic_User_ACLs_In_OpenEMR_And_How_To_Customize_Them"
+      ],
+      "url_in_top3": false,
+      "quote_in_top3_passage": false
+    }
+  ],
+  "backend": "mock",
+  "recovered": "5 of 8 facts (6 of them are wiki pages in crawl scope)"
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""CLI entry that does not depend on setuptools' hidden editable .pth files."""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+
+def _ensure_backend_on_path() -> None:
+    here = Path(__file__).resolve()
+    candidates: list[Path] = []
+    if here.parent.name == "bin":
+        repo = here.parent.parent.parent
+        candidates.append(repo / "backend")
+        candidates.append(repo)
+    candidates.append(here.parent.parent / "backend")
+    for backend in candidates:
+        if (backend / "workflow_compiler").is_dir():
+            path = str(backend)
+            if path not in sys.path:
+                sys.path.insert(0, path)
+            return
+
+
+_ensure_backend_on_path()
+
+from workflow_compiler.cli import main
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,4 @@
+# Only needed to regenerate / re-verify the synthetic referral PDFs (referrals/generate.py, referrals/verify.py).
+# extract/ and from-recording/ use the Python standard library only (extract/ also needs poppler's pdftotext).
+reportlab==5.0.1
+pypdf==6.19.0

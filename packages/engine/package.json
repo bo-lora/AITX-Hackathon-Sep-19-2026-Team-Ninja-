@@ -1,0 +1,23 @@
+{
+  "name": "mary-front-desk-automation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn one recording of a repetitive browser workflow into tested CLI commands your AI can run. Demo target: OpenEMR public demo.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "postinstall": "node scripts/link-node-modules.mjs",
+    "browsers": "playwright install chromium && PLAYWRIGHT_BROWSERS_PATH=0 playwright install chromium",
+    "start": "./automation-server/start",
+    "extract": "./extract/extract",
+    "test:recording": "cd from-recording && python3 test_from_recording.py"
+  },
+  "dependencies": {
+    "@types/node": "26.6.2",
+    "playwright": "1.63.0",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2"
+  }
+}

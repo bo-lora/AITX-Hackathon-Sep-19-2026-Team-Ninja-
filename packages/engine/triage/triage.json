@@ -1,0 +1,971 @@
+{
+  "generated_at": "2026-09-19T12:36:14-05:00",
+  "inputs": {
+    "dir": "referrals",
+    "extra": "triage/fixtures"
+  },
+  "extract_errors": [],
+  "member_id_rules": {
+    "Aekna": {
+      "regex": "^AXX\\d{7}$",
+      "observed": "11 of 12 member IDs share this shape",
+      "plain": "'AXX' + 7 digits"
+    }
+  },
+  "member_id_rule_method": "per carrier, the majority character shape of the member IDs seen in this batch (letters->A, digits->9) plus the letter prefix shared by all of them; an ID that does not match is flagged, never corrected",
+  "duplicate_check": {
+    "mode": "live read-only Patient Finder search",
+    "site": "main",
+    "control": {
+      "search": "Belford / 1972-02-09 (stock demo patient Phil Belford)",
+      "status": "FOUND",
+      "pids": [
+        "1"
+      ],
+      "searched_at": "2026-09-19T12:36:08-05:00"
+    },
+    "control_passed": true
+  },
+  "flag_counts": {
+    "URGENT": 4,
+    "POSSIBLE_DUPLICATE": 10,
+    "MISSING_FIELD": 1,
+    "MALFORMED_FIELD": 1
+  },
+  "every_flag_type_fired": {
+    "URGENT": true,
+    "DUPLICATE": false,
+    "POSSIBLE_DUPLICATE": true,
+    "MISSING_FIELD": true,
+    "MALFORMED_FIELD": true
+  },
+  "note_referral_01": "referral-01 (Rosa HACKDEMO-Alvarez, DOB 1985-03-14) will come back as a DUPLICATE if Aurora's recording already created Rosa HACKDEMO-Alvarez on the demo; that is the live example to show. Test-runner copies named HACKDEMO-Alvarez-TR<time> show up as POSSIBLE_DUPLICATE.",
+  "referrals": [
+    {
+      "file": "referral-03.pdf",
+      "source_dir": "referrals",
+      "patient": "Linh HACKDEMO-Cartwright",
+      "dob": "1990-06-27",
+      "urgency": "Urgent",
+      "urgent_flag": true,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "URGENT",
+          "reason": "Urgent referral: booked first, earliest slot"
+        },
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1990-06-27 under a variant last name (pid 41 HACKDEMO-Cartwright-TR115815, Linh; pid 42 HACKDEMO-Cartwright-TR115815, Linh; pid 52 HACKDEMO-Cartwright-TR121306, Linh; pid 71 HACKDEMO-Cartwright-TR123032, Linh)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:20-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Cartwright",
+        "table_info": "Showing 1 to 4 of 4 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "41",
+            "name": "HACKDEMO-Cartwright-TR115815, Linh",
+            "dob": "1990-06-27"
+          },
+          {
+            "pid": "42",
+            "name": "HACKDEMO-Cartwright-TR115815, Linh",
+            "dob": "1990-06-27"
+          },
+          {
+            "pid": "52",
+            "name": "HACKDEMO-Cartwright-TR121306, Linh",
+            "dob": "1990-06-27"
+          },
+          {
+            "pid": "71",
+            "name": "HACKDEMO-Cartwright-TR123032, Linh",
+            "dob": "1990-06-27"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-03.pdf",
+        "template": "faxcover",
+        "faxed_look": true,
+        "clinic_name": "Cedar Hollow Community Clinic",
+        "clinic_address": "92 Makebelieve Ln, Bldg C, Round Rock, TX 78664",
+        "clinic_phone": "512-555-0160",
+        "clinic_fax": "512-555-0161",
+        "referring_provider": "Priya Ramanathan, FNP-C",
+        "referring_npi": "9345678012",
+        "referral_date": "2026-09-05",
+        "first_name": "Linh",
+        "last_name": "HACKDEMO-Cartwright",
+        "dob": "1990-06-27",
+        "sex": "Female",
+        "phone": "512-555-0113",
+        "address_street": "1319 Mockingbird Ln",
+        "address_city": "Pflugerville",
+        "address_state": "TX",
+        "address_zip": "78660",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX6680201",
+        "group_number": "GRP-62720",
+        "reason": "Recurring migraines with increasing frequency; neurology consult requested.",
+        "specialty": "Neurology",
+        "urgency": "Urgent",
+        "display_dob": "06-27-1990",
+        "display_referral_date": "09/05/2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0113"
+      },
+      "booking_order": 1,
+      "suggested_slot": "2026-09-21 09:00"
+    },
+    {
+      "file": "referral-06.pdf",
+      "source_dir": "referrals",
+      "patient": "Tomas HACKDEMO-Escobedo",
+      "dob": "1958-04-30",
+      "urgency": "Urgent",
+      "urgent_flag": true,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "URGENT",
+          "reason": "Urgent referral: booked first, earliest slot"
+        },
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1958-04-30 under a variant last name (pid 45 HACKDEMO-Escobedo-TR115815, Tomas; pid 58 HACKDEMO-Escobedo-TR121306, Tomas)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:33-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Escobedo",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "45",
+            "name": "HACKDEMO-Escobedo-TR115815, Tomas",
+            "dob": "1958-04-30"
+          },
+          {
+            "pid": "58",
+            "name": "HACKDEMO-Escobedo-TR121306, Tomas",
+            "dob": "1958-04-30"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-06.pdf",
+        "template": "faxcover",
+        "faxed_look": false,
+        "clinic_name": "Cedar Hollow Community Clinic",
+        "clinic_address": "92 Makebelieve Ln, Bldg C, Round Rock, TX 78664",
+        "clinic_phone": "512-555-0160",
+        "clinic_fax": "512-555-0161",
+        "referring_provider": "Priya Ramanathan, FNP-C",
+        "referring_npi": "9345678012",
+        "referral_date": "2026-09-11",
+        "first_name": "Tomas",
+        "last_name": "HACKDEMO-Escobedo",
+        "dob": "1958-04-30",
+        "sex": "Male",
+        "phone": "512-555-0116",
+        "address_street": "9021 Prairie Wind Dr",
+        "address_city": "Cedar Park",
+        "address_state": "TX",
+        "address_zip": "78613",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX2559605",
+        "group_number": "GRP-80508",
+        "reason": "Shortness of breath on exertion; please evaluate for possible asthma or COPD.",
+        "specialty": "Pulmonology",
+        "urgency": "Urgent",
+        "display_dob": "04-30-1958",
+        "display_referral_date": "09/11/2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0116"
+      },
+      "booking_order": 2,
+      "suggested_slot": "2026-09-21 09:30"
+    },
+    {
+      "file": "fixture-11-urgent.pdf",
+      "source_dir": "triage/fixtures",
+      "patient": "Nora HACKDEMO-Triage-Urgent",
+      "dob": "1977-05-22",
+      "urgency": "Urgent",
+      "urgent_flag": true,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "URGENT",
+          "reason": "Urgent referral: booked first, earliest slot"
+        }
+      ],
+      "duplicate_check": {
+        "status": "NOT FOUND",
+        "searched_at": "2026-09-19T12:35:56-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Triage-Urgent",
+        "table_info": "Showing 0 to 0 of 0 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "fixture-11-urgent.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-18",
+        "first_name": "Nora",
+        "last_name": "HACKDEMO-Triage-Urgent",
+        "dob": "1977-05-22",
+        "sex": "Female",
+        "phone": "512-555-0191",
+        "address_street": "18 Fictional Mesa Dr",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78745",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX4417290",
+        "group_number": "GRP-40404",
+        "reason": "Chest tightness with exertion over the past week; please see as soon as possible.",
+        "specialty": "Cardiology",
+        "urgency": "Urgent",
+        "display_dob": "05/22/1977",
+        "display_referral_date": "September 18, 2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0191"
+      },
+      "booking_order": 3,
+      "suggested_slot": "2026-09-21 10:00"
+    },
+    {
+      "file": "referral-10.pdf",
+      "source_dir": "referrals",
+      "patient": "Wesley HACKDEMO-Jaramillo",
+      "dob": "1969-07-03",
+      "urgency": "Urgent",
+      "urgent_flag": true,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "URGENT",
+          "reason": "Urgent referral: booked first, earliest slot"
+        },
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1969-07-03 under a variant last name (pid 49 HACKDEMO-Jaramillo-TR115815, Wesley; pid 63 HACKDEMO-Jaramillo-TR121306, Wesley)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:51-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Jaramillo",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "49",
+            "name": "HACKDEMO-Jaramillo-TR115815, Wesley",
+            "dob": "1969-07-03"
+          },
+          {
+            "pid": "63",
+            "name": "HACKDEMO-Jaramillo-TR121306, Wesley",
+            "dob": "1969-07-03"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-10.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-19",
+        "first_name": "Wesley",
+        "last_name": "HACKDEMO-Jaramillo",
+        "dob": "1969-07-03",
+        "sex": "Male",
+        "phone": "512-555-0120",
+        "address_street": "240 Starlight Loop",
+        "address_city": "Kyle",
+        "address_state": "TX",
+        "address_zip": "78640",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX9387409",
+        "group_number": "GRP-90897",
+        "reason": "Numbness and tingling in both feet; evaluate for peripheral neuropathy.",
+        "specialty": "Neurology",
+        "urgency": "Urgent",
+        "display_dob": "07/03/1969",
+        "display_referral_date": "September 19, 2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0120"
+      },
+      "booking_order": 4,
+      "suggested_slot": "2026-09-21 10:30"
+    },
+    {
+      "file": "referral-01.pdf",
+      "source_dir": "referrals",
+      "patient": "Rosa HACKDEMO-Alvarez",
+      "dob": "1985-03-14",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1985-03-14 under a variant last name (pid 35 HACKDEMO-Alvarez-TR114400, Rosa; pid 37 HACKDEMO-Alvarez-TR115335, Rosa; pid 39 HACKDEMO-Alvarez-TR115815, Rosa; pid 50 HACKDEMO-Alvarez-TR121306, Rosa; pid 68 HACKDEMO-Alvarez-TR122846, Rosa; pid 69 HACKDEMO-Alvarez-TR123032, Rosa)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:09-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Alvarez",
+        "table_info": "Showing 1 to 6 of 6 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "35",
+            "name": "HACKDEMO-Alvarez-TR114400, Rosa",
+            "dob": "1985-03-14"
+          },
+          {
+            "pid": "37",
+            "name": "HACKDEMO-Alvarez-TR115335, Rosa",
+            "dob": "1985-03-14"
+          },
+          {
+            "pid": "39",
+            "name": "HACKDEMO-Alvarez-TR115815, Rosa",
+            "dob": "1985-03-14"
+          },
+          {
+            "pid": "50",
+            "name": "HACKDEMO-Alvarez-TR121306, Rosa",
+            "dob": "1985-03-14"
+          },
+          {
+            "pid": "68",
+            "name": "HACKDEMO-Alvarez-TR122846, Rosa",
+            "dob": "1985-03-14"
+          },
+          {
+            "pid": "69",
+            "name": "HACKDEMO-Alvarez-TR123032, Rosa",
+            "dob": "1985-03-14"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-01.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-01",
+        "first_name": "Rosa",
+        "last_name": "HACKDEMO-Alvarez",
+        "dob": "1985-03-14",
+        "sex": "Female",
+        "phone": "512-555-0111",
+        "address_street": "2210 Willowbend Dr",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78745",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX2650168",
+        "group_number": "GRP-56000",
+        "reason": "Evaluation of chronic right knee pain not improved with physical therapy.",
+        "specialty": "Orthopedics",
+        "urgency": "Routine",
+        "display_dob": "03/14/1985",
+        "display_referral_date": "September 1, 2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0111"
+      },
+      "booking_order": 5,
+      "suggested_slot": "2026-09-21 11:00"
+    },
+    {
+      "file": "referral-02.pdf",
+      "source_dir": "referrals",
+      "patient": "Marcus HACKDEMO-Bellweather",
+      "dob": "1972-11-02",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1972-11-02 under a variant last name (pid 38 HACKDEMO-Bellweather-TR115335, Marcus; pid 40 HACKDEMO-Bellweather-TR115815, Marcus; pid 51 HACKDEMO-Bellweather-TR121306, Marcus; pid 54 HACKDEMO-Bellweather-dev1, Marcus; pid 64 HACKDEMO-Bellweather-t1, Marcus; pid 65 HACKDEMO-Bellweather-f1, Marcus; pid 66 HACKDEMO-Bellweather-f2, Marcus; pid 70 HACKDEMO-Bellweather-TR123032, Marcus)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:16-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Bellweather",
+        "table_info": "Showing 1 to 8 of 8 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "38",
+            "name": "HACKDEMO-Bellweather-TR115335, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "40",
+            "name": "HACKDEMO-Bellweather-TR115815, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "51",
+            "name": "HACKDEMO-Bellweather-TR121306, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "54",
+            "name": "HACKDEMO-Bellweather-dev1, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "64",
+            "name": "HACKDEMO-Bellweather-t1, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "65",
+            "name": "HACKDEMO-Bellweather-f1, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "66",
+            "name": "HACKDEMO-Bellweather-f2, Marcus",
+            "dob": "1972-11-02"
+          },
+          {
+            "pid": "70",
+            "name": "HACKDEMO-Bellweather-TR123032, Marcus",
+            "dob": "1972-11-02"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-02.pdf",
+        "template": "form",
+        "faxed_look": false,
+        "clinic_name": "Barton Ridge Primary Care",
+        "clinic_address": "1807 Imaginary Creek Rd, Austin, TX 78704",
+        "clinic_phone": "512-555-0150",
+        "clinic_fax": "512-555-0151",
+        "referring_provider": "Dr. Owen Whitcombe, DO",
+        "referring_npi": "9234567801",
+        "referral_date": "2026-09-03",
+        "first_name": "Marcus",
+        "last_name": "HACKDEMO-Bellweather",
+        "dob": "1972-11-02",
+        "sex": "Male",
+        "phone": "512-555-0112",
+        "address_street": "508 Sagebrush Trl",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78704",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX3338965",
+        "group_number": "GRP-95834",
+        "reason": "Follow-up of elevated blood pressure readings over the past three months.",
+        "specialty": "Cardiology",
+        "urgency": "Routine",
+        "display_dob": "11/02/1972",
+        "display_referral_date": "09/03/2026",
+        "display_sex": "M",
+        "display_phone": "(512) 555-0112"
+      },
+      "booking_order": 6,
+      "suggested_slot": "2026-09-21 11:30"
+    },
+    {
+      "file": "referral-04.pdf",
+      "source_dir": "referrals",
+      "patient": "Daniel HACKDEMO-Okonkwo",
+      "dob": "1964-01-09",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1964-01-09 under a variant last name (pid 43 HACKDEMO-Okonkwo-TR115815, Daniel; pid 55 HACKDEMO-Okonkwo-TR121306, Daniel)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:25-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Okonkwo",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "43",
+            "name": "HACKDEMO-Okonkwo-TR115815, Daniel",
+            "dob": "1964-01-09"
+          },
+          {
+            "pid": "55",
+            "name": "HACKDEMO-Okonkwo-TR121306, Daniel",
+            "dob": "1964-01-09"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-04.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-07",
+        "first_name": "Daniel",
+        "last_name": "HACKDEMO-Okonkwo",
+        "dob": "1964-01-09",
+        "sex": "Male",
+        "phone": "512-555-0114",
+        "address_street": "77 Riverstone Ct",
+        "address_city": "Round Rock",
+        "address_state": "TX",
+        "address_zip": "78664",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX5701193",
+        "group_number": "GRP-17266",
+        "reason": "Screening colonoscopy; patient has family history of colon polyps.",
+        "specialty": "Gastroenterology",
+        "urgency": "Routine",
+        "display_dob": "01/09/1964",
+        "display_referral_date": "September 7, 2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0114"
+      },
+      "booking_order": 7,
+      "suggested_slot": "2026-09-21 12:00"
+    },
+    {
+      "file": "referral-05.pdf",
+      "source_dir": "referrals",
+      "patient": "Hannah HACKDEMO-Duvall",
+      "dob": "2001-08-18",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 2001-08-18 under a variant last name (pid 44 HACKDEMO-Duvall-TR115815, Hannah; pid 56 HACKDEMO-Duvall-TR121306, Hannah)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:29-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Duvall",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "44",
+            "name": "HACKDEMO-Duvall-TR115815, Hannah",
+            "dob": "2001-08-18"
+          },
+          {
+            "pid": "56",
+            "name": "HACKDEMO-Duvall-TR121306, Hannah",
+            "dob": "2001-08-18"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-05.pdf",
+        "template": "form",
+        "faxed_look": false,
+        "clinic_name": "Barton Ridge Primary Care",
+        "clinic_address": "1807 Imaginary Creek Rd, Austin, TX 78704",
+        "clinic_phone": "512-555-0150",
+        "clinic_fax": "512-555-0151",
+        "referring_provider": "Dr. Owen Whitcombe, DO",
+        "referring_npi": "9234567801",
+        "referral_date": "2026-09-09",
+        "first_name": "Hannah",
+        "last_name": "HACKDEMO-Duvall",
+        "dob": "2001-08-18",
+        "sex": "Female",
+        "phone": "512-555-0115",
+        "address_street": "4402 Live Oak St",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78751",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX2049818",
+        "group_number": "GRP-66101",
+        "reason": "Persistent rash on both forearms for six weeks, no response to OTC cream.",
+        "specialty": "Dermatology",
+        "urgency": "Routine",
+        "display_dob": "08/18/2001",
+        "display_referral_date": "09/09/2026",
+        "display_sex": "F",
+        "display_phone": "(512) 555-0115"
+      },
+      "booking_order": 8,
+      "suggested_slot": "2026-09-21 12:30"
+    },
+    {
+      "file": "referral-07.pdf",
+      "source_dir": "referrals",
+      "patient": "Grace HACKDEMO-Fairbanks",
+      "dob": "1979-12-05",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1979-12-05 under a variant last name (pid 46 HACKDEMO-Fairbanks-TR115815, Grace; pid 59 HACKDEMO-Fairbanks-TR121306, Grace)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:38-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Fairbanks",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "46",
+            "name": "HACKDEMO-Fairbanks-TR115815, Grace",
+            "dob": "1979-12-05"
+          },
+          {
+            "pid": "59",
+            "name": "HACKDEMO-Fairbanks-TR121306, Grace",
+            "dob": "1979-12-05"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-07.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-13",
+        "first_name": "Grace",
+        "last_name": "HACKDEMO-Fairbanks",
+        "dob": "1979-12-05",
+        "sex": "Female",
+        "phone": "512-555-0117",
+        "address_street": "615 Bluestem Ave",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78723",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX1377048",
+        "group_number": "GRP-51684",
+        "reason": "Thyroid nodule found on routine exam; ultrasound and endocrine review requested.",
+        "specialty": "Endocrinology",
+        "urgency": "Routine",
+        "display_dob": "12/05/1979",
+        "display_referral_date": "September 13, 2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0117"
+      },
+      "booking_order": 9,
+      "suggested_slot": "2026-09-21 13:00"
+    },
+    {
+      "file": "referral-08.pdf",
+      "source_dir": "referrals",
+      "patient": "Kenji HACKDEMO-Harrowgate",
+      "dob": "1995-02-21",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1995-02-21 under a variant last name (pid 47 HACKDEMO-Harrowgate-TR115815, Kenji; pid 60 HACKDEMO-Harrowgate-TR121306, Kenji)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:43-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Harrowgate",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "47",
+            "name": "HACKDEMO-Harrowgate-TR115815, Kenji",
+            "dob": "1995-02-21"
+          },
+          {
+            "pid": "60",
+            "name": "HACKDEMO-Harrowgate-TR121306, Kenji",
+            "dob": "1995-02-21"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-08.pdf",
+        "template": "form",
+        "faxed_look": true,
+        "clinic_name": "Barton Ridge Primary Care",
+        "clinic_address": "1807 Imaginary Creek Rd, Austin, TX 78704",
+        "clinic_phone": "512-555-0150",
+        "clinic_fax": "512-555-0151",
+        "referring_provider": "Dr. Owen Whitcombe, DO",
+        "referring_npi": "9234567801",
+        "referral_date": "2026-09-15",
+        "first_name": "Kenji",
+        "last_name": "HACKDEMO-Harrowgate",
+        "dob": "1995-02-21",
+        "sex": "Male",
+        "phone": "512-555-0118",
+        "address_street": "3308 Canyon View Rd",
+        "address_city": "Georgetown",
+        "address_state": "TX",
+        "address_zip": "78626",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX1393956",
+        "group_number": "GRP-60247",
+        "reason": "Left shoulder pain after lifting injury, limited range of motion.",
+        "specialty": "Orthopedics",
+        "urgency": "Routine",
+        "display_dob": "02/21/1995",
+        "display_referral_date": "09/15/2026",
+        "display_sex": "M",
+        "display_phone": "(512) 555-0118"
+      },
+      "booking_order": 10,
+      "suggested_slot": "2026-09-21 13:30"
+    },
+    {
+      "file": "referral-09.pdf",
+      "source_dir": "referrals",
+      "patient": "Amara HACKDEMO-Ingleside",
+      "dob": "1988-09-11",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "READY",
+      "flags": [
+        {
+          "type": "POSSIBLE_DUPLICATE",
+          "reason": "same DOB 1988-09-11 under a variant last name (pid 48 HACKDEMO-Ingleside-TR115815, Amara; pid 61 HACKDEMO-Ingleside-TR121306, Amara)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "POSSIBLE",
+        "searched_at": "2026-09-19T12:35:47-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Ingleside",
+        "table_info": "Showing 1 to 2 of 2 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [
+          {
+            "pid": "48",
+            "name": "HACKDEMO-Ingleside-TR115815, Amara",
+            "dob": "1988-09-11"
+          },
+          {
+            "pid": "61",
+            "name": "HACKDEMO-Ingleside-TR121306, Amara",
+            "dob": "1988-09-11"
+          }
+        ],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "referral-09.pdf",
+        "template": "faxcover",
+        "faxed_look": false,
+        "clinic_name": "Cedar Hollow Community Clinic",
+        "clinic_address": "92 Makebelieve Ln, Bldg C, Round Rock, TX 78664",
+        "clinic_phone": "512-555-0160",
+        "clinic_fax": "512-555-0161",
+        "referring_provider": "Priya Ramanathan, FNP-C",
+        "referring_npi": "9345678012",
+        "referral_date": "2026-09-17",
+        "first_name": "Amara",
+        "last_name": "HACKDEMO-Ingleside",
+        "dob": "1988-09-11",
+        "sex": "Female",
+        "phone": "512-555-0119",
+        "address_street": "1127 Pecan Hollow Dr",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78748",
+        "insurance_carrier": "Aekna",
+        "member_id": "AXX1063662",
+        "group_number": "GRP-14758",
+        "reason": "Ongoing low mood and poor sleep; behavioral health intake requested.",
+        "specialty": "Behavioral Health",
+        "urgency": "Routine",
+        "display_dob": "09-11-1988",
+        "display_referral_date": "09/17/2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0119"
+      },
+      "booking_order": 11,
+      "suggested_slot": "2026-09-21 14:00"
+    },
+    {
+      "file": "fixture-12-nomember.pdf",
+      "source_dir": "triage/fixtures",
+      "patient": "Owen HACKDEMO-Triage-NoMember",
+      "dob": "1992-10-08",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "NEEDS_MARY",
+      "flags": [
+        {
+          "type": "MISSING_FIELD",
+          "field": "member_id",
+          "reason": "member ID is missing on the referral"
+        }
+      ],
+      "duplicate_check": {
+        "status": "NOT FOUND",
+        "searched_at": "2026-09-19T12:36:00-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Triage-NoMember",
+        "table_info": "Showing 0 to 0 of 0 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "fixture-12-nomember.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-18",
+        "first_name": "Owen",
+        "last_name": "HACKDEMO-Triage-NoMember",
+        "dob": "1992-10-08",
+        "sex": "Male",
+        "phone": "512-555-0192",
+        "address_street": "702 Imaginary Pine St",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78704",
+        "insurance_carrier": "Aekna",
+        "member_id": "",
+        "group_number": "GRP-40404",
+        "reason": "Changing mole on upper back; skin check requested.",
+        "specialty": "Dermatology",
+        "urgency": "Routine",
+        "display_dob": "10/08/1992",
+        "display_referral_date": "September 18, 2026",
+        "display_sex": "Male",
+        "display_phone": "512-555-0192"
+      },
+      "booking_order": null,
+      "suggested_slot": null
+    },
+    {
+      "file": "fixture-13-malformed.pdf",
+      "source_dir": "triage/fixtures",
+      "patient": "Iris HACKDEMO-Triage-BadID",
+      "dob": "1983-02-14",
+      "urgency": "Routine",
+      "urgent_flag": false,
+      "decision": "NEEDS_MARY",
+      "flags": [
+        {
+          "type": "MALFORMED_FIELD",
+          "field": "member_id",
+          "value": "AX12345",
+          "reason": "member ID 'AX12345' does not match Aekna's pattern ('AXX' + 7 digits)"
+        }
+      ],
+      "duplicate_check": {
+        "status": "NOT FOUND",
+        "searched_at": "2026-09-19T12:36:04-05:00",
+        "search_url": "https://demo.openemr.io/openemr/interface/main/finder/dynamic_finder.php?search_any=HACKDEMO-Triage-BadID",
+        "table_info": "Showing 0 to 0 of 0 entries (filtered from 72 total entries)",
+        "exact_matches": [],
+        "variant_matches": [],
+        "same_last_name_other_dob": []
+      },
+      "extracted": {
+        "file": "fixture-13-malformed.pdf",
+        "template": "letterhead",
+        "faxed_look": false,
+        "clinic_name": "Pecan Grove Family Medicine",
+        "clinic_address": "4410 Fictional Oak Blvd, Suite 200, Austin, TX 78745",
+        "clinic_phone": "512-555-0142",
+        "clinic_fax": "512-555-0143",
+        "referring_provider": "Dr. Marisol Quintero, MD",
+        "referring_npi": "9123456780",
+        "referral_date": "2026-09-18",
+        "first_name": "Iris",
+        "last_name": "HACKDEMO-Triage-BadID",
+        "dob": "1983-02-14",
+        "sex": "Female",
+        "phone": "512-555-0193",
+        "address_street": "31 Makebelieve Cedar Ct",
+        "address_city": "Austin",
+        "address_state": "TX",
+        "address_zip": "78751",
+        "insurance_carrier": "Aekna",
+        "member_id": "AX12345",
+        "group_number": "GRP-40404",
+        "reason": "Follow-up of abnormal thyroid labs; endocrine consult requested.",
+        "specialty": "Endocrinology",
+        "urgency": "Routine",
+        "display_dob": "02/14/1983",
+        "display_referral_date": "September 18, 2026",
+        "display_sex": "Female",
+        "display_phone": "512-555-0193"
+      },
+      "booking_order": null,
+      "suggested_slot": null
+    }
+  ]
+}

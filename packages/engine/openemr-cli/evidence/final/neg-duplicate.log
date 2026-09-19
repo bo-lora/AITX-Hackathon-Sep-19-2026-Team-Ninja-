@@ -1,0 +1,2 @@
+ERROR: a patient named HACKDEMO-Bellweather-f1 already exists (pid 65); refusing to create a duplicate (use --suffix)
+{"command":"patient create","site":"https://demo.openemr.io/openemr","ok":false,"exit_code":3,"steps":[],"error":"a patient named HACKDEMO-Bellweather-f1 already exists (pid 65); refusing to create a duplicate (use --suffix)","dialogs":[],"seconds":5.4}

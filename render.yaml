@@ -1,0 +1,8 @@
+# ContextNinja public UI. Headed OpenEMR run stays on the laptop.
+services:
+  - type: web
+    name: contextninja
+    runtime: static
+    buildCommand: corepack enable && pnpm install && pnpm pack:extension && pnpm --filter @contextninja/landing-page build
+    staticPublishPath: packages/webapp/landing-page/out
+    pullRequestPreviewsEnabled: false

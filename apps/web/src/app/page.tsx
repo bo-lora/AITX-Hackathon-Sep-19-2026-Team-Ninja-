@@ -16,13 +16,19 @@ export default async function HomePage() {
       <main>
         <section className="grid items-center gap-12 py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 lg:py-16">
           <div className="max-w-xl space-y-6">
-            <h1 className="max-w-[12ch] text-[3.15rem] sm:text-[4.25rem] lg:text-[4.75rem]">
-              Do the click-path once.
+            <h1 className="text-[3.15rem] sm:text-[4.25rem] lg:text-[4.75rem]">
+              Let&apos;s cut through all the bullshit!
             </h1>
-            <p className="max-w-[38ch] text-lg leading-7 text-muted">
-              You&apos;re already on the real site. Same login. Same fields. Hit Create, run the task, hit Done.
-              The workflow is waiting here to become a Grok skill.
-            </p>
+            <div className="max-w-[42ch] space-y-4 text-lg leading-7 text-muted">
+              <p>
+                Tired of dealing with repetitive tasks that give you carpal tunnel? No worries, the ContextNinja is
+                here to help you.
+              </p>
+              <p>
+                Power through your dreadful task one more time and ContextNinja records it and creates a skill for you.
+                Install the skill in your favorite LLM and say goodbye to the BS.
+              </p>
+            </div>
             <div className="flex flex-col items-start gap-5 pt-1 sm:flex-row sm:items-center">
               <DownloadChromeButton />
               <WatchDemoButton />

@@ -1,7 +1,6 @@
 # Team status and recorder design
 
-Shareable. Draft PR: https://github.com/bo-lora/AITX-Hackathon-Sep-19-2026-Team-Ninja-/pull/5  
-Branch: `cursor/contextninja-monorepo-a532`
+Shareable. Branch: `cursor/packages-layout-a532`
 
 Do not duplicate `docs/deliverables.md`, `docs/hackathon-pipeline.md`, or `research/ingestion-to-workflow-for-agents.md`. This is status + the recorder contract.
 
@@ -9,31 +8,31 @@ Do not duplicate `docs/deliverables.md`, `docs/hackathon-pipeline.md`, or `resea
 
 ## 1. Status
 
-**Shipped on the PR (webapp is the demo surface):**
+**Shipped (webapp is the demo surface):**
 
-- pnpm monorepo: `apps/web`, `apps/extension`, `packages/session`
-- Landing: cream `#f3efed` (ninja logo), Bricolage Grotesque headlines, Open Sans body
-- Dark **Download Chrome Extension** pill with Bo’s round Chrome icon (`apps/web/public/chrome-icon.png`)
+- pnpm monorepo: `packages/extension`, `packages/webapp/landing-page`, `packages/webapp/skill-manager`, `packages/backend`
+- Landing (`:43123`): cream `#f3efed` (ninja logo), Bricolage Grotesque headlines, Open Sans body
+- Dark **Download Chrome Extension** pill with Bo’s round Chrome icon (`packages/webapp/landing-page/public/chrome-icon.png`)
 - Locked home copy (“Let's cut through all the bullshit!” … carpal tunnel … dreadful task … BS)
-- Operator flow in the webapp: workflow edit → Save → skill page (Add to Grok / download / optional Publish) → homepage skill list
-- `POST /api/sessions` accepts `SessionPayload`; empty `steps` are derived from `events`
-- Shared types in `packages/session` — **this is the only recording contract**
-- Extension folder is an MV3 **stub**: popup Create / Done, content-script listeners, background POST to `http://127.0.0.1:43123/api/sessions` then open `/workflows/:id`. No keys.
+- Skill manager (`:43124`): workflow edit → Save → skill page (Add to Grok / download / optional Publish) → skill list
+- `POST /api/sessions` lives in `packages/backend` (hosted by the skill manager); empty `steps` are derived from `events`
+- One recording contract: `SessionPayload` + `deriveSteps` in `packages/backend` (no fourth types package)
+- Extension folder is an MV3 **stub**: popup Create / Done, content-script listeners, background POST to `http://127.0.0.1:43124/api/sessions` then open `/workflows/:id`. No keys.
 
 **Not done (this is the next work):**
 
 - A recorder teammates can trust in a real logged-in tab (selectors, SPA navigations, 2FA pages)
-- Extension UI that feels like a product (Create / Done states, errors when the webapp is down)
+- Extension UI that feels like a product (Create / Done states, errors when the skill manager is down)
 
-Watch demo on the homepage can land a sample workflow without the extension. That does not replace the recorder.
+Watch demo on the landing page can land a sample workflow without the extension. That does not replace the recorder.
 
 ---
 
 ## 2. Recorder technical design
 
-**Job:** in Mary’s real Chrome, Create → she does the task → Done. Extension records live DOM + navigation, POSTs **one** `SessionPayload` JSON, redirects to the webapp. **No API key in the extension.** Skill generation stays on the webapp.
+**Job:** in Mary’s real Chrome, Create → she does the task → Done. Extension records live DOM + navigation, POSTs **one** `SessionPayload` JSON, redirects to the skill manager. **No API key in the extension.** Skill generation stays on the skill manager / backend.
 
-Invent as little as possible. One recorder. Map onto `packages/session`, do not add a second schema.
+Invent as little as possible. One recorder. Map onto `packages/backend`, do not add a second schema.
 
 | Option | What it gives | For this hack |
 | --- | --- | --- |
@@ -42,16 +41,16 @@ Invent as little as possible. One recorder. Map onto `packages/session`, do not 
 | **Open Browser Use / OpenDevBrowser** | Extension + agent/MCP/CDP runtime | Whole platforms. Do not integrate. Pitch contrast only. |
 | **rrweb** | Full DOM mutation replay (session-replay video) | Wrong artifact. We need an event AST (click/input/submit/navigate + selector), not a pixel replay. Skip. |
 
-**Recommend:** keep the thin MV3 wrapper already in `apps/extension`. Finish it; do not vendor a recorder product.
+**Recommend:** keep the thin MV3 wrapper already in `packages/extension`. Finish it; do not vendor a recorder product.
 
 Reuse:
 
 - Automa / DevTools: CSS selector from the event target (`id`, `data-testid`, labeled text, short path). Not `x,y`.
-- Our stub: Create injects `content.js`; Done POSTs JSON; webapp `deriveSteps`.
+- Our stub: Create injects `content.js`; Done POSTs JSON; backend `deriveSteps`.
 
 Build (thin):
 
-- Popup: Create / Done / idle vs recording / “webapp not running”
+- Popup: Create / Done / idle vs recording / “skill manager not running”
 - Content script: click, input, change, submit, Enter/Tab/Escape; strip password values (`••••`)
 - Background: session id + `createdAt` on Create; `navigate` events on tab URL changes; re-inject after navigation
 - POST body = `SessionPayload`. `steps` may be `[]`
@@ -62,9 +61,9 @@ Do not: rrweb snapshots, Automa conditionals, Playwright-from-frames, keys on th
 
 ## 3. Recording payload example
 
-Contract: `SessionPayload` in `packages/session`. Start = `createdAt`. End = last `events[].ts`. Page URL/title live on each event (`url`, `title`) plus `startUrl`. Navigation is `type: "navigate"`. Selectors are CSS. Types: `click` | `input` | `change` | `submit` | `navigate` | `keydown` | `focus`.
+Contract: `SessionPayload` in `packages/backend`. Start = `createdAt`. End = last `events[].ts`. Page URL/title live on each event (`url`, `title`) plus `startUrl`. Navigation is `type: "navigate"`. Selectors are CSS. Types: `click` | `input` | `change` | `submit` | `navigate` | `keydown` | `focus`.
 
-`POST http://127.0.0.1:43123/api/sessions`  
+`POST http://127.0.0.1:43124/api/sessions`  
 `Content-Type: application/json`
 
 ```json
@@ -160,4 +159,4 @@ Contract: `SessionPayload` in `packages/session`. Start = `createdAt`. End = las
 }
 ```
 
-Webapp response: `{ "id": "session-k7q2m1", "workflowUrl": "http://127.0.0.1:43123/workflows/session-k7q2m1" }`. Extension opens `workflowUrl`. If `steps` is `[]`, the server fills them with `deriveSteps(events)`.
+Skill manager response: `{ "id": "session-k7q2m1", "workflowUrl": "http://127.0.0.1:43124/workflows/session-k7q2m1" }`. Extension opens `workflowUrl`. If `steps` is `[]`, the server fills them with `deriveSteps(events)`.
